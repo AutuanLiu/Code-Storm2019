@@ -31,10 +31,8 @@ class Solution:
 # 内存消耗: 13.5 MB, 在Two Sum II - Input array is sorted的Python3提交中击败了0.90% 的用户
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        hashtable = {}
         # 构建哈希表
-        for idx, value in enumerate(numbers):
-            hashtable[value] = idx + 1
+        hashtable = {value: idx + 1 for idx, value in enumerate(numbers)}
         for idx, value in enumerate(numbers):
             diff = target - value
             # 升序排列
