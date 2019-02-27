@@ -3,7 +3,7 @@
 # 按照升序排列 的有序数组
 # 返回的下标值（index1 和 index2）不是从零开始的。
 # 你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素
-# 
+#
 # 暴力解决
 # 时间复杂度 O(n^2)
 # 空间复杂度 O(n)
@@ -24,6 +24,7 @@ class Solution:
                     return [idx + 1, idx1 + 1]
         return None
 
+
 # 两遍哈希表
 # 时间复杂度 O(n)
 # 空间复杂度 O(n)
@@ -43,6 +44,7 @@ class Solution:
                 return [idx + 1, hashtable[diff]]
         return None
 
+
 # 一遍哈希表
 # 时间复杂度 O(n)
 # 空间复杂度 O(n)
@@ -59,6 +61,7 @@ class Solution:
             # 同一个数值不可使用两次，所以，放在后边，保证搜索的时候，不包括当前数值
             hashtable[value] = idx + 1
         return None
+
 
 # 双指针（数据序列本身有序）
 # 时间复杂度 O(n)
@@ -79,6 +82,7 @@ class Solution:
                 r -= 1
         return None
 
+
 # 二分搜索
 # 时间复杂度 O(n)
 # 空间复杂度 O(1)
@@ -88,14 +92,14 @@ class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         length = len(numbers)
         for idx in range(length):
-            l, r = idx+1, length-1
+            l, r = idx + 1, length - 1
             tmp = target - numbers[idx]
             while l <= r:
-                mid = l + (r-l)//2
+                mid = l + (r - l) // 2
                 if numbers[mid] == tmp:
-                    return [idx+1, mid+1]
+                    return [idx + 1, mid + 1]
                 elif numbers[mid] < tmp:
-                    l = mid+1
+                    l = mid + 1
                 else:
-                    r = mid-1
+                    r = mid - 1
         return None

@@ -1,7 +1,7 @@
 # https://leetcode-cn.com/problems/two-sum/
 # 关键条件：
 # 每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
-# 
+#
 # 暴力解决
 # 时间复杂度 O(n^2)
 # 空间复杂度 O(n)
@@ -10,13 +10,14 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         length = len(nums)
-        for idx, value in enumerate(nums):    
+        for idx, value in enumerate(nums):
             diff = target - value
             # 同一个数值不可以使用多次, 从下一个索引开始遍历
             for idx1 in range(idx + 1, length):
                 if nums[idx1] == diff:
                     return [idx, idx1]
         return None
+
 
 # 两遍 hash 表
 # 时间复杂度 O(n)
@@ -26,9 +27,9 @@ class Solution:
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         hashmap = {}
-        for idx, value in enumerate(nums):    
+        for idx, value in enumerate(nums):
             hashmap[value] = idx
-            
+
         for idx, value in enumerate(nums):
             diff = target - value
             # 同一个数值不可以使用多次
@@ -36,6 +37,7 @@ class Solution:
                 return [idx, hashmap[diff]]
 
         return None
+
 
 # 一遍 hash 表
 # 时间复杂度 O(n)
@@ -45,8 +47,8 @@ class Solution:
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         hashmap = {}
-        for idx, value in enumerate(nums):    
-            diff = target - value      
+        for idx, value in enumerate(nums):
+            diff = target - value
             if diff in hashmap:
                 return [idx, hashmap[diff]]
             # 不能重复利用这个数组中同样的元素
@@ -54,4 +56,3 @@ class Solution:
             hashmap[value] = idx
 
         return None
-        
