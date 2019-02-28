@@ -6,7 +6,7 @@ def factorial(a: int):
     return a * factorial(a - 1)
 
 
-# 非递归
+# 非递归 + 字典
 def factorial1(a: int):
     c = {0: 1}
     for i in range(1, a + 1):
