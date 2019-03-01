@@ -59,8 +59,9 @@ class Solution:
 # Memory Usage: 13.5 MB, less than 5.00% of Python3 online submissions for String to Integer (atoi).
 class Solution(object):
     def myAtoi(self, s):
-        if len(s) == 0:return 0
         ls = list(s.strip())
+        if len(ls) == 0:
+            return 0
 
         sign = -1 if ls[0] == '-' else 1
         if ls[0] in ['-', '+']:

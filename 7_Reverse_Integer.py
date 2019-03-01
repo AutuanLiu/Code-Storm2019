@@ -24,7 +24,8 @@ class Solution:
             pop = x % 10
             x //= 10
             rev = rev * 10 + pop
-        rev *= sign
-        if rev < -2**31 or rev > 2**31 - 1:
-            return 0
-        return rev
+        # rev *= sign
+        # if rev < -2**31 or rev > 2**31 - 1:
+        #     return 0
+        # return rev
+        return max(-2 ** 31, min(rev * sign, 2 ** 31 -1))
