@@ -16,9 +16,10 @@ class Queue:
     @property
     def size(self):
         return len(self.items)
-    
+
     def __repr__(self):
         return f'{[x for x in self.items]}'
+
 
 if __name__ == "__main__":
     q = Queue()

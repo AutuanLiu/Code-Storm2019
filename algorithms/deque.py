@@ -9,10 +9,10 @@ class Deque:
 
     def addRear(self, item):
         self.items.insert(0, item)
-    
+
     def addFront(self, item):
         self.items.append(item)
-    
+
     def removeRear(self):
         self.items.pop(0)
 

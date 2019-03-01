@@ -52,7 +52,7 @@ class UnorderList:
                 # 只有不相等的时候才向后移动指针
                 current = current.getNext()
         return False
-    
+
     def remove(self, item):
         current = self.head
         previous = None
@@ -73,14 +73,13 @@ class UnorderList:
             previous.setNext(None)
         else:
             previous.setNext(current.getNext())
-        
+
     def append(self, item):
         newNode = Node(item)
         current = self.head
         while current.getNext() != None:
             current = current.getNext()
         current.setNext(newNode)
-    
 
     def __repr__(self):
         current = self.head
