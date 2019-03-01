@@ -9,6 +9,7 @@ class Solution:
         else:
             return ans
 
+
 # 取模
 # Runtime: 56 ms, faster than 60.66% of Python3 online submissions for Reverse Integer.
 # Memory Usage: 13.3 MB, less than 5.71% of Python3 online submissions for Reverse Integer.
