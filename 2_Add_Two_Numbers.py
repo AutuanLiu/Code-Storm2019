@@ -7,9 +7,10 @@ class ListNode:
         self.val = x
         self.next = None
 
+
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        dummy = cur = ListNode(0)  # 构造结果与当前指针
+        dummy = cur = ListNode(0)    # 构造结果与当前指针
         carry = 0
         while l1 or l2 or carry:
             if l1:
@@ -22,6 +23,7 @@ class Solution:
             cur = cur.next
             carry //= 10
         return dummy.next
+
 
 # 递归
 # Runtime: 116 ms, faster than 52.86% of Python3 online submissions for Add Two Numbers.
@@ -40,6 +42,7 @@ class Solution:
                 l3 = ListNode(l1.val + l2.val - 10)
                 l3.next = self.addTwoNumbers(l1.next, self.addTwoNumbers(l2.next, ListNode(1)))
         return l3
+
 
 # 笔算
 class Solution:

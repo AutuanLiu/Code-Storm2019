@@ -28,4 +28,4 @@ class Solution:
         # if rev < -2**31 or rev > 2**31 - 1:
         #     return 0
         # return rev
-        return max(-2 ** 31, min(rev * sign, 2 ** 31 -1))
+        return max(-2**31, min(rev * sign, 2**31 - 1))

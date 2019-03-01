@@ -6,5 +6,5 @@ class Solution:
         num = 0
         length = len(digits)
         for i in range(length):
-            num += digits[i] * 10 ** (length - 1 - i)
+            num += digits[i] * 10**(length - 1 - i)
         return list(map(int, str(num + 1)))

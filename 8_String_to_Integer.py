@@ -11,7 +11,7 @@ class Solution:
     def myAtoi(self, str: str) -> int:
         new_str = str.strip()
         # 只处理正常情况
-        a = new_str != ""  # 非空字符串
+        a = new_str != ""    # 非空字符串
         # 长度0
         if not a:
             return 0

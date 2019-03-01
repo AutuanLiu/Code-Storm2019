@@ -12,6 +12,7 @@ def dpMakeChange(coinValueList, change):
         minCoins[cents] = min(coinCount)
     return minCoins[change]
 
+
 if __name__ == "__main__":
     result = dpMakeChange([1, 5, 10, 21, 25], 63)
     print(result)

@@ -11,6 +11,7 @@ class Solution:
             result += dic[i] * symbol
         return result
 
+
 # 从前往后
 class Solution(object):
     def romanToInt(self, s: str) -> int:
