@@ -1,37 +1,17 @@
-# Making change using the fewest coins
-def dpMakeChange(coinValueList, change, minCoins, coinsUsed):
+def dpMakeChange(coinValueList, change):
+    minCoins = {}
+
     for cents in range(change + 1):
-        coinCount = cents
-        newCoin = 1
-        for j in [c for c in coinValueList if c <= cents]:
-            if minCoins[cents - j] + 1 < coinCount:
-                coinCount = minCoins[cents - j] + 1
-                newCoin = j
-        minCoins[cents] = coinCount
-        coinsUsed[cents] = newCoin
+        #cents小于等于1时，coinCount会为空，没法执行min。
+        #因此这里先填上
+        if cents <= 1:
+            minCoins[cents] = cents
+            continue
+        #遍历cents的每个最优子结构并且添加到list中，等待筛选
+        coinCount = [minCoins[cents - j] + 1 for j in coinValueList if cents >= j]
+        minCoins[cents] = min(coinCount)
     return minCoins[change]
 
-
-def printCoins(coinsUsed, change):
-    coin = change
-    while coin > 0:
-        thisCoin = coinsUsed[coin]
-        print(thisCoin)
-        coin = coin - thisCoin
-
-
-def main():
-    amnt = 63
-    clist = [1, 5, 10, 21, 25]
-    coinsUsed = [0] * (amnt + 1)
-    coinCount = [0] * (amnt + 1)
-
-    print("Making change for", amnt, "requires")
-    print(dpMakeChange(clist, amnt, coinCount, coinsUsed), "coins")
-    print("They are:")
-    printCoins(coinsUsed, amnt)
-    print("The used list is as follows:")
-    print(coinsUsed)
-
-
-main()
+if __name__ == "__main__":
+    result = dpMakeChange([1, 5, 10, 21, 25], 63)
+    print(result)
