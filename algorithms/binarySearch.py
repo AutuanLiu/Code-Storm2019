@@ -11,6 +11,7 @@ def binarySearch(alist, item):
             left = mid + 1
     return False
 
+
 # 递归实现
 def binarySearch1(alist, item):
     if len(alist) > 0:
@@ -18,9 +19,9 @@ def binarySearch1(alist, item):
         if alist[mid] == item:
             return True
         elif alist[mid] < item:
-            return binarySearch(alist[(mid+1):], item)
+            return binarySearch(alist[(mid + 1):], item)
         else:
-            return binarySearch(alist[:(mid-1)], item)
+            return binarySearch(alist[:(mid - 1)], item)
     return False
 
 
