@@ -13,7 +13,6 @@ def bankSort(alist):
     return blist
 
 
-
 if __name__ == "__main__":
     alist = [54, 25, 93, 17, 77, 31, 44, 55, 20, 25]
     alist1 = [17, 20, 25, 25, 31, 44, 54, 55, 77, 93]

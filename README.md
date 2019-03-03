@@ -2,6 +2,10 @@
 
 Python Version
 
+1. leetcode 代码练习
+2. 剑指offer 练习题
+3. 算法与数据结构
+
 ## Reference
 1. [MisterBooo/LeetCodeAnimation: Demonstrate all the questions on LeetCode in the form of animation.（用动画的形式呈现解LeetCode题目的思路）](https://github.com/MisterBooo/LeetCodeAnimation)
 2. [apachecn/awesome-algorithm: LeetCode, HackRank, 剑指offer, classic algorithm implementation](https://github.com/apachecn/awesome-algorithm)

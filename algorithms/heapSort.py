@@ -18,9 +18,9 @@
 def heapSort(lst):
     def shift_down(start, end):
         """最大堆调整"""
-        root = start  # 根节点
+        root = start    # 根节点
         while True:
-            child = 2 * root + 1  # 左子节点
+            child = 2 * root + 1    # 左子节点
             if child > end:
                 # 如果超出数组的长度就结束循环
                 break
