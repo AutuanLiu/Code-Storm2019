@@ -1,28 +1,22 @@
-# https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/
-# Python Program for Floyd Warshall Algorithm
+# Floyd 算法 可以求出任意两点之间的最短路径
 
-# Number of vertices in the graph
-V = 4
+import numpy as np
 
-# Define infinity as the large enough value. This value will be
-# used for vertices not connected to each other
-INF = 99999
 
-# Solves all pair shortest path via Floyd Warshall Algorithm
 def floydWarshall(graph):
-
-    dist = graph
+    """Solves all pair shortest path via Floyd Warshall Algorithm"""
     for k in range(V):
         for i in range(V):
             for j in range(V):
-                dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
-    print(dist)
+                graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j])
+    return graph
 
 
-graph = [[0,5,INF,10],
-		[INF,0,3,INF],
-		[INF, INF, 0, 1],
-		[INF, INF, INF, 0]
-		]
-
-floydWarshall(graph);
+if __name__ == '__main__':
+    # Number of vertices in the graph
+    V = 4
+    INF = np.inf
+    # graph 使用邻接矩阵表示
+    graph = [[0, 5, INF, 10], [INF, 0, 3, INF], [INF, INF, 0, 1], [INF, INF, INF, 0]]
+    graph = floydWarshall(graph)
+    print(graph)

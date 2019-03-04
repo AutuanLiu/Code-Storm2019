@@ -1,73 +1,67 @@
-# Python program for Dijkstra's single
-# source shortest path algorithm. The program is
-# for adjacency matrix representation of the graph
-
-# Library for INT_MAX
+import heapq
 
 
-class Graph():
-    def __init__(self, vertices):
-        self.V = vertices
-        self.graph = [[0 for column in range(vertices)] for row in range(vertices)]
+def dijkstra(graph, source):
+    priority_queue = []
+    # The cost is 0, because the distance between source to itself is 0
+    heapq.heappush(priority_queue, (0, source))
+    visited = {}
+    # basically the same as a normal BFS
+    while priority_queue:
+        # dequeue from the priority queue
+        # dequeue the minimum cost path
+        (current_distance, current) = heapq.heappop(priority_queue)
 
-    def printSolution(self, dist):
-        print("Vertex tDistance from Source")
-        for node in range(self.V):
-            print(node, "t", dist[node])
+        # When we extract min from the priority queue
+        # we know that we have found the minimum cost path to this node
+        # so we consider it visited
+        visited[current] = current_distance
 
-    # A utility function to find the vertex with
-    # minimum distance value, from the set of vertices
-    # not yet included in shortest path tree
-    def minDistance(self, dist, sptSet):
+        if current not in graph: continue
+        for neighbour, distance in graph[current].items():
+            # We only continue to explore neighbours that have been visited
+            # (same as a normal BFS)
+            if neighbour in visited: continue
+            # If we haven't found the min cost path to this node, we push the new distance back onto the queue
+            # because this is a min queue, if the new distance is the new min cost path, it will be at the front of the queue
+            new_distance = current_distance + distance
+            heapq.heappush(priority_queue, (new_distance, neighbour))
 
-        # Initilaize minimum distance for next node
-        min = float('inf')
-
-        # Search not nearest vertex not in the
-        # shortest path tree
-        for v in range(self.V):
-            if dist[v] < min and sptSet[v] == False:
-                min = dist[v]
-                min_index = 0
-
-        return min_index
-
-    # Funtion that implements Dijkstra's single source
-    # shortest path algorithm for a graph represented
-    # using adjacency matrix representation
-    def dijkstra(self, src):
-
-        dist = [float('inf')] * self.V
-        dist[src] = 0
-        sptSet = [False] * self.V
-
-        for cout in range(self.V):
-
-            # Pick the minimum distance vertex from
-            # the set of vertices not yet processed.
-            # u is always equal to src in first iteration
-            u = self.minDistance(dist, sptSet)
-
-            # Put the minimum distance vertex in the
-            # shotest path tree
-            sptSet[u] = True
-
-            # Update dist value of the adjacent vertices
-            # of the picked vertex only if the current
-            # distance is greater than new distance and
-            # the vertex in not in the shotest path tree
-            for v in range(self.V):
-                if self.graph[u][v] > 0 and sptSet[v] == False and dist[v] > dist[u] + self.graph[u][v]:
-                    dist[v] = dist[u] + self.graph[u][v]
-
-        self.printSolution(dist)
+    return visited
 
 
-# Driver program
-g = Graph(9)
-g.graph = [[0, 4, 0, 0, 0, 0, 0, 8, 0], [4, 0, 8, 0, 0, 0, 0, 11, 0], [0, 8, 0, 7, 0, 4, 0, 0, 2], [0, 0, 7, 0, 9, 14, 0, 0, 0], [0, 0, 0, 9, 0, 10, 0, 0, 0],
-           [0, 0, 4, 14, 10, 0, 2, 0, 0], [0, 0, 0, 0, 0, 2, 0, 1, 6], [8, 11, 0, 0, 0, 0, 1, 0, 7], [0, 0, 2, 0, 0, 0, 6, 7, 0]]
+if __name__ == '__main__':
+    graph = {
+        'A': {
+            'B': 20,
+            'D': 80,
+            'G': 90
+        },
+        'B': {
+            'F': 10
+        },
+        'F': {
+            'C': 10,
+            'D': 40
+        },
+        'C': {
+            'F': 50,
+            'D': 10,
+            'H': 20
+        },
+        'D': {
+            'G': 20,
+            'C': 10
+        },
+        'H': {},
+        'G': {
+            'A': 20
+        },
+        'E': {
+            'B': 50,
+            'G': 30
+        }
+    }
 
-g.dijkstra(0)
-
-# This code is contributed by Divyanshu Mehta
+    path = dijkstra(graph, 'A')
+    print(path)
