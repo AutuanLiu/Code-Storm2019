@@ -13,3 +13,5 @@ Python Version
 4. [csujedihy/lc-all-solutions: My own leetcode solutions by python](https://github.com/csujedihy/lc-all-solutions)
 5. [HuberTRoy/leetCode: :pencil2: 算法相关知识储备 LeetCode with Python](https://github.com/HuberTRoy/leetCode)
 6. [xuelangZF/LeetCode: 正确的姿势，学习的态度来刷 LeetCode：高效的代码、简洁的注释、精炼的总结。](https://github.com/xuelangZF/LeetCode)
+7. [zhedahht/CodingInterviewChinese2: 《剑指Offer》第二版源代码](https://github.com/zhedahht/CodingInterviewChinese2)
+8. [C++ 语言参考 | Microsoft Docs](https://docs.microsoft.com/zh-cn/cpp/cpp/cpp-language-reference?view=vs-2017)
