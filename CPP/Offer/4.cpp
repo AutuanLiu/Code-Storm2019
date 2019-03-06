@@ -8,74 +8,81 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-
-class Solution
-{
-  public:
-    TreeNode * R(vector<int> a, int abegin, int aend, vector<int> b, int bbegin, int bend)
-    {
-        if (abegin >= aend || bbegin >= bend)
-            return NULL;
-        TreeNode *root = new TreeNode(a[abegin]);
-        //root->val=a[abegin];
-        int pivot;
-        for (pivot = bbegin; pivot < bend; pivot++)
-            if (b[pivot] == a[abegin])
-                break;
-        root->left = R(a, abegin + 1, abegin + pivot - bbegin + 1, b, bbegin, pivot);
-        root->right = R(a, abegin + pivot - bbegin + 1, aend, b, pivot + 1, bend);
-        return root;
-    }
-
-    TreeNode *reConstructBinaryTree(vector<int> pre, vector<int> vin)
-    {
-        return R(pre, 0, pre.size(), vin, 0, vin.size());
-    }
-};
-
+// 由前序和中序构建二叉树
 class Solution
 {
   public:
     TreeNode *reConstructBinaryTree(vector<int> pre, vector<int> vin)
     {
         if (pre.empty() || vin.empty())
-            return NULL;
-        int count = 0;
-        for (int i = 0; i < vin.size(); ++i)
-        {
-            if (pre[0] == vin[i])
-                count++;
-        }
-        if (count != 1)
-            return NULL;
-
+            return nullptr;
         vector<int> pre_left, pre_right, vin_left, vin_right;
-        int val = pre[0];
-        TreeNode *root = new TreeNode(val);
-        int pos;
-
-        for (pos = 0; pos < vin.size(); ++pos)
+        TreeNode *root = new TreeNode(pre[0]);  // 结构体的构造函数
+        // 找到根节点在中序遍历的位置
+        int root_pos;
+        for (root_pos = 0; root_pos < vin.size(); root_pos++)
         {
-            if (vin[pos] == val)
+            if (vin[root_pos] == pre[0])
                 break;
         }
 
-        for (int i = 0; i < vin.size(); ++i)
+        // 找到 pre_left, pre_right, vin_left, vin_right
+        for (int i = 0; i < vin.size(); i++)
         {
-
-            if (i < pos)
+            if (i < root_pos)
             {
-                vin_left.push_back(vin[i]);
-                pre_left.push_back(pre[i + 1]);
+                vin_left.push_back(vin[i]); // [0:pos)
+                pre_left.push_back(pre[i + 1]); // [1:(pos+1)]
             }
-            else if (i > pos)
+            else if (i > root_pos)
             {
-                vin_right.push_back(vin[i]);
-                pre_right.push_back(pre[i]);
+                vin_right.push_back(vin[i]); // [(pos+1):]
+                pre_right.push_back(pre[i]); // [(pos+1):]
             }
         }
+        // 重建左右子树
         root->left = reConstructBinaryTree(pre_left, vin_left);
         root->right = reConstructBinaryTree(pre_right, vin_right);
+        return root;
+    }
+};
+
+// 由后序和中序构建二叉树
+class Solution
+{
+  public:
+    TreeNode *reConstructBinaryTree(vector<int> post, vector<int> vin)
+    {
+        if (post.empty() || vin.empty())
+            return nullptr;
+        vector<int> post_left, post_right, vin_left, vin_right;
+        int root_val = post[post.size() - 1];
+        TreeNode *root = new TreeNode(root_val); // 结构体的构造函数
+        // 找到根节点在中序遍历的位置
+        int root_pos;
+        for (root_pos = 0; root_pos < vin.size(); root_pos++)
+        {
+            if (vin[root_pos] == root_val)
+                break;
+        }
+
+        // 找到 post_left, post_right, vin_left, vin_right
+        for (int i = 0; i < vin.size(); i++)
+        {
+            if (i < root_pos)
+            {
+                vin_left.push_back(vin[i]); // [0:pos)
+                post_left.push_back(post[i]); // [0:pos]
+            }
+            else if (i > root_pos)
+            {
+                vin_right.push_back(vin[i + 1]); // [(pos+1):]
+                post_right.push_back(post[i - 1]); // [(pos-1):-1]
+            }
+        }
+        // 重建左右子树
+        root->left = reConstructBinaryTree(post_left, vin_left);
+        root->right = reConstructBinaryTree(post_right, vin_right);
         return root;
     }
 };
