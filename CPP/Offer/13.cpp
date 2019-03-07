@@ -1,3 +1,4 @@
+// 双指针
 class Solution
 {
   public:
@@ -14,6 +15,7 @@ class Solution
     }
 };
 
+// 新创建一个数组，将奇数和偶数分别放进去
 class Solution
 {
   public:
@@ -35,32 +37,4 @@ class Solution
     }
 };
 
-class Solution
-{
-  public:
-    void reOrderArray(vector<int> &array)
-    {
-        vector<int> value;
-        vector<int>::iterator ib1;
-        ib1 = array.begin();
-        while (ib1 != array.end())
-        {
-            if (*ib1 % 2 == 0)
-            {
-                value.push_back(*ib1);
-                ib1 = array.erase(ib1);
-            }
-            else
-            {
-                ib1++;
-            }
-        }
-        vector<int>::iterator ib2, ie2;
-        ib2 = value.begin();
-        ie2 = value.end();
-        for (; ib2 != ie2; ib2++)
-        {
-            array.push_back(*ib2);
-        }
-    }
-};
+

@@ -1,51 +1,31 @@
-class Solution
-{
-  public:
-    ListNode *ReverseList(ListNode *pHead)
-    {
-
-        if (pHead == NULL)
-            return pHead;
-        ListNode *pre = NULL;
-        ListNode *cur = pHead;
-        ListNode *nxt = NULL;
-        ListNode *res = NULL;
-        while (cur != NULL)
-        {
-            nxt = cur->next;
-            cur->next = pre;
-            if (nxt == NULL)
-            {
-                break;
-            }
-            pre = cur;
-            cur = nxt;
-        }
-        return cur;
-    }
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
 };
 
+// 前向插入的思路
+// 涉及双向操作的时候，注意避免链表的断裂
 class Solution
 {
   public:
     ListNode *ReverseList(ListNode *pHead)
     {
-        if (pHead == nullptr)
-            return nullptr;
+        if (pHead == nullptr || pHead->next == nullptr)
+            return pHead;
 
-        ListNode *pNode = pHead;
-        ListNode *pREHead = nullptr;
-        ListNode *pPre = nullptr;
+        ListNode* pNode = pHead;       // 当前节点
+        ListNode* pReHead = nullptr;   // 新链表的头结点
 
         while (pNode != nullptr)
         {
-            ListNode *pNext = pNode->next;
-            if (pNext == nullptr)
-                pREHead = pNode;
-            pNode->next = pPre;
-            pPre = pNode;
+            ListNode* pNext = pNode->next;  // 保存下一个节点
+            pNode->next = pReHead;
+            pReHead = pNode;
             pNode = pNext;
         }
-        return pREHead;
+        return pReHead;
     }
 };

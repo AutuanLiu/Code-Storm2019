@@ -1,22 +1,4 @@
-class Solution
-{
-  public:
-    double Power(double base, int exponent)
-    {
-        double b;
-        if (exponent >= 0)
-        {
-            b = pow(base, exponent);
-        }
-        else
-        {
-            b = pow(base, -exponent);
-            b = 1 / b;
-        }
-        return b;
-    }
-};
-
+// 快速求幂
 class Solution
 {
   public:
@@ -35,6 +17,7 @@ class Solution
     }
 };
 
+// 二分法求幂
 class Solution
 {
   public:
@@ -44,18 +27,14 @@ class Solution
         {
             if (exponent == 1)
                 return base;
-            if (exponent % 2 == 0)
-                return Power(base, exponent / 2) * Power(base, exponent / 2);
+            if (exponent & 1)
+                return Power(base, exponent >> 1) * Power(base, exponent >> 1) * base;
             else
-                return Power(base, exponent / 2) * Power(base, exponent / 2 + 1);
+                return Power(base, exponent >> 1) * Power(base, exponent >> 1);
         }
         else if (exponent == 0)
-        {
             return 1;
-        }
         else
-        {
             return 1 / Power(base, 0 - exponent);
-        }
     }
 };
