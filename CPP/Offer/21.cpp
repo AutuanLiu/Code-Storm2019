@@ -3,28 +3,25 @@ class Solution
   public:
     bool IsPopOrder(vector<int> pushV, vector<int> popV)
     {
-        if (pushV.size() == 0)
+        if (pushV.size() == 0 || pushV.size() != popV.size())
             return false;
 
-        int index = 0; //popV的下标
-        stack<int> s;
-        //
-        for (int i = 0; i < pushV.size(); i++)
+        for (int i = 0, index = 0; i < pushV.size(); i++)
         {
-            s.push(pushV[i]);
+            s.push(pushV[i]);  // 压栈
 
-            while (s.empty() == false && s.top() == popV[index] && index < popV.size())
+            while (!s.empty() && s.top() == popV[index])
             {
                 s.pop();
                 index++;
             }
         }
-        //
-        if (s.empty() == true)
-            return true;
-        else
-            return false;
+
+        return s.empty();
     }
+
+  private:
+    stack<int> s; // 辅助栈
 };
 
 class Solution
@@ -43,31 +40,5 @@ class Solution
             }
         }
         return temp.empty();
-    }
-};
-
-class Solution
-{
-  public:
-    bool IsPopOrder(vector<int> pushV, vector<int> popV)
-    {
-        stack<int> st;
-        int id = 0;
-        for (int i = 0; i < popV.size(); ++i)
-        {
-            while (st.empty() || st.top() != popV[i])
-            {
-                st.push(pushV[id++]);
-                if (id > pushV.size())
-                {
-                    return false;
-                }
-            }
-            st.pop();
-        }
-        if (st.empty())
-            return true;
-        else
-            return false;
     }
 };
