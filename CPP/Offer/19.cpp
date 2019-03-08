@@ -31,39 +31,6 @@ class Solution
     }
 };
 
-class Solution
-{
-  public:
-    vector<int> printMatrix(vector<vector<int>> matrix)
-    {
-        vector<int> ans;
-        int row = matrix.size();
-        int col = matrix[0].size();
-        int start = 0;
-        while (row > start * 2 && col > start * 2)
-        {
-            for (int i = start; i <= col - 1 - start; i++)
-                ans.push_back(matrix[start][i]);
-            if (start < row - start - 1)
-            {
-                for (int i = start + 1; i <= row - 1 - start; i++)
-                    ans.push_back(matrix[i][col - 1 - start]);
-            }
-            if (start < col - start - 1 && start < row - start - 1)
-            {
-                for (int i = col - 2 - start; i >= start; i--)
-                    ans.push_back(matrix[row - start - 1][i]);
-            }
-            if (start < col - start - 1 && start < row - start - 2)
-            {
-                for (int i = row - 2 - start; i >= start + 1; i--)
-                    ans.push_back(matrix[i][start]);
-            }
-            start++;
-        }
-        return ans;
-    }
-};
 
 class Solution
 {
@@ -86,5 +53,38 @@ class Solution
                 res.push_back(matrix[q][i]);
         }
         return res;
+    }
+};
+
+// 使用翻转矩阵的思路
+class Solution
+{
+  public:
+    vector<int> printMatrix(vector<vector<int>> matrix)
+    {
+        vector<int> res;
+        while (matrix.size() > 0)
+        {
+            for (int i = 0; i < matrix[0].size(); i++)
+                res.push_back(matrix[0][i]);   // 取出第一行
+            matrix.erase(matrix.begin());   // 删除第一行
+            if (matrix.size() <= 0 || matrix[0].size() <= 0)
+                break;
+            matrix = turn(matrix);
+        }
+        return res;
+    }
+
+    vector<vector<int>> turn(vector<vector<int>> matrix)
+    {
+        vector<vector<int>> newmat;
+        for (int i = matrix[0].size() - 1; i >= 0; i--)
+        {
+            vector<int> newmat2;
+            for (int j = 0; j < matrix.size(); j++)
+                newmat2.push_back(matrix[j][i]);
+            newmat.push_back(newmat2);
+        }
+        return newmat;
     }
 };

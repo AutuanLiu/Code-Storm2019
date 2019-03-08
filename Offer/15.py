@@ -3,6 +3,7 @@ class ListNode:
         self.val = x
         self.next = None
 
+
 class Solution:
     # 返回ListNode
     def ReverseList(self, pHead):

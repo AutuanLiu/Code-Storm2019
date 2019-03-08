@@ -3,6 +3,7 @@ class ListNode:
         self.val = x
         self.next = None
 
+
 # 递归
 class Solution:
     # 返回合并后列表
@@ -21,6 +22,7 @@ class Solution:
             newHead = pHead2
             newHead.next = self.Merge(pHead1, pHead2.next)
         return newHead
+
 
 # 非递归
 class Solution:
@@ -47,7 +49,7 @@ class Solution:
             else:
                 newCur.next = pHead2
                 pHead2 = pHead2.next
-            newCur = newCur.next  # 新链表向前移动
+            newCur = newCur.next    # 新链表向前移动
 
         # 当两个链表不一样长
         if pHead1:

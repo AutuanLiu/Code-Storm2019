@@ -1,3 +1,4 @@
+// 长度不一致
 class Solution
 {
   public:
@@ -5,21 +6,23 @@ class Solution
     {
         stk.push(value);
         if (stk_min.empty())
-            stk_min.push(value);
+            stk_min.push(value);  // sth_min 是空的，那么当前值就是最小值
         else if (value <= stk_min.top())
             stk_min.push(value);
     }
+
     void pop()
     {
-        //stk.pop();
         if (stk.top() == stk_min.top())
             stk_min.pop();
         stk.pop();
     }
+
     int top()
     {
         return stk.top();
     }
+
     int min()
     {
         return stk_min.top();
@@ -30,50 +33,23 @@ class Solution
     stack<int> stk_min;
 };
 
+
+// 长度一致
 class Solution
 {
   public:
     void push(int value)
     {
-        st.push(value);
-        if (smin.empty())
-            smin.push(value);
-        if (smin.top() > value)
-            smin.push(value);
-    }
-    void pop()
-    {
-        if (smin.top() == st.top())
-            smin.pop();
-        st.pop();
-    }
-    int top()
-    {
-        return st.top();
-    }
-    int min()
-    {
-        return smin.top();
-    }
-
-  private:
-    stack<int> st;
-    stack<int> smin;
-};
-
-class Solution
-{
-  public:
-    void push(int value)
-    {
-        StackInt.push(value);
+        StackInt.push(value);  // push 数据栈
         if (StackMin.empty())
-            StackMin.push(value);
+            StackMin.push(value);  // 如果最小值栈为空，当前值就是最小值
         else if (StackMin.top() < value)
+            // 当前值大，最小值不变
             StackMin.push(StackMin.top());
         else
             StackMin.push(value);
     }
+
     void pop()
     {
         if (!StackInt.empty())
@@ -82,16 +58,19 @@ class Solution
             StackMin.pop();
         }
     }
+
     int top()
     {
         return StackInt.top();
     }
+    
     int min()
     {
         return StackMin.top();
     }
 
   private:
+    // 辅助栈
     stack<int> StackInt;
     stack<int> StackMin;
 };

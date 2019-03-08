@@ -4,6 +4,7 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 # 递归
 class Solution:
     # 返回镜像树的根节点
@@ -13,6 +14,7 @@ class Solution:
         root.left, root.right = root.right, root.left
         self.Mirror(root.left)
         self.Mirror(root.right)
+
 
 # 队列
 class Solution:

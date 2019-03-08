@@ -4,6 +4,7 @@ class ListNode:
         self.val = x
         self.next = None
 
+
 class Solution:
     def FindKthToTail(self, head, k):
         if head == None or k == 0:

@@ -36,7 +36,6 @@ class Solution:
         return ans
 
 
-
 # 循环法 求x^n
 class Solution:
     def myPow(self, x: float, n: int) -> float:

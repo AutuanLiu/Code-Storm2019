@@ -15,4 +15,6 @@ class Solution:
             while len(self.stack1) > 0:
                 self.stack2.append(self.stack1.pop())
         return self.stack2.pop()
+
+
 # self.stack2.pop() 会返回数字并删除
