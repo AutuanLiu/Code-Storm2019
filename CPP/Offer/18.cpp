@@ -1,14 +1,25 @@
+struct TreeNode
+{
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL)
+    {
+    }
+};
+
+// 队列
 class Solution
 {
   public:
     void Mirror(TreeNode *pRoot)
     {
-        if (pRoot == NULL)
+        if (pRoot == nullptr)
             return;
         queue<TreeNode *> qu;
-        TreeNode *p = NULL;
+        TreeNode *p = nullptr;
         qu.push(pRoot);
-        while (qu.size())
+        while (qu.size() > 0)
         {
             p = qu.front();
             qu.pop();
@@ -21,49 +32,21 @@ class Solution
     }
 };
 
+// 递归
 class Solution
 {
   public:
     void Mirror(TreeNode *pRoot)
     {
-        if (pRoot == NULL)
-            return;
-        swap(pRoot->left, pRoot->right);
-        Mirror(pRoot->left);
-        Mirror(pRoot->right);
-        return;
-    }
-};
-
-class Solution
-{
-  public:
-    void Mirror(TreeNode *pRoot)
-    {
-        if (pRoot == NULL)
+        if (!pRoot)
             return;
 
+        // 交换左右子树
         TreeNode *pTmp;
         pTmp = pRoot->left;
         pRoot->left = pRoot->right;
         pRoot->right = pTmp;
         Mirror(pRoot->left);
         Mirror(pRoot->right);
-        /**if (pRoot->left) {
-            Mirror(pRoot->left);
-
-            TreeNode *pTmp;
-            pTmp = pRoot->left;
-            pRoot->left = pRoot->right;
-            pRoot->right = pTmp;
-        }
-        if (pRoot->right) {
-            Mirror(pRoot->right);
-
-            TreeNode *pTmp;
-            pTmp = pRoot->right;
-            pRoot->right = pRoot->left;
-            pRoot->left = pTmp;
-        }**/
     }
 };

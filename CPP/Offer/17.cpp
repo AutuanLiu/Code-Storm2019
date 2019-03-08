@@ -1,51 +1,37 @@
+struct TreeNode {
+	int val;  // 注意这个类型 int(==)/double(Equal<abs(a-b)<1e-5>)
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};
+
+// 递归思路
 class Solution
 {
-    bool isSubtree(TreeNode *pRootA, TreeNode *pRootB)
-    {
-        if (pRootB == NULL)
-            return true;
-        if (pRootA == NULL)
-            return false;
-        if (pRootB->val == pRootA->val)
-        {
-            return isSubtree(pRootA->left, pRootB->left) && isSubtree(pRootA->right, pRootB->right);
-        }
-        else
-            return false;
-    }
-
   public:
+    // 查找与根节点一样的节点
     bool HasSubtree(TreeNode *pRootA, TreeNode *pRootB)
     {
-        if (pRootA == NULL || pRootB == NULL)
+        if (pRootA == nullptr || pRootB == nullptr)
             return false;
+        // 左子树右子树根是否有B子树
         return isSubtree(pRootA, pRootB) ||
                HasSubtree(pRootA->left, pRootB) ||
                HasSubtree(pRootA->right, pRootB);
     }
-};
 
-class Solution
-{
-  public:
-    bool HasSubtree(TreeNode *pRoot1, TreeNode *pRoot2)
+    // 判断以R为根节点的子树是不是和B有相同的结构
+    bool isSubtree(TreeNode *pRootA, TreeNode *pRootB)
     {
-        if (!pRoot1)
-            return false;
-        if (!pRoot2)
-            return false;
-        return (dfs(pRoot1, pRoot2)) || HasSubtree(pRoot1->left, pRoot2) || HasSubtree(pRoot1->right, pRoot2);
-    }
-
-  private:
-    bool dfs(TreeNode *r1, TreeNode *r2)
-    {
-        if (!r2)
+        if (pRootB == nullptr)
             return true;
-        if (!r1)
+        if (pRootA == nullptr)
             return false;
-        if (r1->val != r2->val)
-            return false;
-        return dfs(r1->left, r2->left) && dfs(r1->right, r2->right);
+        if (pRootB->val == pRootA->val)
+            // 判断左右子树是否相同
+            return isSubtree(pRootA->left, pRootB->left) && isSubtree(pRootA->right, pRootB->right);
+        return false;
     }
 };
