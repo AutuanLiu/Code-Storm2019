@@ -1,71 +1,11 @@
 class Solution
 {
   public:
-    bool VerifySquenceOfBST(vector<int> seq)
-    {
-        int len = seq.size();
-        int *arr = new int[len];
-
-        if (!len)
-            return false;
-        for (int i = 0; i < len; i++)
-            arr[i] = seq[i];
-
-        return myVerifySquenceOfBST(arr, len);
-    }
-
-    bool myVerifySquenceOfBST(int *arr, int len)
-    {
-        int root = arr[len - 1];
-        int i, j;
-
-        for (i = 0; i < len - 1; i++)
-            if (arr[i] > root)
-                break;
-        for (j = i; j < len - 1; j++)
-            if (arr[j] < root)
-                return false;
-
-        bool left = true, right = true;
-        if (i > 0)
-            left = myVerifySquenceOfBST(arr, i);
-        if (j < len - 1)
-            right = myVerifySquenceOfBST(arr + i, len - i - 1);
-
-        return left && right;
-    }
-};
-
-class Solution
-{
-  public:
-    bool VerifySquenceOfBST(vector<int> sequence)
-    {
-        int length = sequence.size();
-        if (length == 0)
-            return false;
-        int i = 0;
-        while (--length)
-        {
-            while (sequence[i++] < sequence[length])
-                ;
-            while (sequence[i++] > sequence[length])
-                ;
-            if (i < length)
-                return false;
-            i = 0;
-        }
-        return true;
-    }
-};
-
-class Solution
-{
-  public:
     bool VerifySquenceOfBST(vector<int> sequence)
     {
         return bst(sequence, 0, sequence.size() - 1);
     }
+
     bool bst(vector<int> sequence, int begin, int end)
     {
         if (sequence.empty() || begin > end)
@@ -84,6 +24,44 @@ class Solution
         bool right = true;
         if (i < end - 1)
             right = bst(sequence, i, end - 1);
+        return left && right;
+    }
+};
+
+class Solution
+{
+  public:
+    bool VerifySquenceOfBST(vector<int> sequence)
+    {
+        if (sequence.size() == 0)
+            return false;
+        int pivot = 0;
+        // 构造左右子树的序列
+        vector<int> left_seq, right_seq;
+        // 寻找左右子树的分割点
+        int root = sequence.back();
+        for (; pivot < sequence.size() - 1; pivot++)
+        {
+            if (sequence[pivot] > root)
+                break;
+            left_seq.push_back(sequence[pivot]);
+        }
+        // 右子树判断，如果右子树中存在小于root的数值，则返回false
+        for (int j = pivot; j < sequence.size() - 1; j++)
+        {
+            if (sequence[j] < root)
+                return false;
+            right_seq.push_back(sequence[j]);
+        }
+
+        // 递归遍历左子树, 当不存在左子树时，左子树是后序遍历序列
+        bool left = true, right = true;
+        if (pivot > 0)
+            // 存在左子树序列
+            left = VerifySquenceOfBST(left_seq);
+        if (pivot < sequence.size() - 1)
+            // 存在右子树序列
+            right = VerifySquenceOfBST(right_seq);
         return left && right;
     }
 };

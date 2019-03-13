@@ -3,23 +3,25 @@ class Solution
   public:
     TreeNode *Convert(TreeNode *pRootOfTree)
     {
-        TreeNode *pList = nullptr; //链表的头节点
+        TreeNode *pList = nullptrptr; //链表的头节点
         preoder(pRootOfTree, &pList);
         return pList;
     }
-    void preoder(TreeNode *pRootOfTree, TreeNode **pList) //先序遍历的反向遍历 --右->中->左
+
+    //先序遍历的反向遍历 --右->中->左
+    void preoder(TreeNode *pRootOfTree, TreeNode **pList)
     {
-        if (pRootOfTree == nullptr)
+        if (pRootOfTree == nullptrptr)
             return;
-        if (pRootOfTree->right != nullptr)
+        if (pRootOfTree->right != nullptrptr)
             preoder(pRootOfTree->right, pList);
 
         pRootOfTree->right = *pList;
-        if (*pList != nullptr)
+        if (*pList != nullptrptr)
             (*pList)->left = pRootOfTree;
         *pList = pRootOfTree;
 
-        if (pRootOfTree->left != nullptr)
+        if (pRootOfTree->left != nullptrptr)
             preoder(pRootOfTree->left, pList);
     }
 };
@@ -29,36 +31,37 @@ class Solution
   public:
     TreeNode *Convert(TreeNode *pRootOfTree)
     {
-        if (pRootOfTree == NULL)
-            return NULL;
-        TreeNode *pointer = NULL;
+        if (pRootOfTree == nullptr)
+            return nullptr;
+        TreeNode *pointer = nullptr;
         convert2List(pRootOfTree, pointer);
-        while (pointer->left != NULL)
+        while (pointer->left != nullptr)
         {
             pointer = pointer->left;
         }
         return pointer;
     }
+
     void convert2List(TreeNode *pRoot, TreeNode *&pointer)
     {
-        if (pRoot == NULL)
+        if (pRoot == nullptr)
         {
             return;
         }
         {
-            if (pRoot->left != NULL)
+            if (pRoot->left != nullptr)
             {
                 convert2List(pRoot->left, pointer);
             }
 
             pRoot->left = pointer;
-            if (pointer != NULL)
+            if (pointer != nullptr)
             {
                 pointer->right = pRoot;
             }
 
             pointer = pRoot;
-            if (pRoot->right != NULL)
+            if (pRoot->right != nullptr)
             {
                 convert2List(pRoot->right, pointer);
             }

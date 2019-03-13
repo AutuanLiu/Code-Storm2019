@@ -1,3 +1,12 @@
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};
+
 class Solution
 {
   public:
@@ -23,61 +32,26 @@ class Solution
 class Solution
 {
   public:
-    vector<vector<int>> buffer;
-    vector<int> tmp;
     vector<vector<int>> FindPath(TreeNode *root, int expectNumber)
     {
-        if (root == NULL)
-            return buffer;
-        tmp.push_back(root->val);
-        if ((expectNumber - root->val) == 0 && root->left == NULL && root->right == NULL)
+        // 使用 vector 来模拟栈，末尾为栈顶，首端为栈底
+        if (root != nullptr || root->val > expectNumber)
         {
-            buffer.push_back(tmp);
+            // 先在 path 中存入根节点，首先访问的是根节点
+            path.push_back(root->val);
+            if (expectNumber - root->val == 0 && root->left == nullptr && root->right == nullptr)
+                res.push_back(path);
+            FindPath(root->left, expectNumber - root->val);
+            FindPath(root->right, expectNumber - root->val);
+            if (path.size() > 0)
+                path.pop_back();
         }
-        FindPath(root->left, expectNumber - root->val);
-        FindPath(root->right, expectNumber - root->val);
-        if (tmp.size() != 0)
-            tmp.pop_back();
-        return buffer;
-    }
-};
-
-class Solution
-{
-  public:
-    vector<vector<int>> FindPath(TreeNode *root, int expectNumber)
-    {
-        vector<vector<int>> res;
-        if (root == NULL)
-            return res;
-        int currentsum = 0;
-        vector<int> temp;
-        FindPath1(res, root, expectNumber, temp, currentsum);
         return res;
     }
-    void FindPath1(vector<vector<int>> &res, TreeNode *root, int expectNumber, vector<int> &temp, int current)
-    {
-        current += root->val;
-        temp.push_back(root->val);
-        if (Isleaf(root) && expectNumber == current)
-            res.push_back(temp);
-        if (root->left != NULL)
-        {
-            FindPath1(res, root->left, expectNumber, temp, current);
-            // temp.push_back(root->val);
-        }
-        if (root->right != NULL)
-        {
-            FindPath1(res, root->right, expectNumber, temp, current);
-            //temp.push_back(root->val);
-        }
-        temp.pop_back();
-    }
-    bool Isleaf(TreeNode *Node)
-    {
-        if (Node->left == NULL && Node->right == NULL)
-            return true;
-        else
-            return false;
-    }
+
+  private:
+    // 类的全局变量
+    // 递归调用时，全局使用的变量应当放到外面
+    vector<int> path;
+    vector<vector<int>> res;
 };
