@@ -1,17 +1,17 @@
 class Solution
 {
   public:
-    vector<string> result;
+    vector<string> result;   // 保存结果
     vector<string> Permutation(string str)
     {
         if (str.length() == 0)
-        {
             return result;
-        }
         Permutation1(str, 0);
+        // 结果是有序的，所以这里要对结果进行排序
         sort(result.begin(), result.end());
         return result;
     }
+
     void Permutation1(string str, int begin)
     {
         if (begin == str.length())
@@ -19,9 +19,11 @@ class Solution
             result.push_back(str);
             return;
         }
+
+
         for (int i = begin; str[i] != '\0'; i++)
         {
-
+            // 排除重复元素
             if (i != begin && str[begin] == str[i])
                 continue;
             swap(str[begin], str[i]);
@@ -34,43 +36,33 @@ class Solution
 class Solution
 {
   public:
+    vector<string> result;
     vector<string> Permutation(string str)
     {
-        vector<string> result;
-        int i = 0;
         if (str.empty())
-        {
             return result;
-        }
-        permution(str, i, result);
+        permution(str, 0);
         sort(result.begin(), result.end());
-        vector<string>::iterator it;
-        for (it = result.begin(); (it + 1) != result.end();)
+        // 排除重复的元素
+        for (auto it = result.begin(); (it + 1) != result.end();)
         {
             if (*it == *(it + 1))
-            {
                 it = result.erase(it);
-            }
             else
                 it++;
         }
         return result;
     }
-    void permution(string str, int i, vector<string> &result)
+
+    void permution(string str, int i)
     {
         if (i == str.length() - 1)
-        {
             result.push_back(str);
-        }
         for (int j = i; j < str.length(); j++)
         {
-            char temp = str[i];
-            str[i] = str[j];
-            str[j] = temp;
-            permution(str, i + 1, result);
-            temp = str[i];
-            str[i] = str[j];
-            str[j] = temp;
+            swap(str[j], str[i]);
+            permution(str, i + 1);
+            swap(str[j], str[i]);
         }
     }
 };

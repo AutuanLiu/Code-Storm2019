@@ -1,10 +1,6 @@
 class Solution:
     def Convert(self, pRootOfTree):
-        # write code here
-        if not pRootOfTree:
-            return None
-
-        if not pRootOfTree.left and not pRootOfTree.right:
+        if not pRootOfTree or (not pRootOfTree.left and not pRootOfTree.right):
             return pRootOfTree
 
         self.Convert(pRootOfTree.left)
