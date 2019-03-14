@@ -20,30 +20,6 @@ class Solution
     }
 };
 
-class Solution
-{
-  public:
-    int numof1(int n)
-    {
-        int num = 0;
-        while (n)
-        {
-            if (n % 10 == 1)
-                num++;
-            n /= 10;
-        }
-        return num;
-    }
-    int NumberOf1Between1AndN_Solution(int n)
-    {
-        int num = 0;
-        for (int i = 1; i <= n; i++)
-        {
-            num += numof1(i);
-        }
-        return num;
-    }
-};
 
 class Solution
 {
@@ -54,7 +30,7 @@ class Solution
         for (int i = 1; i <= n; i *= 10)
         {
             int a = n / i, b = n % i;
-            sum += (a + 8) / 10 * i + (a % 10 == 1) * (b + 1);
+            sum += (a + 8) / 10 * i + (a % 10 == 1 ? 1 : 0) * (b + 1);
         }
         return sum;
     }
