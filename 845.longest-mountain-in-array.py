@@ -57,22 +57,30 @@
 #
 #
 #
+# 双指针法，分别找到左右山顶三个点
+# 左右山顶三个点就可以确定一个山峰
 class Solution:
     def longestMountain(self, A: List[int]) -> int:
-        N = len(A)
-
+        N = len(A)  # 数组的长度
         ans = base = 0
 
         while base < N:
-            end = base
+            # 遍历整个数组
+            end = base  # 尾指针一开始的时候和首指针在一起
+            # 首指针已经定位了山峰的左点
+            # 现在确定山峰的右点，分别是左->peak, peak->右
             if end + 1 < N and A[end] < A[end + 1]:
+                # left -> peak
                 while end + 1 < N and A[end] < A[end + 1]:
                     end += 1
 
+                # 找到 peak，end处
                 if end + 1 < N and A[end] > A[end + 1]:
                     while end + 1 < N and A[end] > A[end + 1]:
                         end += 1
+                    # 找到 right 关键点，确定了一个山峰
                     ans = max(ans, end - base + 1)
-
+            # 确定下一个山峰的开始点，也有可能山峰一开始就是下坡
+            # 为了让循环进行下去，我们求 max(end, base + 1)
             base = max(end, base + 1)
         return ans
