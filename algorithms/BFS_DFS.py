@@ -2,7 +2,7 @@
 # DFS 广度优先搜索
 
 
-def dfs(graph, node, visited):
+def dfs(graph, node, visited=[]):
     """DFS"""
     if node not in visited:
         visited.append(node)
