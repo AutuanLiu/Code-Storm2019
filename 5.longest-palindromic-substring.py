@@ -45,6 +45,9 @@ class Solution:
         for j in range(lens):
             dp[j * lens + j] = True  # 一个元素肯定是回文串
             for i in range(j):
+        # for i in range(lens - 1, -1, -1):
+        #     dp[i * lens + i] = True
+        #     for j in range(i + 1, lens):
                 if i == j - 1:
                     # 如果s[j]==s[i]当串的长度小于等于2时，肯定是回文子串，如 1，1，就是回文串
                     dp[i * lens + j] = s[i] == s[j]
