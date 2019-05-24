@@ -32,9 +32,9 @@
 #
 # 最好时间复杂度 O(n^2)
 #
-class Solution:
+class Solution1:
     def threeSum(self, nums):
-        # 先睡数据排序
+        # 数据排序
         nums, lens, ret = sorted(nums), len(nums), []
         # 选择第一个数
         for it1 in range(lens - 2):
@@ -65,6 +65,36 @@ class Solution:
                     r -= 1
         return ret
 
-s = Solution()
-ret = s.threeSum([-1, 0, 1, 2, -1, -4])
+s = Solution1()
+ret = s.threeSum([0,0,0,0])
 print(ret)
+
+# round 2
+class Solution:
+    def threeSum(self, nums):
+        nums, lens, ret = sorted(nums), len(nums), []
+        if lens < 3 or (lens > 3 and nums[0] > 0):
+            return ret
+        for a_id in range(lens - 2):
+            # 避免重复
+            if a_id > 0  and nums[a_id] == nums[a_id - 1]:
+                continue
+            # 接下来就是一个左右指针搜索的问题
+            l, r, a = a_id + 1, lens - 1, nums[a_id]
+            while l < r:
+                b, c = nums[l], nums[r]
+                if b + c < -a:
+                    l += 1
+                elif b + c > -a:
+                    r -= 1
+                else:
+                    ret.append([a, b, c])
+                    # 避免重复
+                    while l < r and b == nums[l + 1]:
+                        l += 1
+                    while l < r and c == nums[r - 1]:
+                        r -= 1
+                    # 继续寻找
+                    l += 1
+                    r -= 1
+        return ret
