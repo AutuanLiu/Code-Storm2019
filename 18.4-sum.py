@@ -33,7 +33,7 @@
 #
 #
 #
-class Solution:
+class Solution1:
     def fourSum(self, nums, target: int):
         nums, ret, lens = sorted(nums), [], len(nums)
         if lens < 4:
@@ -75,7 +75,43 @@ class Solution:
                         r -= 1
         return ret
 
+# s = Solution1()
+# ret = s.fourSum([2, 1, 0, -1], 2)
+# print(ret)
+
+# round 2
+class Solution:
+    def fourSum(self, nums, target: int):
+        nums, ret, lens = sorted(nums), [], len(nums)
+        if lens < 4:
+            return ret
+        for a_id in range(lens - 3):
+            # 去重
+            if a_id > 0 and nums[a_id] == nums[a_id - 1]:
+                continue
+            for b_id in range(a_id + 1, lens - 2):
+                # 去重
+                if b_id > a_id + 1 and nums[b_id] == nums[b_id - 1]:
+                    continue
+                # 接下来是左右指针搜索的问题
+                l, r, v = b_id + 1, lens - 1, target - nums[a_id] - nums[b_id]
+                while l < r:
+                    if nums[l] + nums[r] < v:
+                        l += 1
+                    elif nums[l] + nums[r] > v:
+                        r -= 1
+                    else:
+                        ret.append([nums[a_id], nums[b_id], nums[l], nums[r]])
+                        # 去重
+                        while l < r and nums[l] == nums[l + 1]:
+                            l += 1
+                        while l < r and nums[r] == nums[r - 1]:
+                            r -= 1
+                        # 这个地方要先去重在进行下一次迭代，不然就会忽略一次重复
+                        l += 1
+                        r -= 1
+        return ret
 
 s = Solution()
-ret = s.fourSum([2, 1, 0, -1], 2)
+ret = s.fourSum([1, 0, -1, 0, -2, 2], 0)
 print(ret)

@@ -22,12 +22,26 @@
 # 
 #
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        
+        """递归
+        """
+        if not l1:
+            return l2
+        if not l2:
+            return l1
+        # 用于保存新的链表
+        if l1.val < l2.val:
+            new_list = l1
+            new_list.next = self.mergeTwoLists(l1.next, l2)
+        else:
+            new_list = l2
+            new_list.next = self.mergeTwoLists(l2.next, l1)
+        return new_list
+
 
