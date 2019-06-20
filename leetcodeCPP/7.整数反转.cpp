@@ -39,16 +39,33 @@
  * 0。
  *
  */
-class Solution {
-public:
-    int reverse(int x) {
-        if (x >= 0)
-            return reverse_positive(x);
-        else
-            return reverse_positive(-x);
-    }
 
-    int reverse_positive(int x) {
-        
+// C++ INT_MAX 2147483647  INT_MIN  -2147483648
+// 反转的一般思路 不断取余然后除10
+// 对于数字x
+// remainder = x % 10
+// ret = ret * 10 + remainder
+// 主要在于判断 ret 是否溢出
+
+class Solution
+{
+public:
+    int reverse(int x){
+        int ret = 0;
+        while (x){
+            int remainder = x % 10;
+            // 溢出的话，就先截断返回
+            // 在乘之前就判断是否溢出
+            // 7 = INT_MAX % 10, -8 = INT_MIN % 10
+            // 正数
+            if (ret > INT_MAX / 10 || (ret == INT_MAX / 10 && remainder > 7))
+                return 0;
+            // 负数
+            if (ret < INT_MIN / 10 || (ret == INT_MIN / 10 && remainder < -8))
+                return 0;
+            ret = ret * 10 + remainder;
+            x /= 10;
+        }
+        return ret;
     }
 };
