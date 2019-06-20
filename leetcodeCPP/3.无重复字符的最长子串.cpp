@@ -44,8 +44,8 @@ public:
     int lengthOfLongestSubstring(string s) {
         int ret = 0, start = 0, end = 0;
         unordered_set<char> sub_set;
-        while (start < s.size() && end < s.size() && start <= end){
-            if (sub_set.find(s[end]) == sub_set.end()){
+        while (start < s.size() && end < s.size() && start <= end) {
+            if (sub_set.find(s[end]) == sub_set.end()) {
                 sub_set.insert(s[end]);
                 end += 1;
                 ret = max(ret, end - start);
