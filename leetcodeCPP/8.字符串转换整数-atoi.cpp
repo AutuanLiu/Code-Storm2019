@@ -72,7 +72,7 @@
 class Solution
 {
 public:
-    int myAtoi(string str){
+    int myAtoi(string str) {
         if (str.empty())
             return 0;
         int sign = 1, base = 0, i = 0, n = str.size();
@@ -80,7 +80,7 @@ public:
             ++i;
         if (i < n && (str[i] == '+' || str[i] == '-'))
             sign = (str[i++] == '+') ? 1 : -1;
-        while (i < n && str[i] >= '0' && str[i] <= '9'){
+        while (i < n && str[i] >= '0' && str[i] <= '9') {
             // 溢出，base 是正数，这里不考虑符号，正数是7负数是8
             if (base > INT_MAX / 10 || (base == INT_MAX / 10 && str[i] - '0' > 7))
                 return (sign == 1) ? INT_MAX : INT_MIN;
