@@ -30,10 +30,27 @@
  * 输出: 49
  * 
  */
-class Solution {
+// 双指针法
+// 短板效应
+// 不断将指向较短线段的指针向较长线段那端移动
+// 在同样的条件下，移动指向较短线段的指针尽管造成了矩形宽度的减小，但却可能会有助于面积的增大
+// 因为移动较短线段的指针可能会得到一条相对较长的线段，这可以克服由宽度减小而引起的面积减小
+
+class Solution
+{
 public:
     int maxArea(vector<int>& height) {
-        
+        int ret = 0, lb = 0, rb = height.size() - 1;
+        // 左边界 lb 只能小于右边界 rb
+        while (lb < rb) {
+            // 先计算再更新
+            ret = max(ret, (rb - lb) * min(height[lb], height[rb]));
+            if (height[lb] < height[rb])
+                lb++;
+            else
+                rb--;
+        }
+        return ret;
     }
 };
 
