@@ -59,6 +59,13 @@ class Solution:
         ret = s[start:(start + max_len)]
         return ret
 
-s = Solution()
-res = s.longestPalindrome('c')
-print(res)
+# s = Solution()
+# res = s.longestPalindrome('c')
+# print(res)
+
+# round 2
+# 问题的关键在确定最长回文串的起始和终止位置
+
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        pass
