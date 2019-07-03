@@ -31,10 +31,37 @@
  * 输出: [1,2,2,3,5,6]
  * 
  */
+
+// 一般需要原地更改的都考虑从后往前进行遍历，否则就涉及到移动元素的问题
 class Solution {
 public:
-    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-        if (n == 0) return;
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n)
+    {
+        for (int k = m + n - 1, p1 = m - 1, p2 = n - 1; k >= 0; k--) {
+            if (p1 < 0) {
+                nums1[k] = nums2[p2--];
+                continue;
+            }
+            if (p2 < 0) {
+                nums1[k] = nums1[p1--];
+                continue;
+            }
+            // 上述两个条件只要满足一个就可以终止本次循环，进行下一次循环
+            if (nums1[p1] < nums2[p2])
+                nums1[k] = nums2[p2--];
+            else
+                nums1[k] = nums1[p1--];
+        }
     }
 };
 
+// 排序
+// class Solution {
+// public:
+//     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+//         for (int i = 0, t = m; i < n; i++)
+//             nums1[t++] = nums2[i];
+//         // 排序
+//         sort(nums1.begin(), nums1.begin() + m + n);
+//     }
+// };
