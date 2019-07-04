@@ -48,9 +48,43 @@
  * 
  */
 class Solution {
+private:
+    // 缓存，保存最大的三个数
+    vector<long long> cache{LLONG_MIN, LLONG_MIN, LLONG_MIN};
+
 public:
     int thirdMax(vector<int>& nums) {
-        
+        for (int it = 0; it < nums.size(); it++) {
+            // 如果当前值比缓存池的最小值大, 那么当前值就是最小值
+            if (nums[it] > cache[0]) {
+                cache[2] = cache[1];
+                cache[1] = cache[0];
+                cache[0] = nums[it];
+            }
+            else if (nums[it] > cache[1] && nums[it] < cache[0]) {
+                cache[2] = cache[1];
+                cache[1] = nums[it];
+            }
+            else if (nums[it] > cache[2] && nums[it] < cache[1]) {
+                cache[2] = nums[it];
+            }
+        }
+        return cache[2] != LLONG_MIN ? cache[2] : cache[0];
     }
 };
 
+// class Solution {
+// public:
+//     int thirdMax(vector<int>& nums)
+//     {
+//         // set 本事是有序的，红黑树实现
+//         set<int> cache;
+//         for (int& it : nums) {
+//             cache.insert(it);
+//             // 控制缓存池的长度，不让其超过 3
+//             if (cache.size() > 3)
+//                 cache.erase(cache.begin());
+//         }
+//         return cache.size() == 3 ? *cache.begin() : *cache.rbegin();
+//     }
+// };
