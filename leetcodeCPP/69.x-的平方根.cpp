@@ -35,19 +35,44 @@
  * 
  */
 // 牛顿法
-// 求 xn^2 - x = 0
+// 求 xn^2 - x ≈ 0
+// class Solution {
+// public:
+//     int mySqrt(int x)
+//     {
+//         double start = 1.0;
+//         if (x == 0)
+//             return 0;
+//         while (true) {
+//             double new_start = 0.5 * (start + x / start);
+//             if (abs((new_start - start)) < 1)
+//                 return int(new_start);
+//             start = new_start;
+//         }
+//     }
+// };
+
+// 二分法
+// 求平方根即求 f(x) = x^2 - a 的零点（根）
 class Solution {
 public:
-    int mySqrt(int x) {
-        double start = 1.0;
-        if (x == 0)
-            return 0;
-        while (true) {
-            double new_start = 0.5 * (start + x / start); 
-            if (abs((new_start - start)) < 1)
-                return int(new_start);
-            start = new_start;
+    int mySqrt(int x)
+    {
+        if (x <= 1 && x >= 0)
+            return x;
+        // 根不超过一半的数值
+        long left = 1;
+        long right = x / 2;
+        while (left < right) {
+            // 注意：这里一定取右中位数，如果取左中位数，代码可能会进入死循环
+            long mid = left + (right - left + 1) / 2;
+            long square = mid * mid;
+            if (square > x) {
+                right = mid - 1;
+            } else {
+                left = mid;
+            }
         }
+        return int(left);
     }
 };
-
