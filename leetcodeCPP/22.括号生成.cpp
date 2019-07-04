@@ -31,27 +31,53 @@
 // 回溯法
 // 能进则进，进不了则换(分支)，换不了则退(递归)
 // 回溯法的关键：找到递归的出口
-class Solution
-{
-  public:
+// class Solution
+// {
+//   public:
+//     vector<string> generateParenthesis(int n)
+//     {
+//         vector<string> ret;
+//         backtrack(ret, "", 0, 0, n);
+//         return ret;
+//     }
+
+//     void backtrack(vector<string>& ret, string tmp, int left, int right, int n)
+//     {
+//         // 回溯的出口
+//         if (tmp.length() == 2 * n) {
+//             ret.push_back(tmp);
+//             return;
+//         }
+//         if (left < n)
+//             backtrack(ret, tmp + "(", left + 1, right, n);
+//         if (right < left)
+//             backtrack(ret, tmp + ")", left, right + 1, n);
+//     }
+// };
+
+class Solution {
+private:
+    vector<string> ret;
+    int ln;
+
+public:
     vector<string> generateParenthesis(int n)
     {
-        vector<string> ret;
-        backtrack(ret, "", 0, 0, n);
+        ln = n;
+        backtrack("", 0, 0);
         return ret;
     }
 
-    void backtrack(vector<string>& ret, string tmp, int left, int right, int n)
+    void backtrack(string tmp, int left, int right)
     {
         // 回溯的出口
-        if (tmp.length() == 2 * n) {
+        if (tmp.length() == 2 * ln) {
             ret.push_back(tmp);
             return;
         }
-        if (left < n)
-            backtrack(ret, tmp + "(", left + 1, right, n);
+        if (left < ln)
+            backtrack(tmp + "(", left + 1, right);
         if (right < left)
-            backtrack(ret, tmp + ")", left, right + 1, n);
+            backtrack(tmp + ")", left, right + 1);
     }
 };
-
