@@ -26,10 +26,47 @@
  * ]
  * 
  */
+// 带剪枝的全排列
 class Solution {
+private:
+    vector<vector<int>> ret;
+    vector<int> array;
+    int n;
+
 public:
     vector<vector<int>> permuteUnique(vector<int>& nums) {
-        
+        // sort 是原地操作， 没有返回值
+        // 这里要排序，使得重复元素在一起
+        sort(nums.begin(), nums.end());
+        array = nums;
+        n = nums.size();
+        vector<bool> visited(n, false);
+        vector<int> tmp;
+        backtrack(tmp, visited);
+        return ret;
+    }
+
+    void backtrack(vector<int>& tmp, vector<bool>& visited)
+    {
+        // 定义递归终止条件
+        if (tmp.size() == n) {
+            ret.push_back(tmp);
+            return;
+        }
+
+        // 遍历
+        for (int it = 0; it < n; it++) {
+            if (!visited[it]) {
+                // 和之前的数相等，并且之前的数还未使用过，只有出现这种情况，才会出现相同分支
+                if (it > 0 && !visited[it - 1] && array[it] == array[it - 1])
+                    continue;
+                visited[it] = true;
+                tmp.push_back(array[it]);
+                backtrack(tmp, visited);
+                visited[it] = false;
+                tmp.pop_back();
+            }
+        }
     }
 };
 
