@@ -41,7 +41,30 @@
  * 
  * 
  */
-// 快速幂
+// 快速幂递归
+// class Solution {
+// public:
+//     double myPow(double x, int n)
+//     {
+//         long long N = n;
+//         if (N < 0) {
+//             x = 1 / x;
+//             N = -N;
+//         }
+//         return fastPow(x, N);
+//     }
+
+//     double fastPow(double x, long n)
+//     {
+//         if (n == 0)
+//             return 1.0;
+//         double half = fastPow(x, n / 2);
+//         return n % 2 == 0 ? half * half : half * half * x;
+//     }
+// };
+
+
+// 快速幂循环
 class Solution {
 public:
     double myPow(double x, int n)
@@ -51,14 +74,15 @@ public:
             x = 1 / x;
             N = -N;
         }
-        return fastPow(x, N);
-    }
-
-    double fastPow(double x, long n)
-    {
-        if (n == 0)
-            return 1.0;
-        double half = fastPow(x, n / 2);
-        return n % 2 == 0 ? half * half : half * half * x;
+        
+        double ret = 1, cur = x;
+        for (long long it = N; it != 0; it /= 2) {
+            // 如果是奇数的话，就乘上一个 当前值，否则就是当前值乘上一个当前值
+            if (it % 2 == 1)
+                ret = cur * ret;
+            cur = cur * cur;
+        }
+        return ret;
     }
 };
+

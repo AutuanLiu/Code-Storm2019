@@ -27,10 +27,39 @@
  * 如果你已经实现复杂度为 O(n) 的解法，尝试使用更为精妙的分治法求解。
  * 
  */
+// class Solution {
+// public:
+//     int maxSubArray(vector<int>& nums) {
+//         int ret = nums[0], tmp = nums[0], n = nums.size();
+//         for (int it = 1; it < n; it++) {
+//             tmp = tmp + nums[it] < nums[it] ? nums[it] : tmp + nums[it];
+//             ret = max(tmp, ret);
+//         }
+//         return ret;
+//     }
+// };
+
+// class Solution {
+// public:
+//     int maxSubArray(vector<int>& nums)
+//     {
+//         int ret = INT_MIN, tmp = INT_MIN;
+//         for (int& it : nums) {
+//             tmp = tmp + it < it ? it : tmp + it;
+//             ret = max(tmp, ret);
+//         }
+//         return ret;
+//     }
+// };
+
+// 原地操作
 class Solution {
 public:
-    int maxSubArray(vector<int>& nums) {
-        
+    int maxSubArray(vector<int>& nums)
+    {
+        for (int it = 1; it < nums.size(); it++) {
+            nums[it] = max(nums[it], nums[it - 1] + nums[it]);
+        }
+        return *max_element(nums.begin(), nums.end());
     }
 };
-
