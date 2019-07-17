@@ -31,17 +31,27 @@
  * 输出: false
  *
  */
+// class Solution {
+//   public:
+//     bool isPowerOfTwo(int n){
+//         if (n <= 0){
+//             return false;
+//         }
+//         if (n == 1 || n == 2){
+//             return true;
+//         }
+//         else{
+//             return (n % 2 == 0) ? isPowerOfTwo(n /= 2) : false;
+//         }
+//     }
+// };
+
+// n如果是2的幂, 二进制下最高位为1, 其余全是0; 
+// n-1要么等于0, 要么二进制下都是1; n&(n-1)必为0
 class Solution {
-  public:
-    bool isPowerOfTwo(int n){
-        if (n <= 0){
-            return false;
-        }
-        if (n == 1 || n == 2){
-            return true;
-        }
-        else{
-            return (n % 2 == 0) ? isPowerOfTwo(n /= 2) : false;
-        }
+public:
+    bool isPowerOfTwo(int n)
+    {
+        return n > 0 && !(n & (n - 1));
     }
 };
