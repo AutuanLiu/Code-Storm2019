@@ -33,11 +33,21 @@
  * 输出：["h","a","n","n","a","H"]
  * 
  */
+
+//  双指针法
+// class Solution {
+// public:
+//     void reverseString(vector<char>& s) {
+//         for (int left = 0, right = s.size() - 1; left < right; left++, right--)
+//             swap(s[left], s[right]);
+//     }
+// };
+
+//  调用库函数
 class Solution {
 public:
-    void reverseString(vector<char>& s) {
-        for (int left = 0, right = s.size() - 1; left < right; left++, right--)
-            swap(s[left], s[right]);
+    void reverseString(vector<char>& s)
+    {
+        reverse(s.begin(), s.end());
     }
 };
-
