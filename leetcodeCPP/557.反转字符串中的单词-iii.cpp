@@ -31,15 +31,17 @@ public:
     string reverseWords(string s)
     {
         string ret = "", tmp = "";
-        for (char& ch : s) {
-            if (ch == ' ' || ch == '\0') {
+        int n = s.length();  // s.length() 默认不包含最后的结束符，这里索引要加 1
+        for (int i = 0; i <= n; i++) {
+            if (s[i] == ' ' || s[i] == '\0') {
                 reverse(tmp.begin(), tmp.end());
-                ret = ret + tmp + ch;
+                ret = ret + tmp + s[i];
                 tmp = "";
             } else {
-                tmp += ch;
+                tmp += s[i];
             }
         }
         return ret;
     }
 };
+
