@@ -31,22 +31,27 @@
  */
 class Solution {
 public:
-    bool cmp(vector<int> a, vector<int> b) {
+    // 这里必须是 static 方法
+    static bool cmp(vector<int> a, vector<int> b)
+    {
+        if (a[0] == b[0])
+            return a[1] > b[1];
         return a[0] < b[0];
     }
 
-    vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        vector<vector<int>> ret;
-        int n = intervals.size();
-        if (n <= 1)
-            return intervals;
+    vector<vector<int>> merge(vector<vector<int>>& intervals)
+    {
+        if (intervals.empty())
+            return {};
         // 先按照 左端点的数值进行排序
         sort(intervals.begin(), intervals.end(), cmp);
+        vector<vector<int>> ret = { intervals[0] };
+        int n = intervals.size();
         for (auto& item : intervals) {
-            if (ret.size() == 0 && item[0] > ret.back()[1])
-                ret.push_back(item);
-            else
+            if (ret.back()[1] >= item[0])
                 ret.back()[1] = max(ret.back()[1], item[1]);
+            else
+                ret.push_back(item);
         }
         return ret;
     }
