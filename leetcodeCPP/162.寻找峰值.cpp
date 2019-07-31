@@ -40,15 +40,37 @@
  * 你的解法应该是 O(logN) 时间复杂度的。
  * 
  */
+// nums[i] ≠ nums[i+1]
+// 分情况讨论
+// 1. 单调增（最后一个元素） 2. 单调减（第一个元素） 3. 先增后减（中间元素） 4. 先减后增（第一个元素）
+// class Solution {
+// public:
+//     int findPeakElement(vector<int>& nums) {
+//         int n = nums.size();
+//         for (int it = 0; it < n - 1; it++) {
+//             if (nums[it] > nums[it + 1])
+//                 return it;
+//         }
+//         return n - 1;
+//     }
+// };
+
+// 借助 二分查找 的思路
+// 如果 mid 处于单调减区间，则说明 峰值出现在左边，如果 mid 处于单调增区间，说明增值出现在右边
+// 时间和空间复杂度都是 O(log n)
 class Solution {
 public:
-    int findPeakElement(vector<int>& nums) {
-        int n = nums.size();
-        for (int it = 0; it < n - 1; it++) {
-            if (nums[it] > nums[it + 1])
-                return it;
+    int findPeakElement(vector<int>& nums)
+    {
+        int left = 0, right = nums.size() - 1;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (nums[mid] > nums[mid + 1])
+                right = mid;
+            else
+                left = mid + 1;
         }
-        return n - 1;
+        //  当 Left == right 的时候 循环就会结束，此时所处的位置就是峰值的位置
+        return left;
     }
 };
-

@@ -29,29 +29,47 @@
  * 解释: 区间 [1,4] 和 [4,5] 可被视为重叠区间。
  * 
  */
+// class Solution {
+// public:
+//     // 这里必须是 static 方法，leetcode 要求
+//     static bool cmp(vector<int> a, vector<int> b)
+//     {
+//         if (a[0] == b[0])
+//             return a[1] > b[1];
+//         return a[0] < b[0];
+//     }
+
+//     vector<vector<int>> merge(vector<vector<int>>& intervals)
+//     {
+//         if (intervals.empty())
+//             return {};
+//         // 先按照 左端点的数值进行排序
+//         sort(intervals.begin(), intervals.end(), cmp);
+//         vector<vector<int>> ret = { intervals[0] };
+//         int n = intervals.size();
+//         for (auto& item : intervals) {
+//             if (ret.back()[1] >= item[0])
+//                 ret.back()[1] = max(ret.back()[1], item[1]);
+//             else
+//                 ret.push_back(item);
+//         }
+//         return ret;
+//     }
+// };
+
+// 使用自带的 sort函数 安好走啊数值从小到大的顺序排列
 class Solution {
 public:
-    // 这里必须是 static 方法
-    static bool cmp(vector<int> a, vector<int> b)
-    {
-        if (a[0] == b[0])
-            return a[1] > b[1];
-        return a[0] < b[0];
-    }
-
     vector<vector<int>> merge(vector<vector<int>>& intervals)
     {
-        if (intervals.empty())
-            return {};
-        // 先按照 左端点的数值进行排序
-        sort(intervals.begin(), intervals.end(), cmp);
-        vector<vector<int>> ret = { intervals[0] };
-        int n = intervals.size();
-        for (auto& item : intervals) {
-            if (ret.back()[1] >= item[0])
-                ret.back()[1] = max(ret.back()[1], item[1]);
-            else
+        vector<vector<int>> ret;
+        // 按照左端点的数值进行排序
+        sort(intervals.begin(), intervals.end());
+        for (vector<int>& item : intervals) {
+            if (ret.empty() || ret.back()[1] < item[0])
                 ret.push_back(item);
+            else
+                ret.back()[1] = max(ret.back()[1], item[1]);
         }
         return ret;
     }
