@@ -45,9 +45,27 @@
  * };
  */
 class Solution {
+
 public:
-    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        
+    void zigzag(TreeNode* root, int level, vector<vector<int>>& ret)
+    {
+        if (root == nullptr)
+            return;
+        if (ret.size() <= level)
+            ret.push_back(vector<int>{});
+        ret[level].push_back(root->val);
+        zigzag(root->left, level + 1, ret);
+        zigzag(root->right, level + 1, ret);
+    }
+
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root)
+    {
+        vector<vector<int>> ret;
+        zigzag(root, 0, ret);
+        // 翻转奇数层
+        int levels = ret.size();
+        for (int it = 1; it < levels; it = it + 2)
+            reverse(ret[it].begin(), ret[it].end());
+        return ret;
     }
 };
-

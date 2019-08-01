@@ -36,7 +36,13 @@
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
-        
+        int n = nums.size();
+        vector<vector<int>> ret;
+        for (int a = 0; a < n - 3; a++) {
+            for (int b = a; b < n - 2; b++) {
+                
+            }
+        }
     }
 };
 

@@ -32,17 +32,61 @@
  * 
  */
 
+// 排序的方法
+// class Solution {
+// public:
+//     int findKthLargest(vector<int>& nums, int k)
+//     {
+//         sort(nums.begin(), nums.end(), greater<int>());
+//         return nums[k - 1];
+//     }
+// };
 
-class Solution {
-public:
-    int findKthLargest(vector<int>& nums, int k) {
-        int n = nums.size();
-        vector<int> cache;
-        for (int& item : nums) {
-            if (cache.size() < k)
-                cache.push_back(item);
-            else if ()
-        }
-    }
-};
+// 快速排序的思路
+// 使用一个大小为 K 的小根堆
+// 当遍历完所有的数据之后，堆顶元素就是所求
+// class Solution {
+// public:
+//     int findKthLargest(vector<int>& nums, int k)
+//     {
+//         int n = nums.size();
+//         // 构造大小为 k 的小根堆
+//         vector<int> heap(nums.begin(), nums.begin() + k);
+//         make_heap(heap.begin(), heap.end(), greater<int> ());
+//         // 此时最小元素就保存在 heap 的第一个位置
+
+//         // 遍历剩余的元素
+//         for (int it = k; it < n; it++) {
+//             // 当当前元素大于最小元素，则要加入新的元素到堆
+//             if (nums[it] > heap[0]) {
+//                 heap.push_back(nums[it]);  // 加入新的元素
+//                 // 移动新的元素到合适的位置
+//                 push_heap(heap.begin(), heap.end(), greater<int> ());
+
+//                 // 新加入一个元素，必然导致数组数量超过 k，那么要进行删除
+//                 // 移动最小的元素到数组结尾
+//                 pop_heap(heap.begin(), heap.end(), greater<int> ());
+//                 heap.pop_back();
+//             }
+//         }
+//         return heap[0];
+//     }
+// };
+
+//  使用优先队列，使用堆构造的
+// class Solution {
+// public:
+//     int findKthLargest(vector<int>& nums, int k)
+//     {
+//         priority_queue<int, vector<int>, greater<int>> heap;
+//         for (int& item : nums) {
+//             heap.push(item);
+//             if (heap.size() > k)
+//                 heap.pop();
+//         }
+//         return heap.top();
+//     }
+// };
+
+// 使用快速排序
 
