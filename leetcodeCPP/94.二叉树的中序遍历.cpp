@@ -40,13 +40,30 @@
  */
 class Solution {
 public:
-    void inorder(TreeNode* root, vector<int>& nums)
+    void inorder(TreeNode* root, vector<int>& ret)
     {
         if (root == nullptr)
             return;
-        inorder(root->left, nums);
-        nums.push_back(root->val);
-        inorder(root->right, nums);
+        stack<TreeNode*> sk;
+
+        // 循环结束的条件有两个，一个是栈为空，另一个是所有的节点都已经访问了
+        while (!sk.empty() || root) {
+            // 先访问到坐左边的节点
+            if (root) {
+                sk.push(root); // 进栈
+                root = root->left; // 一直访问到最左端的节点
+            } else {
+                // 当root为空说明已经访问到最左边的节点了
+                // 也即没有左子节点，此时的栈顶元素代表了根节点
+                // 此时可以出栈
+                TreeNode* top = sk.top(); // 最左边的节点, 这里的保存时为了后面访问右子树
+                ret.push_back(top->val);
+                sk.pop();
+
+                // 如果根节点存在右子树，继续访问右子树，重复上述过程
+                root = top->right;
+            }
+        }
     }
 
     vector<int> inorderTraversal(TreeNode* root)
