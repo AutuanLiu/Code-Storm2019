@@ -35,14 +35,48 @@
  */
 class Solution {
 public:
-    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+    vector<vector<int>> fourSum(vector<int>& nums, int target)
+    {
         int n = nums.size();
         vector<vector<int>> ret;
+        // 首先对元素进行排序
+        sort(nums.begin(), nums.end());
         for (int a = 0; a < n - 3; a++) {
-            for (int b = a; b < n - 2; b++) {
-                
+            // 去重
+            if (a > 0 && nums[a] == nums[a - 1])
+                continue;
+            for (int b = a + 1; b < n - 2; b++) {
+                if (b - 1 > a && nums[b] == nums[b - 1])
+                    continue;
+                // 确定了 a, b 之后，就要确定 c、d 使用两个指针进行搜索
+                int left = b + 1, right = n - 1;
+                while (left < right) {
+                    int sumx = nums[a] + nums[b] + nums[left] + nums[right];
+                    if (sumx == target) {
+                        ret.push_back(vector<int>{ nums[a], nums[b], nums[left], nums[right] });
+
+                        // 只有找到了满足条件的结果之后，才进行去重操作
+                        // 这里是向后判断，因为我们的 left是加法
+                        while (left < right && nums[left] == nums[left + 1]) {
+                            left++;
+                        }
+                        
+                        // 这里是前向判断，因为我们的方向是前向
+                        while (left < right && nums[right] == nums[right - 1]) {
+                            right--;
+                        }
+
+                        // 只有成功的找到了，才一起变化，继续下一次
+                        left++;
+                        right--;
+                    } else if (sumx < target) {
+                        left++;
+                    } else {
+                        right--;
+                    }
+                }
             }
         }
+        return ret;
     }
 };
-

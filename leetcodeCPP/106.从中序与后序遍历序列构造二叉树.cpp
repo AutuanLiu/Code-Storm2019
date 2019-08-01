@@ -44,8 +44,33 @@
  */
 class Solution {
 public:
+    vector<int> postorders, inorders;
+    // 注意这里的 pos 的位置是可以更改的
+    // 因为 其在函数的内部发生了变化，递归过程中发生了变化
+    TreeNode* build(int& pos, int lb, int rb)
+    {
+        // 递归出口, inorder全部访问完或者postorder全部访问完
+        if (lb >= rb || pos >= postorders.size())
+            return nullptr;
+        TreeNode* root = new TreeNode(postorders[pos--]);
+        // 找到当前 根节点 在 inorder 的位置
+        int cur = lb;
+        for (; cur < rb && inorders[cur] != root->val; cur++)
+            ;
+
+        // 递归左子树与右子树
+        root->right = build(pos, cur + 1, rb);
+        root->left = build(pos, lb, cur);
+        return root;
+    }
+
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-        
+        // 赋值全局变量
+        postorders = postorder;
+        inorders = inorder;
+        int pos = postorder.size() - 1;
+        TreeNode* root = build(pos, 0, inorder.size());
+        return root;
     }
 };
 
