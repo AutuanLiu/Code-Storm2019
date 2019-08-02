@@ -62,6 +62,7 @@ public:
             ;
 
         // 递归左子树与右子树
+        // 根左  左根  按照先序遍历的顺序进行访问 顺序为 根左右
         root->left = build(pos, lb, cur);
         root->right = build(pos, cur + 1, rb);
         return root;
