@@ -46,7 +46,10 @@
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-        
+        assert(k >= 0);
+        if (k == 0 || head == nullptr)
+            return head;
+        ListNode* dummy;
     }
 };
 

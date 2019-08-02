@@ -42,13 +42,17 @@
  * 
  */
 
+// https://github.com/MaigoAkisame/Queens/tree/master/python
+// https://zhuanlan.zhihu.com/p/51882471
+// https://zhuanlan.zhihu.com/p/54098938
 // 任两个皇后都不能处于同一条横行、纵行或斜线上、
 // 当且仅当n = 1或n ≥ 4时问题有解
+// 回溯法是一个树结构
 class Solution {
 public:
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<string>> ret;
-        if (n == 2 || n == 3)
+        if (n == 2 || n == 3 || n <= 0)
             return ret;
     }
 };

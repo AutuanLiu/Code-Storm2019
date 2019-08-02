@@ -38,7 +38,9 @@
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
-        
+        if (head == nullptr)
+            return nullptr;
+        ListNode *p = head;
     }
 };
 
