@@ -1,0 +1,3 @@
+[submodule "Queens"]
+	path = Queens
+	url = git@github.com:MaigoAkisame/Queens.git
