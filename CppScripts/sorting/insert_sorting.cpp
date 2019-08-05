@@ -21,6 +21,7 @@ int main()
 {
 	int v;
 	vector<int> nums;
+
 	// 输入 0 代表输入结束
 	while (cin >> v) {
 		if (v == 0)

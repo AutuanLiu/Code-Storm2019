@@ -1,21 +1,22 @@
-// ¿ìËÙÅÅĞò
+// å¿«é€Ÿæ’åº
 // https://zh.wikipedia.org/wiki/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F
+
 #include "sorting.h"
 
 void quick_sort(vector<int>& nums, int low, int high)
 {
-	// µİ¹é³ö¿Ú Ö»Ê£Ò»¸öÔªËØ
+	// é€’å½’å‡ºå£ åªå‰©ä¸€ä¸ªå…ƒç´ 
 	int lb = low, rb = high;
 	if (lb >= rb)
 		return;
 	while (lb < rb) {
-		// pivotÑ¡Ôñ nums[lb] ´ÓÓÒÏò×ó Ñ¡ÔñĞ¡ÓÚ pivot µÄÊıÖµºÍpivot½»»»
+		// pivoté€‰æ‹© nums[lb] ä»å³å‘å·¦ é€‰æ‹©å°äº pivot çš„æ•°å€¼å’Œpivotäº¤æ¢
 		for (; lb < rb && nums[rb] >= nums[lb]; rb--);
-		// Ö»ÓĞµ± lb < rb µÄÊ±ºò£¬²Å½»»»£¬ÒòÎªÉÏÃæÄÇ¾ä¶Ôrb-1£¬Ã¿´Î¶¼ÒªÅĞ¶Ïlb < rb ÊÇ·ñ³ÉÁ¢
+		// åªæœ‰å½“ lb < rb çš„æ—¶å€™ï¼Œæ‰äº¤æ¢ï¼Œå› ä¸ºä¸Šé¢é‚£å¥å¯¹rb-1ï¼Œæ¯æ¬¡éƒ½è¦åˆ¤æ–­lb < rb æ˜¯å¦æˆç«‹
 		if (lb < rb)
 			swap(nums[lb++], nums[rb]);
 		for (; lb < rb && nums[rb] >= nums[lb]; lb++);
-		// ½»»»²Ù×÷Ç°±ØĞëÅĞ¶Ï½»»»µÄÌõ¼şÊÇ·ñ³ÉÁ¢
+		// äº¤æ¢æ“ä½œå‰å¿…é¡»åˆ¤æ–­äº¤æ¢çš„æ¡ä»¶æ˜¯å¦æˆç«‹
 		if(lb < rb)
 			swap(nums[rb--], nums[lb]);
 	}
@@ -46,7 +47,7 @@ int main()
 	quick_sort(nums, 0, nums.size() - 1);
 	print_vector(nums);
 
-	// ²»½»»» Ê¹ÓÃÁÙÊ±¿Õ¼ä
+	// ä¸äº¤æ¢ ä½¿ç”¨ä¸´æ—¶ç©ºé—´
 	vector<int> nums1 = { 54, 38, 96, 23, 15, 72, 60, 45, 83, -1, -23 };
 	print_vector(nums1);
 	quick_sort1(nums1, 0, nums1.size() - 1);

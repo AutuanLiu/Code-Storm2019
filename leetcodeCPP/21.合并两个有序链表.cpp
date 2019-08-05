@@ -58,11 +58,11 @@
 //     }
 // };
 
-// 递归
-class Solution
-{
+// 递归 归并排序
+class Solution {
 public:
-    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2)
+    {
         if (l1 == nullptr)
             return l2;
         else if (l2 == nullptr)
