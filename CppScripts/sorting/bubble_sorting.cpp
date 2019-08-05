@@ -16,7 +16,7 @@ void bubble_sort(vector<int>& nums)
 				hasChanged = true;
 			}
 		}
-
+		
 		// 如果本趟遍历没有发生任何的交换，则说明数组已经有序
 		// 直接结束
 		if (!hasChanged)

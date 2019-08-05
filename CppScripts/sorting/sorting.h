@@ -60,3 +60,8 @@ template<typename T> void print_queue(T& q)
 	}
 	cout << '\n';
 }
+
+void set_digits(int digit)
+{
+	cout << fixed << setprecision(digit);
+}
