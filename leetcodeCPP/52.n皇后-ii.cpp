@@ -42,8 +42,37 @@
  */
 class Solution {
 public:
-    int totalNQueens(int n) {
-        
+    bool isValid(int row, int col, const vector<int>& solutions)
+    {
+        for (int i = 0; i < row; i++) {
+            // 不同列 不同对角线
+            if (col == solutions[i] || abs(col - solutions[i]) == abs(i - row))
+                return false;
+        }
+        return true;
+    }
+
+    void solveNQueensRecursive(int n, int row, vector<int>& solutions, int& ret)
+    {
+        // 递归出口
+        if (row == n) {
+            ret++;
+            return;
+        }
+
+        for (int cur_col = 0; cur_col < n; cur_col++) {
+            if (isValid(row, cur_col, solutions)) {
+                solutions[row] = cur_col;
+                solveNQueensRecursive(n, row + 1, solutions, ret);
+            }
+        }
+    }
+
+    int totalNQueens(int n)
+    {
+        vector<int> solutions(n);
+        int ret = 0;
+        solveNQueensRecursive(n, 0, solutions, ret);
+        return ret;
     }
 };
-

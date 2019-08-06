@@ -34,21 +34,17 @@
  */
 class Solution {
 public:
-    vector<int> plusOne(vector<int>& digits) {
-        vector<int> result = digits;
-        int i = digits.size() - 1;
-        if(digits[i] + 1 < 10){
-            result[i]++;
-            return result;
-        } else {
-            result[i] = 0;
-            int j = result.size();
-            if(j == 1){
-                result.pop_back();
-            } else {
-            plusOne(result.pop_back());
-            }
+    vector<int> plusOne(vector<int>& digits)
+    {
+        int n = digits.size(), carry = 1; // 原始进位为 1
+        for (int i = n - 1; i >= 0; i--) {
+            int tmp = digits[i] + carry;
+            digits[i] = tmp % 10;
+            carry = tmp / 10; // 更新进位
         }
-        return result;
+        // 存在最高位进位 首部插入进位 1
+        if (carry != 0)
+            digits.insert(digits.begin(), carry);
+        return digits;
     }
 };

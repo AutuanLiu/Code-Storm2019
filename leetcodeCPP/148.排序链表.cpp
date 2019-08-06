@@ -35,11 +35,12 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+// 归并排序
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
         if (head == nullptr)
-            return nullptr;
+            return head;
         ListNode *p = head;
     }
 };
