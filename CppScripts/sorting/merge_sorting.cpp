@@ -12,15 +12,6 @@ void merge_sorted(vector<int>& nums, int left, int mid, int right)
 	vector<int> rArray(nums.begin() + mid + 1, nums.begin() + right + 1);
 	int lix = 0, rix = 0, ix = left;  // 两个数组都是从0开始访问
 	int ln = lArray.size(), rn = rArray.size(), n = right - left + 1;
-	/*lArray.push_back(INT_MAX);
-	rArray.push_back(INT_MAX);
-
-	for (int i = left; i <= right; i++) {
-		if (lArray[lix] < rArray[rix])
-			nums[i] = lArray[lix++];
-		else
-			nums[i] = rArray[rix++];
-	}*/
 
 	// 合并上述的两个有序的数组
 	// 当左右数组都还有元素没有遍历时
