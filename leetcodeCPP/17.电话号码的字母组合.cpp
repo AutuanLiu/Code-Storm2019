@@ -30,9 +30,39 @@
  * 
  */
 class Solution {
+private:
+    map<char, string> i2s = {
+        { '2', "abc" },
+        { '3', "def" },
+        { '4', "ghi" },
+        { '5', "jkl" },
+        { '6', "mno" },
+        { '7', "pqrs" },
+        { '8', "tuv" },
+        { '9', "wxyz" }
+    };
+
 public:
-    vector<string> letterCombinations(string digits) {
-        
+    void letterCombinations(int n, int start, string& str, const string& digits, vector<string>& ret)
+    {
+        // 递归出口
+        if (start == n)
+            ret.push_back(str);
+        for (char& c : i2s[digits[start]]) {
+            str.push_back(c);
+            letterCombinations(n, start + 1, str, digits, ret);
+            str.pop_back();
+        }
+    }
+
+    vector<string> letterCombinations(string digits)
+    {
+        if (digits.empty())
+            return {};
+        vector<string> ret;
+        int n = digits.size();
+        string str = "";
+        letterCombinations(n, 0, str, digits, ret);
+        return ret;
     }
 };
-
