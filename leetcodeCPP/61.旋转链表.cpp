@@ -43,13 +43,28 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+// 先成环 后断开
 class Solution {
 public:
-    ListNode* rotateRight(ListNode* head, int k) {
+    ListNode* rotateRight(ListNode* head, int k)
+    {
         assert(k >= 0);
         if (k == 0 || head == nullptr)
             return head;
-        ListNode* dummy;
+        int n = 1; // 链表的长度
+        // 先成环并计算长度
+        ListNode* p = head;
+        while (p->next) {
+            p = p->next;
+            n++;
+        }
+        p->next = head; // 成环
+        k = n - k % n; // 右移的次数
+        for (int i = 0; i < k; i++)
+            p = p->next;
+        head = p->next;
+        p->next = nullptr;
+        return head;
     }
 };
-
