@@ -52,31 +52,99 @@
  */
 
 // 先序遍历之后，计算连续子数组的最大值
+// 这种算法没有考虑到取得最大值的路径不存在的情况
+// 这个思路不对
+// class Solution {
+// public:
+//     // 先序遍历 获得路径
+//     void preorder(TreeNode* root, vector<int>& path)
+//     {
+//         // 递归出口
+//         if (root == nullptr)
+//             return;
+//         path.push_back(root->val);
+//         preorder(root->left, path);
+//         preorder(root->right, path);
+//     }
+
+//     int maxPathSum(TreeNode* root)
+//     {
+//         vector<int> path;
+//         preorder(root, path);
+//         // 连续子数组的最大和
+//         int ret = path[0], tmp = path[0], n = path.size();
+//         for (int i = 1; i < n; i++) {
+//             tmp = tmp + path[i];
+//             if (tmp < path[i])
+//                 tmp = path[i];
+//             ret = max(ret, tmp);
+//         }
+//         return ret;
+//     }
+// };
+
+// 最大路径和可能出现在：
+// 左子树中
+// 右子树中
+// 包含根节点与左右子树
+// 自底向上的计算方法
+// class Solution {
+// public:
+//     int max_path(TreeNode* root, int& ret)
+//     {
+//         // 递归出口
+//         if (root == nullptr)
+//             return 0;
+//         // 计算左右子树的路径和
+//         int left = max_path(root->left, ret);
+//         int right = max_path(root->right, ret);
+
+//         // 包含有两种不同的情况
+//         // 包含根和左右子树
+//         int rlr = root->val + max(0, left) + max(0, right);
+//         // 包含根和左右子树的最大值
+//         int tmp = root->val + max(0, max(left, right));
+
+//         // 更新全局最大值  当前的最大值是两种情况中的最大值
+//         ret = max(ret, max(rlr, ret));
+
+//         // 全局最值 要么是根左、要么是根右，不会是根左右 因为不构成一个有效路径
+//         return tmp;
+//     }
+
+//     int maxPathSum(TreeNode* root)
+//     {
+//         int ret = INT_MIN;
+//         max_path(root, ret);
+//         return ret;
+//     }
+// };
 class Solution {
 public:
-    // 先序遍历 获得路径
-    void preorder(TreeNode* root, vector<int>& path)
+    int max_path(TreeNode* root, int& ret)
     {
         // 递归出口
         if (root == nullptr)
-            return;
-        path.push_back(root->val);
-        preorder(root->left, path);
-        preorder(root->right, path);
+            return 0;
+        // 计算左右子树的路径和
+        int left = max_path(root->left, ret);
+        int right = max_path(root->right, ret);
+
+        // 包含根和左右子树 开辟新的路径
+        int rlr = root->val + max(0, left) + max(0, right);
+
+        // 更新全局最大值  开辟新路径是否会更好
+        ret = max(ret, rlr);
+
+        // 从当前节点开始的最大路径和
+        return root->val + max(0, max(left, right));
     }
 
     int maxPathSum(TreeNode* root)
     {
-        vector<int> path;
-        preorder(root, path);
-        // 连续子数组的最大和
-        int ret = path[0], tmp = path[0], n = path.size();
-        for (int i = 1; i < n; i++) {
-            tmp = tmp + path[i];
-            if (tmp < path[i])
-                tmp = path[i];
-            ret = max(ret, tmp);
-        }
+        int ret = INT_MIN;
+        // 从当前节点开始的最大路径和
+        max_path(root, ret);
         return ret;
     }
 };
