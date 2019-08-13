@@ -33,7 +33,7 @@ def kruskal(graph):
     edges = list(graph['edges'])
     edges.sort()    #按照边长从小到达排序
     for edge in edges:
-        weight, vertice1, vertice2 = edge
+        _, vertice1, vertice2 = edge
         if find(vertice1) != find(vertice2):
             merge(vertice1, vertice2)
             minu_tree.add(edge)
