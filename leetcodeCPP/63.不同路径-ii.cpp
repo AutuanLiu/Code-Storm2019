@@ -42,10 +42,53 @@
  * 
  * 
  */
+// 首先应该确定边界处的数值
+// dp[i, j] 表示从开始到[i, j] 的路径数，若[i, j]处有障碍物则说明，不可以到达该处
+// 也即到达该处的路径数为 0
 class Solution {
 public:
-    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
-        
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid)
+    {
+        int m = obstacleGrid.size(), n = obstacleGrid[0].size();
+        vector<vector<unsigned int>> dp(m, vector<unsigned int>(n));
+        if (obstacleGrid[0][0] == 1)
+            return 0;
+        // 先确定边界处的数值
+        // 对第一行和第一列来说，一旦某处出现 1 则说明后面的路径均不可到达
+        // 对于中间遇到障碍物 只说明不可到达障碍物处
+        dp[0][0] = 1; // 交叉项赋值
+        for (int i = 1; i < n; i++) {
+            if (obstacleGrid[0][i] == 0)
+                dp[0][i] = 1;
+            else {
+                // 障碍物及其之后均为 0
+                while (i < n) {
+                    dp[0][i] = 0;
+                    i++;
+                }
+            }
+        }
+        // 这里必须要去掉第一个数  因为上面已经处理过了
+        for (int i = 1; i < m; i++) {
+            if (obstacleGrid[i][0] == 0)
+                dp[i][0] = 1;
+            else {
+                // 障碍物及其之后均为 0
+                while (i < m) {
+                    dp[i][0] = 0;
+                    i++;
+                }
+            }
+        }
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                if (obstacleGrid[i][j] == 0)
+                    // 这里有可能会溢出
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                else
+                    dp[i][j] = 0;
+            }
+        }
+        return dp[m - 1][n - 1];
     }
 };
-
