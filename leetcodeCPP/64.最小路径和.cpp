@@ -30,23 +30,51 @@
  * 
  * 
  */
+// 对于第一行和第一列 [i, j] 只能是从左边或者上边到达
+// 那么其最小值就是之前路径的累积和
+// 对于其他位置，其可以从左边或者上边到达，取其最小的路径继续前进
+// class Solution {
+// public:
+//     int minPathSum(vector<vector<int>>& grid)
+//     {
+//         int m = grid.size(), n = grid[0].size();
+//         // 第一行和第一列处理
+//         for (int i = 1; i < n; i++) {
+//             grid[0][i] += grid[0][i - 1];
+//         }
+//         for (int i = 1; i < m; i++) {
+//             grid[i][0] += grid[i - 1][0];
+//         }
+//         for (int i = 1; i < m; i++) {
+//             for (int j = 1; j < n; j++) {
+//                 grid[i][j] += min(grid[i - 1][j], grid[i][j - 1]);
+//             }
+//         }
+//         return grid[m - 1][n - 1];
+//     }
+// };
+
+// 一维动态规划
 class Solution {
 public:
     int minPathSum(vector<vector<int>>& grid)
     {
         int m = grid.size(), n = grid[0].size();
-        // 第一行和第一列处理
+        // 初始化为第一行的数值
+        vector<int> dp(grid[0]);
         for (int i = 1; i < n; i++) {
-            grid[0][i] += grid[0][i - 1];
+            dp[i] = grid[0][i] + dp[i - 1];
         }
         for (int i = 1; i < m; i++) {
-            grid[i][0] += grid[i - 1][0];
-        }
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
-                grid[i][j] += min(grid[i - 1][j], grid[i][j - 1]);
+            for (int j = 0; j < n; j++) {
+                // 第一列要进行特殊处理
+                if (j == 0) {
+                    dp[j] = grid[i][j] + dp[j];
+                } else {
+                    dp[j] = min(dp[j], dp[j - 1]) + grid[i][j];
+                }
             }
         }
-        return grid[m - 1][n - 1];
+        return dp[n - 1];
     }
 };
