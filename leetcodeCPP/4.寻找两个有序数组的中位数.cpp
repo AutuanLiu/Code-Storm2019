@@ -42,7 +42,7 @@
 // 奇数或者偶数，求平均或者是单个数字
 // 永远保证左边的数字小于右边的数字
 
-// 在统计中，中位数被用来： 将一个集合划分为两个长度相等的子集，其中一个子集中的元素总是大于另一个子集中的元素。 
+// 在统计中，中位数被用来： 将一个集合划分为两个长度相等的子集，其中一个子集中的元素总是大于另一个子集中的元素。
 // 因为是索引操作，所以都要相应的－1
 // https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/4-xun-zhao-liang-ge-you-xu-shu-zu-de-zhong-wei-shu
 
@@ -51,11 +51,11 @@
 // 2. C1 = 2n 数组1整体都在左边了，所以都比中值小，中值在数组2中 ，简单的说就是数组1割后的右边是空了，所以我们可以假定RMin1 = INT_MAX，来保证LMax2 < RMin1恒成立
 // 3. C2 = 0—— 数组2整体在右边了，所以都比中值大，中值在数组1中 ，简单的说就是数组2割后的左边是空了，所以我们可以假定LMax2 = INT_MIN
 // 4. C2 = 2m—— 数组2整体在左边了，所以都比中值小，中值在数组1中,简单的说就是数组2割后的右边是空了，为了让LMax1 < RMin2恒成立，我们可以假定RMin2 = INT_MAX
-                                                                                                                       
-class Solution
-{
+
+class Solution {
 public:
-    double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2) {
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
+    {
         int m = nums1.size(), n = nums2.size();
         // 为了效率，要进行二分比较，所以，我们考虑对短的数组进行二分
         // 这里使用 割 的思想和补 # 的思想
@@ -66,7 +66,7 @@ public:
         int LMax1, LMax2, RMin1, RMin2, c1, c2, low = 0, high = 2 * m;
         // 二分法的思想
         while (low <= high) {
-            // c1 即对数组1的割，其即二分法的中点处，c2 = m + n - c1(索引是从0开始的，这里不加1) 
+            // c1 即对数组1的割，其即二分法的中点处，c2 = m + n - c1(索引是从0开始的，这里不加1)
             c1 = (low + high) / 2;
             c2 = m + n - c1;
 

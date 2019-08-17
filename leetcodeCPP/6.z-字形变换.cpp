@@ -52,7 +52,8 @@
 // direction=1表示向下-1表示向上
 class Solution {
 public:
-    string convert(string s, int numRows) {
+    string convert(string s, int numRows)
+    {
         string ret;
         int direction = -1, curr_row = 0;
         if (numRows == 1)
@@ -72,4 +73,3 @@ public:
         return ret;
     }
 };
-

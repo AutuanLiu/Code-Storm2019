@@ -45,11 +45,12 @@
 // 只用比较一般的数值即可，当然溢出一定不是回文数
 class Solution {
 public:
-    bool isPalindrome(int x) {
+    bool isPalindrome(int x)
+    {
         if (x < 0 || (x % 10 == 0 && x != 0))
             return false;
         int reverse_num = 0;
-        while (x > reverse_num){
+        while (x > reverse_num) {
             reverse_num = reverse_num * 10 + x % 10;
             x /= 10;
         }

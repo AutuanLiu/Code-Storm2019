@@ -27,19 +27,20 @@
  *
  */
 #include <iostream>
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
 using namespace std;
 
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
+    vector<int> twoSum(vector<int>& nums, int target)
+    {
         unordered_map<int, int> m;
         vector<int> v;
-        for (int it = 0; it < nums.size(); it++){
+        for (int it = 0; it < nums.size(); it++) {
             int rest = target - nums[it];
-            if (m.find(rest) != m.end()){
+            if (m.find(rest) != m.end()) {
                 v.push_back(m[rest]);
                 v.push_back(it);
                 break;
@@ -50,8 +51,9 @@ public:
     }
 };
 
-int main(int argc, char **argv) {
-    vector<int> nums = {2, 7, 11, 15};
+int main(int argc, char** argv)
+{
+    vector<int> nums = { 2, 7, 11, 15 };
     int target = 9;
     Solution s;
     vector<int> ret = s.twoSum(nums, target);

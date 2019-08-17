@@ -59,10 +59,10 @@
 // dp[i, j] = (s[i] == s[j]) && (j-i<2 || dp[i+1, j-1])
 // 即考虑两种情况 1.不构成区间，s[i] == s[j] && j-i<2
 //              2. 构成区间，s[i] == s[j] && dp[i+1, j-1]
-class Solution
-{
+class Solution {
 public:
-    string longestPalindrome(string s){
+    string longestPalindrome(string s)
+    {
         int len = s.size(), maxlen = 1, start = 0;
         if (len <= 1)
             return s;
