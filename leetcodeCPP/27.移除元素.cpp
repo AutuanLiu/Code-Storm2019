@@ -60,7 +60,8 @@
  */
 class Solution {
 public:
-    int removeElement(vector<int>& nums, int val) {
+    int removeElement(vector<int>& nums, int val)
+    {
         int new_len = 0;
         for (int& item : nums) {
             if (item == val)

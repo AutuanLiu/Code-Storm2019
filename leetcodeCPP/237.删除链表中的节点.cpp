@@ -60,9 +60,9 @@
 // 删除的节点不是列表的末尾,这是算法成立的条件
 class Solution {
 public:
-    void deleteNode(ListNode* node) {
+    void deleteNode(ListNode* node)
+    {
         node->val = node->next->val;
         node->next = node->next->next;
     }
 };
-

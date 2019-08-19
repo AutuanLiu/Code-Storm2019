@@ -63,7 +63,6 @@
 //     }
 // };
 
-
 // 快速幂循环
 class Solution {
 public:
@@ -74,7 +73,7 @@ public:
             x = 1 / x;
             N = -N;
         }
-        
+
         double ret = 1, cur = x;
         for (long long it = N; it != 0; it /= 2) {
             // 如果是奇数的话，就乘上一个 当前值，否则就是当前值乘上一个当前值
@@ -85,4 +84,3 @@ public:
         return ret;
     }
 };
-

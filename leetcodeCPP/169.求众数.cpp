@@ -49,5 +49,6 @@ public:
             if (++counts[nums[i]] > n / 2)
                 return nums[i];
         }
+        return 0;
     }
 };

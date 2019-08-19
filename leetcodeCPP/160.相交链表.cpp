@@ -83,12 +83,15 @@
 // 问题的关键在于了解两个链表的长度差，使用快慢指针来解决这个问题
 class Solution {
 public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+    ListNode* getIntersectionNode(ListNode* headA, ListNode* headB)
+    {
         // 注意定义的方式方法
-        ListNode *pA=headA, *pB=headB;
+        ListNode *pA = headA, *pB = headB;
         int la = 0, lb = 0;
-        for(; pA; ++la, pA = pA->next);
-        for(; pB; ++lb, pB = pB->next);
+        for (; pA; ++la, pA = pA->next)
+            ;
+        for (; pB; ++lb, pB = pB->next)
+            ;
         if (la > lb) {
             for (int diff = la - lb; diff > 0; --diff)
                 headA = headA->next;
@@ -104,11 +107,8 @@ public:
             headA = headA->next;
             headB = headB->next;
         }
-        
-        // 如果中途没有返回，那么就说明两个链表没有相交 
+
+        // 如果中途没有返回，那么就说明两个链表没有相交
         return nullptr;
     }
 };
-
-
-

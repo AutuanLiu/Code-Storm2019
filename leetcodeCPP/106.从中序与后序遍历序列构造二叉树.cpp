@@ -65,7 +65,8 @@ public:
         return root;
     }
 
-    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder)
+    {
         // 赋值全局变量
         postorders = postorder;
         inorders = inorder;
@@ -74,4 +75,3 @@ public:
         return root;
     }
 };
-

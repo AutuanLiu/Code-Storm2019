@@ -47,12 +47,12 @@
 // ret = ret * 10 + remainder
 // 主要在于判断 ret 是否溢出
 
-class Solution
-{
+class Solution {
 public:
-    int reverse(int x){
+    int reverse(int x)
+    {
         int ret = 0;
-        while (x){
+        while (x) {
             int remainder = x % 10;
             // 溢出的话，就先截断返回
             // 在乘之前就判断是否溢出

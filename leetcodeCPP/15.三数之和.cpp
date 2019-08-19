@@ -32,7 +32,8 @@
 // **先搜索完，然后在去重**
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
+    vector<vector<int>> threeSum(vector<int>& nums)
+    {
         vector<vector<int>> ret;
         int n = nums.size();
         sort(nums.begin(), nums.end());
@@ -51,7 +52,7 @@ public:
                 else if (target > 0)
                     high--;
                 else {
-                    ret.push_back({nums[i], nums[low], nums[high]});
+                    ret.push_back({ nums[i], nums[low], nums[high] });
                     // low 永远要小于 high
                     while (low + 1 < high && nums[low + 1] == nums[low])
                         low++;
@@ -66,4 +67,3 @@ public:
         return ret;
     }
 };
-

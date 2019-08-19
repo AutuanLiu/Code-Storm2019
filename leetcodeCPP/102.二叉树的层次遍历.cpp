@@ -90,8 +90,8 @@ public:
         // 当 ret的数组数小于等于层数的时候
         // 有多少层就应该有多少个数组
         if (ret.size() <= level)
-            ret.push_back(vector<int> {});
-        
+            ret.push_back(vector<int>{});
+
         // 相当于先序遍历（DFS），只是多了一个层数判断
         ret[level].push_back(root->val);
         levelVisit(root->left, level + 1, ret);

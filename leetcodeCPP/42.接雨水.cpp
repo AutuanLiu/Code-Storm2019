@@ -64,7 +64,7 @@
 //             max_left[i] = max(max_left[i - 1], height[i]);
 //         for (int i = n - 2; i >= 0; i--)
 //             max_right[i] = max(max_right[i + 1], height[i]);
-        
+
 //         // 遍历计算
 //         for (int i = 0; i < n; i++)
 //             ret += min(max_left[i], max_right[i]) - height[i];
@@ -74,10 +74,9 @@
 
 // 双指针，就是用 两个指针同时滑动代表一个遍历的过程
 // 短的一方逐渐向长的一方靠近
-class Solution
-{
+class Solution {
 public:
-    int trap(vector<int> &height)
+    int trap(vector<int>& height)
     {
         int ret = 0, n = height.size();
         if (n <= 1)
@@ -94,7 +93,7 @@ public:
                 else
                     max_left = height[left++];
             } else {
-            // 储水量由 max_right 决定
+                // 储水量由 max_right 决定
                 if (max_right > height[right])
                     ret += max_right - height[right--];
                 else
@@ -104,4 +103,3 @@ public:
         return ret;
     }
 };
-

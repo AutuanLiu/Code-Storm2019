@@ -28,21 +28,16 @@
  * 你能不使用循环或者递归来完成本题吗？
  *
  */
-class Solution
-{
-  public:
+class Solution {
+public:
     bool isPowerOfFour(int n)
     {
-        if (n <= 0)
-        {
+        if (n <= 0) {
             return false;
         }
-        if (n == 1 || n == 4)
-        {
+        if (n == 1 || n == 4) {
             return true;
-        }
-        else
-        {
+        } else {
             return (n % 4 == 0) ? isPowerOfFour(n /= 4) : false;
         }
     }

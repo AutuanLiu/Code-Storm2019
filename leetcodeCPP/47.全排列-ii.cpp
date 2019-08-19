@@ -34,7 +34,8 @@ private:
     int n;
 
 public:
-    vector<vector<int>> permuteUnique(vector<int>& nums) {
+    vector<vector<int>> permuteUnique(vector<int>& nums)
+    {
         // sort 是原地操作， 没有返回值
         // 这里要排序，使得重复元素在一起
         sort(nums.begin(), nums.end());
@@ -69,4 +70,3 @@ public:
         }
     }
 };
-

@@ -40,13 +40,14 @@
  */
 class Solution {
 public:
-    bool isPalindrome(int x) {
-        if(x < 0){
+    bool isPalindrome(int x)
+    {
+        if (x < 0) {
             return false;
         } else {
-            long long int res_x = 0;
+            long long res_x = 0;
             int tmp = x;
-            while (tmp != 0){
+            while (tmp != 0) {
                 res_x = res_x * 10 + tmp % 10;
                 tmp /= 10;
             }

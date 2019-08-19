@@ -64,13 +64,13 @@ public:
             for (int it = rb; it >= lb; it--)
                 ret.push_back(matrix[db][it]);
             if (--db < ub)
-                break;  // 重新定义下边界，如果上下边界重合或者交叉，就停止循环
+                break; // 重新定义下边界，如果上下边界重合或者交叉，就停止循环
 
             // 向上移动
             for (int it = db; it >= ub; it--)
                 ret.push_back(matrix[it][lb]);
             if (++lb > rb)
-                break;  // 重新定义左边界，如果左右边界重合或者交叉，就停止循环
+                break; // 重新定义左边界，如果左右边界重合或者交叉，就停止循环
         }
         return ret;
     }

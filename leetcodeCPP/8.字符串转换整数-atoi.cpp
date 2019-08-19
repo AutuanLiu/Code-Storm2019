@@ -69,10 +69,10 @@
  *
  */
 // c++ 中 long 和 int 是一样的，取值范围 [−2^31, 2^31 − 1]
-class Solution
-{
+class Solution {
 public:
-    int myAtoi(string str) {
+    int myAtoi(string str)
+    {
         if (str.empty())
             return 0;
         int sign = 1, base = 0, i = 0, n = str.size();

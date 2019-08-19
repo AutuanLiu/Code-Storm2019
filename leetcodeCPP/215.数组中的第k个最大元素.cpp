@@ -74,19 +74,18 @@
 // };
 
 //  使用优先队列，使用堆构造的
-// class Solution {
-// public:
-//     int findKthLargest(vector<int>& nums, int k)
-//     {
-//         priority_queue<int, vector<int>, greater<int>> heap;
-//         for (int& item : nums) {
-//             heap.push(item);
-//             if (heap.size() > k)
-//                 heap.pop();
-//         }
-//         return heap.top();
-//     }
-// };
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k)
+    {
+        priority_queue<int, vector<int>, greater<int>> heap;
+        for (int& item : nums) {
+            heap.push(item);
+            if (heap.size() > k)
+                heap.pop();
+        }
+        return heap.top();
+    }
+};
 
 // 使用快速排序
-

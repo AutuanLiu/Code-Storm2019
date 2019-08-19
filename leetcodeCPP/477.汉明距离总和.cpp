@@ -77,7 +77,7 @@ public:
     int totalHammingDistance(vector<int>& nums)
     {
         int n = nums.size(), ret = 0;
-        unsigned int mask = 1;  // 无符号整型就够了
+        unsigned int mask = 1; // 无符号整型就够了
         for (int i = 0; i < 32; i++) {
             int cnt1 = 0; // 当前位是1的数值个数
             for (const int& num : nums) {

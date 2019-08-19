@@ -41,9 +41,12 @@
 // dp(n) = dp(n - 1) + dp(n - 2);
 class Solution {
 public:
-    int climbStairs(int n) {
-        if (n == 1) return 1;
-        if (n == 2) return 2;
+    int climbStairs(int n)
+    {
+        if (n == 1)
+            return 1;
+        if (n == 2)
+            return 2;
         int dp1 = 1, dp2 = 2, ret = 3;
         for (int i = 3; i <= n; i++) {
             ret = dp1 + dp2;
@@ -53,4 +56,3 @@ public:
         return ret;
     }
 };
-

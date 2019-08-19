@@ -51,13 +51,13 @@ public:
     }
 };
 
-int main(int argc, char** argv)
-{
-    vector<int> nums = { 2, 7, 11, 15 };
-    int target = 9;
-    Solution s;
-    vector<int> ret = s.twoSum(nums, target);
-    for (int i : ret)
-        cout << i << endl;
-    return 0;
-}
+// int main(int argc, char** argv)
+// {
+//     vector<int> nums = { 2, 7, 11, 15 };
+//     int target = 9;
+//     Solution s;
+//     vector<int> ret = s.twoSum(nums, target);
+//     for (int i : ret)
+//         cout << i << endl;
+//     return 0;
+// }

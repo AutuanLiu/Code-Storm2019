@@ -41,7 +41,8 @@
 // 滑动窗口(双指针)
 class Solution {
 public:
-    int lengthOfLongestSubstring(string s) {
+    int lengthOfLongestSubstring(string s)
+    {
         int ret = 0, start = 0, end = 0;
         unordered_set<char> sub_set;
         while (start < s.size() && end < s.size() && start <= end) {

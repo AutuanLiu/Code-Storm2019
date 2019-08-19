@@ -38,21 +38,16 @@
  * 你能不使用循环或者递归来完成本题吗？
  *
  */
-class Solution
-{
-  public:
+class Solution {
+public:
     bool isPowerOfThree(int n)
     {
-        if (n <= 0)
-        {
+        if (n <= 0) {
             return false;
         }
-        if (n == 1 || n == 3)
-        {
+        if (n == 1 || n == 3) {
             return true;
-        }
-        else
-        {
+        } else {
             return (n % 3 == 0) ? isPowerOfThree(n /= 3) : false;
         }
     }

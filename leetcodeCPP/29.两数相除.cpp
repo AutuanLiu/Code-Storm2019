@@ -46,7 +46,7 @@ public:
 
         // 判断符号
         int sign = (dividend ^ divisor) < 0 ? -1 : 1;
-        
+
         //  转换为long long型计算，防止 INT32_MIN / -1 溢出
         long long dvd = dividend, dvs = divisor;
         long long cur_bit = 1, ret = 0;

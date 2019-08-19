@@ -31,7 +31,7 @@ public:
     string reverseWords(string s)
     {
         string ret = "", tmp = "";
-        int n = s.length();  // s.length() 默认不包含最后的结束符，这里索引要加 1
+        int n = s.length(); // s.length() 默认不包含最后的结束符，这里索引要加 1
         for (int i = 0; i <= n; i++) {
             if (s[i] == ' ' || s[i] == '\0') {
                 reverse(tmp.begin(), tmp.end());
@@ -44,4 +44,3 @@ public:
         return ret;
     }
 };
-

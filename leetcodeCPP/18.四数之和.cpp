@@ -60,7 +60,7 @@ public:
                         while (left < right && nums[left] == nums[left + 1]) {
                             left++;
                         }
-                        
+
                         // 这里是前向判断，因为我们的方向是前向
                         while (left < right && nums[right] == nums[right - 1]) {
                             right--;

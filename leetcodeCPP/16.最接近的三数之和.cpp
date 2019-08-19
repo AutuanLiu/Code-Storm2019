@@ -24,7 +24,8 @@
  */
 class Solution {
 public:
-    int threeSumClosest(vector<int>& nums, int target) {
+    int threeSumClosest(vector<int>& nums, int target)
+    {
         sort(nums.begin(), nums.end());
         int ret = nums[0] + nums[1] + nums[2], n = nums.size();
         for (int i = 0; i < n; i++) {
@@ -44,4 +45,3 @@ public:
         return ret;
     }
 };
-

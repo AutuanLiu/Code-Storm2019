@@ -53,7 +53,6 @@
 #     def isPalindrome(self, s):
 #         return s == s[::-1]
 
-
 # class Solution:
 #     def validPalindrome(self, s: str) -> bool:
 #         if self.isPalindrome(s):
@@ -69,6 +68,7 @@
 
 #     def isPalindrome(self, s):
 #         return s == s[::-1]
+
 
 class Solution:
     def validPalindrome(self, s: str) -> bool:

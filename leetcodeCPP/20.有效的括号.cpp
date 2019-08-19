@@ -57,11 +57,12 @@
 // 栈
 class Solution {
 public:
-    bool isValid(string s) {
+    bool isValid(string s)
+    {
         if (s.empty())
             return true;
         stack<char> sk;
-        unordered_map<char, char> m = {{')', '('}, {']', '['}, {'}', '{'}};
+        unordered_map<char, char> m = { { ')', '(' }, { ']', '[' }, { '}', '{' } };
         for (char& c : s) {
             // 左括号就入栈
             if (c == '(' || c == '[' || c == '{')
@@ -78,4 +79,3 @@ public:
         return sk.empty();
     }
 };
-

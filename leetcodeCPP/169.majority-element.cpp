@@ -29,7 +29,7 @@
  */
 class Solution {
 public:
-    int majorityElement(vector<int>& nums) {
-        
+    int majorityElement(vector<int>& nums)
+    {
     }
 };

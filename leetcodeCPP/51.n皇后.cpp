@@ -68,7 +68,7 @@ public:
         if (row == n) {
             vector<string> tmp(n, string(n, '.')); // n * n 字符矩阵 注意是字符
             for (int cur_row = 0; cur_row < n; cur_row++) {
-                tmp[cur_row][solutions[cur_row]] = 'Q';  // 字符串中的字符赋值
+                tmp[cur_row][solutions[cur_row]] = 'Q'; // 字符串中的字符赋值
             }
             ret.push_back(tmp); // 获得一个有效解
             return;

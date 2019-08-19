@@ -50,22 +50,21 @@
 class Solution {
 private:
     // 缓存，保存最大的三个数
-    vector<long long> cache{LLONG_MIN, LLONG_MIN, LLONG_MIN};
+    vector<long long> cache{ LLONG_MIN, LLONG_MIN, LLONG_MIN };
 
 public:
-    int thirdMax(vector<int>& nums) {
+    int thirdMax(vector<int>& nums)
+    {
         for (int it = 0; it < nums.size(); it++) {
             // 如果当前值比缓存池的最小值大, 那么当前值就是最小值
             if (nums[it] > cache[0]) {
                 cache[2] = cache[1];
                 cache[1] = cache[0];
                 cache[0] = nums[it];
-            }
-            else if (nums[it] > cache[1] && nums[it] < cache[0]) {
+            } else if (nums[it] > cache[1] && nums[it] < cache[0]) {
                 cache[2] = cache[1];
                 cache[1] = nums[it];
-            }
-            else if (nums[it] > cache[2] && nums[it] < cache[1]) {
+            } else if (nums[it] > cache[2] && nums[it] < cache[1]) {
                 cache[2] = nums[it];
             }
         }

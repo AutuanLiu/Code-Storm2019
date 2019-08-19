@@ -37,9 +37,10 @@
  */
 class Solution {
 public:
-    int search(vector<int>& nums, int target) {
+    int search(vector<int>& nums, int target)
+    {
         int left = 0, right = nums.size() - 1;
-        while(left <= right) {
+        while (left <= right) {
             int mid = (left + right) / 2;
             if (nums[mid] == target)
                 return mid;
@@ -53,16 +54,15 @@ public:
                 // target 不在 mid 和 right 中间，那么target在左半部分
                 else
                     left = mid + 1;
-            // 分割点在左边， 右半部分是一个递增区域
+                // 分割点在左边， 右半部分是一个递增区域
             } else {
                 if (target > nums[mid] && target < nums[0])
                     left = mid + 1;
                 else
                     right = mid - 1;
             }
-        }   
-        // 如果上述没有返回，则表示没有找到 target，返回 -1 
+        }
+        // 如果上述没有返回，则表示没有找到 target，返回 -1
         return -1;
     }
 };
-

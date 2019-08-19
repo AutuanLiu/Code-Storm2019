@@ -113,7 +113,7 @@ public:
                 if (it < 1 || j == 0 || j == it)
                     ret[it].push_back(1);
                 else {
-                    int item = ret[it - 1][j - 1] + ret[it - 1][j]; 
+                    int item = ret[it - 1][j - 1] + ret[it - 1][j];
                     ret[it].push_back(item);
                 }
             }

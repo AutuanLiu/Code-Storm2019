@@ -41,28 +41,33 @@ public:
 
     /** initialize your data structure here. */
     // 构造函数，这里不做特殊处理
-    MinStack() {
+    MinStack()
+    {
     }
-    
-    void push(int x) {
+
+    void push(int x)
+    {
         // 数据栈每次都要加入
         // 最小值栈，当不为空或者小于等于的时候加入
         data.push(x);
         if (mins.empty() || x <= mins.top())
             mins.push(x);
     }
-    
-    void pop() {
+
+    void pop()
+    {
         if (!mins.empty() && data.top() == mins.top())
             mins.pop();
         data.pop();
     }
-    
-    int top() {
+
+    int top()
+    {
         return data.top();
     }
-    
-    int getMin() {
+
+    int getMin()
+    {
         return mins.top();
     }
 };
@@ -75,4 +80,3 @@ public:
  * int param_3 = obj->top();
  * int param_4 = obj->getMin();
  */
-
