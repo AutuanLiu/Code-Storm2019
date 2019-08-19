@@ -24,11 +24,22 @@
  * 你可以不使用循环或者递归，且在 O(1) 时间复杂度内解决这个问题吗？
  * 
  */
+// class Solution {
+// public:
+//     int addDigits(int num)
+//     {
+//         assert(num >= 0);
+//         return (num - 1) % 9 + 1;
+//     }
+// };
+
 class Solution {
 public:
     int addDigits(int num)
     {
         assert(num >= 0);
-        
+        if (num > 0)
+            return num % 9 == 0 ? 9 : num % 9;
+        return 0;
     }
 };
