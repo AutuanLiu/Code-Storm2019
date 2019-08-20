@@ -1,4 +1,4 @@
-// 閫夋嫨鎺掑簭  涓嶇ǔ瀹氱殑鎺掑簭
+// 选择排序  不稳定的排序
 #include "sorting.h"
 
 void select_sort(vector<int>& nums)
@@ -9,7 +9,7 @@ void select_sort(vector<int>& nums)
 		for (int j = i; j < n; j++) {
 			if (nums[j] < tmp) {
 				tmp = nums[j];
-				ix = j;  // 鏈�灏忓�肩殑浣嶇疆
+				ix = j;  // 最小值的位置
 			}
 		}
 		swap(nums[i], nums[ix]);

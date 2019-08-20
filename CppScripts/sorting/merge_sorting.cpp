@@ -1,20 +1,20 @@
-// å½’å¹¶æ’åº
-// ä¸¤ä¸ªæœ‰åºæ•°ç»„çš„åˆå¹¶ï¼Œä¹Ÿæ˜“äºåœ¨é“¾è¡¨ä¸Šå®ç°
+// ¹é²¢ÅÅĞò
+// Á½¸öÓĞĞòÊı×éµÄºÏ²¢£¬Ò²Ò×ÓÚÔÚÁ´±íÉÏÊµÏÖ
 
 #include "sorting.h"
 
-// å½’å¹¶ä¸¤ä¸ªæœ‰åºçš„æ•°ç»„
-// åŸåœ°æ“ä½œï¼Œæ‰€ä»¥é¦–å…ˆè¦å¯¹å·¦å³ä¸¤ä¸ªæ’åºæ•°ç»„è¿›è¡Œå¤åˆ¶
+// ¹é²¢Á½¸öÓĞĞòµÄÊı×é
+// Ô­µØ²Ù×÷£¬ËùÒÔÊ×ÏÈÒª¶Ô×óÓÒÁ½¸öÅÅĞòÊı×é½øĞĞ¸´ÖÆ
 void merge_sorted(vector<int>& nums, int left, int mid, int right)
 {
-	// æ³¨æ„è¿™é‡Œè¦ + 1 
+	// ×¢ÒâÕâÀïÒª + 1 
 	vector<int> lArray(nums.begin() + left, nums.begin() + mid + 1);
 	vector<int> rArray(nums.begin() + mid + 1, nums.begin() + right + 1);
-	int lix = 0, rix = 0, ix = left;  // ä¸¤ä¸ªæ•°ç»„éƒ½æ˜¯ä»0å¼€å§‹è®¿é—®
+	int lix = 0, rix = 0, ix = left;  // Á½¸öÊı×é¶¼ÊÇ´Ó0¿ªÊ¼·ÃÎÊ
 	int ln = lArray.size(), rn = rArray.size(), n = right - left + 1;
 
-	// åˆå¹¶ä¸Šè¿°çš„ä¸¤ä¸ªæœ‰åºçš„æ•°ç»„
-	// å½“å·¦å³æ•°ç»„éƒ½è¿˜æœ‰å…ƒç´ æ²¡æœ‰éå†æ—¶
+	// ºÏ²¢ÉÏÊöµÄÁ½¸öÓĞĞòµÄÊı×é
+	// µ±×óÓÒÊı×é¶¼»¹ÓĞÔªËØÃ»ÓĞ±éÀúÊ±
 	while (lix < ln && rix < rn) {
 		if (lArray[lix] < rArray[rix])
 			nums[ix++] = lArray[lix++];
@@ -22,23 +22,23 @@ void merge_sorted(vector<int>& nums, int left, int mid, int right)
 			nums[ix++] = rArray[rix++];
 	}
 
-	// å­˜åœ¨å‰©ä½™çš„æƒ…å†µ
+	// ´æÔÚÊ£ÓàµÄÇé¿ö
 	while (lix < ln)
 		nums[ix++] = lArray[lix++];
 	while (rix < rn)
 		nums[ix++] = rArray[rix++];
 }
 
-// åŒ–ç®€ç‰ˆæœ¬
+// »¯¼ò°æ±¾
 void merge_sorted1(vector<int>& nums, int left, int mid, int right)
 {
-	// æ³¨æ„è¿™é‡Œè¦ + 1 
+	// ×¢ÒâÕâÀïÒª + 1 
 	vector<int> lArray(nums.begin() + left, nums.begin() + mid + 1);
 	vector<int> rArray(nums.begin() + mid + 1, nums.begin() + right + 1);
 	lArray.push_back(INT_MAX);
 	rArray.push_back(INT_MAX);
 
-	// ä¸¤ä¸ªæ•°ç»„éƒ½æ˜¯ä»0å¼€å§‹è®¿é—®
+	// Á½¸öÊı×é¶¼ÊÇ´Ó0¿ªÊ¼·ÃÎÊ
 	for (int i = left, lix = 0, rix = 0; i <= right; i++) {
 		if (lArray[lix] < rArray[rix])
 			nums[i] = lArray[lix++];
@@ -49,16 +49,16 @@ void merge_sorted1(vector<int>& nums, int left, int mid, int right)
 
 void merge_sort(vector<int>& nums, int left, int right)
 {
-	// å½“å‰©ä½™ä¸€ä¸ªæ—¶ï¼Œè¿”å›ï¼Œè‡ªä¸Šè€Œä¸‹çš„é€’å½’ç‰ˆæœ¬
+	// µ±Ê£ÓàÒ»¸öÊ±£¬·µ»Ø£¬×ÔÉÏ¶øÏÂµÄµİ¹é°æ±¾
 	if (left >= right) return;
 	int mid = left + (right - left) / 2;
-	// å·¦åŠè¾¹å’Œå³åŠè¾¹åˆ†åˆ«æ’åº
+	// ×ó°ë±ßºÍÓÒ°ë±ß·Ö±ğÅÅĞò
 	merge_sort(nums, left, mid);
 	merge_sort(nums, mid + 1, right);
-	// åˆå¹¶ä¸¤ä¸ªæœ‰åºçš„æ•°ç»„
-	// ä»å·¦å¾€å³è¿›è¡Œæ¯”è¾ƒ
-	// merge_sorted(nums, left, mid, right);  // æ™®é€šç‰ˆæœ¬
-	merge_sorted1(nums, left, mid, right);    // åŒ–ç®€ç‰ˆæœ¬
+	// ºÏ²¢Á½¸öÓĞĞòµÄÊı×é
+	// ´Ó×óÍùÓÒ½øĞĞ±È½Ï
+	// merge_sorted(nums, left, mid, right);  // ÆÕÍ¨°æ±¾
+	merge_sorted1(nums, left, mid, right);    // »¯¼ò°æ±¾
 }
 
 int main()

@@ -3,7 +3,10 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
+# 项目
+project (leetcode_repos)
+
 # 将源代码添加到此项目的可执行文件。
-add_executable (leetcode_repos "cppinout.cpp" "leetcode_repos.h")
+add_executable (leetcode_repos "subsets.cpp" "leetcode_repos.h")
 
 # TODO: 如有需要，请添加测试并安装目标。

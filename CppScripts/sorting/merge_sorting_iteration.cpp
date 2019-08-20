@@ -1,17 +1,17 @@
-// å½’å¹¶æ’åº è¿­ä»£ç‰ˆæœ¬
-// ä¸¤ä¸ªæœ‰åºæ•°ç»„çš„åˆå¹¶ï¼Œä¹Ÿæ˜“äºåœ¨é“¾è¡¨ä¸Šå®ç°
+// ¹é²¢ÅÅĞò µü´ú°æ±¾
+// Á½¸öÓĞĞòÊı×éµÄºÏ²¢£¬Ò²Ò×ÓÚÔÚÁ´±íÉÏÊµÏÖ
 
 #include "sorting.h"
 
 void merge_sorted(vector<int>& nums, int left, int mid, int right)
 {
-	// æ³¨æ„è¿™é‡Œè¦ + 1 
+	// ×¢ÒâÕâÀïÒª + 1 
 	vector<int> lArray(nums.begin() + left, nums.begin() + mid + 1);
 	vector<int> rArray(nums.begin() + mid + 1, nums.begin() + right + 1);
 	lArray.push_back(INT_MAX);
 	rArray.push_back(INT_MAX);
 
-	// ä¸¤ä¸ªæ•°ç»„éƒ½æ˜¯ä»0å¼€å§‹è®¿é—®
+	// Á½¸öÊı×é¶¼ÊÇ´Ó0¿ªÊ¼·ÃÎÊ
 	for (int i = left, lix = 0, rix = 0; i <= right; i++) {
 		if (lArray[lix] < rArray[rix])
 			nums[i] = lArray[lix++];
@@ -20,15 +20,15 @@ void merge_sorted(vector<int>& nums, int left, int mid, int right)
 	}
 }
 
-// è‡ªä¸‹è€Œä¸Šçš„è¿­ä»£ç‰ˆæœ¬
+// ×ÔÏÂ¶øÉÏµÄµü´ú°æ±¾
 void merge_sort(vector<int>& nums, int left, int right)
 {
 	int n = nums.size();
-	// å…ˆå¯¹æ•°æ®æŒ‰é•¿åº¦è¿›è¡Œåˆ†æ®µ é•¿åº¦ä¸º 1, 2, 4, 8...
+	// ÏÈ¶ÔÊı¾İ°´³¤¶È½øĞĞ·Ö¶Î ³¤¶ÈÎª 1, 2, 4, 8...
 	for (int seg = 1; seg < n; seg << 1) {
-		// å¯¹æ¯ç»„æ•°æ®è¿›è¡Œæ’åº
+		// ¶ÔÃ¿×éÊı¾İ½øĞĞÅÅĞò
 		for (int start = 0; start < n; start += seg << 1) {
-			// ç¡®å®šåˆ†å‰²ç‚¹çš„ç´¢å¼• åˆ†å‰²ç‚¹ä¸èƒ½è¶…è¿‡æ•°ç»„çš„é•¿åº¦
+			// È·¶¨·Ö¸îµãµÄË÷Òı ·Ö¸îµã²»ÄÜ³¬¹ıÊı×éµÄ³¤¶È
 			int left = start, mid = min(start + seg, n - 1), right = min(start + seg * 2, n - 1);
 			merge_sorted(nums, left, mid, right);
 		}

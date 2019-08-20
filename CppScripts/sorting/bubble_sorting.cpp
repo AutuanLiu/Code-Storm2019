@@ -1,16 +1,16 @@
-// å†’æ³¡æ’åº  ç¨³å®šæ’åº 
-// ä»åå¾€å‰æœç´¢æ¯æ¬¡å¯ä»¥ç¡®å®šä¸€ä¸ªæœ€å°å€¼ï¼Œå¦‚æœä»å‰å¾€åæœç´¢æ¯æ¬¡å¯ä»¥ç¡®å®šä¸€ä¸ªæœ€å¤§å€¼
+// Ã°ÅİÅÅĞò  ÎÈ¶¨ÅÅĞò 
+// ´ÓºóÍùÇ°ËÑË÷Ã¿´Î¿ÉÒÔÈ·¶¨Ò»¸ö×îĞ¡Öµ£¬Èç¹û´ÓÇ°ÍùºóËÑË÷Ã¿´Î¿ÉÒÔÈ·¶¨Ò»¸ö×î´óÖµ
 
 #include "sorting.h"
 
 void bubble_sort(vector<int>& nums)
 {
 	int n = nums.size();
-	// æ€»å…±è¦æ¯”è¾ƒ n - 1 è¶Ÿ æ²¡è¶Ÿéå†ç¡®å®šä¸€ä¸ªæœ€å°å€¼
+	// ×Ü¹²Òª±È½Ï n - 1 ÌË Ã»ÌË±éÀúÈ·¶¨Ò»¸ö×îĞ¡Öµ
 	for (int i = 0; i < n - 1; i++) {
 		bool hasChanged = false;
 
-		// ä»åå¾€å‰éå†
+		// ´ÓºóÍùÇ°±éÀú
 		for (int j = n - 1; j > i; j--) {
 			if (nums[j] < nums[j - 1]) {
 				swap(nums[j], nums[j - 1]);
@@ -18,8 +18,8 @@ void bubble_sort(vector<int>& nums)
 			}
 		}
 		
-		// å¦‚æœæœ¬è¶Ÿéå†æ²¡æœ‰å‘ç”Ÿä»»ä½•çš„äº¤æ¢ï¼Œåˆ™è¯´æ˜æ•°ç»„å·²ç»æœ‰åº
-		// ç›´æ¥ç»“æŸ
+		// Èç¹û±¾ÌË±éÀúÃ»ÓĞ·¢ÉúÈÎºÎµÄ½»»»£¬ÔòËµÃ÷Êı×éÒÑ¾­ÓĞĞò
+		// Ö±½Ó½áÊø
 		if (!hasChanged)
 			return;
 	}
@@ -28,10 +28,10 @@ void bubble_sort(vector<int>& nums)
 void bubble_sort1(vector<int>& nums)
 {
 	int n = nums.size();
-	// æ€»å…±è¦æ¯”è¾ƒ n - 1 è¶Ÿ æ¯è¶Ÿéå†ç¡®å®šä¸€ä¸ªæœ€å¤§å€¼
+	// ×Ü¹²Òª±È½Ï n - 1 ÌË Ã¿ÌË±éÀúÈ·¶¨Ò»¸ö×î´óÖµ
 	for (int i = n - 1; i > 0; i--) {
 		bool hasChanged = false;
-		// ä»å‰å¾€åéå†
+		// ´ÓÇ°Íùºó±éÀú
 		for (int j = 0; j < i; j++) {
 			if (nums[j] > nums[j + 1]) {
 				swap(nums[j], nums[j + 1]);
@@ -39,8 +39,8 @@ void bubble_sort1(vector<int>& nums)
 			}
 		}
 
-		// å¦‚æœæœ¬è¶Ÿéå†æ²¡æœ‰å‘ç”Ÿä»»ä½•çš„äº¤æ¢ï¼Œåˆ™è¯´æ˜æ•°ç»„å·²ç»æœ‰åº
-		// ç›´æ¥ç»“æŸ
+		// Èç¹û±¾ÌË±éÀúÃ»ÓĞ·¢ÉúÈÎºÎµÄ½»»»£¬ÔòËµÃ÷Êı×éÒÑ¾­ÓĞĞò
+		// Ö±½Ó½áÊø
 		if (!hasChanged)
 			return;
 	}
@@ -48,13 +48,13 @@ void bubble_sort1(vector<int>& nums)
 
 int main()
 {
-	// ä»åå¾€å‰éå†
+	// ´ÓºóÍùÇ°±éÀú
 	vector<int> nums = { 7, 3, 5, 8, 9, 1, 2, 4, 6 };
 	print_vector(nums);
 	bubble_sort(nums);
 	print_vector(nums);
 
-	// ä»å‰å¾€åéå†
+	// ´ÓÇ°Íùºó±éÀú
 	vector<int> nums1 = { 7, 3, 5, 8, 9, 1, 2, 4, 6 };
 	print_vector(nums1);
 	bubble_sort1(nums1);

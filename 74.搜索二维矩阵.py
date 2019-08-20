@@ -47,19 +47,27 @@
 # 每行中的整数从左到右按升序排列。
 # 每行的第一个整数大于前一行的最后一个整数。
 # z 形有序数组
-# 每行的最后一个元素为 x, 判断target和x的关系，如果小于x，那么target在左边的列
-# 如果大于x，那么target在下一行，否则找到了 target
+# 把其展开为一维数组即按行读取
+# 给定序号，计算相应的坐标
+# x = id // cols
+# y = id % cols
+
+
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         if not matrix:
             return False
         m, n = len(matrix), len(matrix[0])
-        row, col = 0, n - 1
-        while row < m and col >= 0:
-            if matrix[row][col] == target:
-                return True
-            elif matrix[row][col] < target:
-                col -= 1
+        left, right = 0, m * n - 1
+        # 等于是为了判断当 两个数相邻时，都能够被访问到
+        while left <= right:
+            mid = (left + right) // 2    # 中间位置
+            tmp = matrix[mid // n][mid % n]
+            if tmp < target:
+                left = mid + 1
+            elif tmp > target:
+                right = mid - 1
             else:
-                row += 1
+                return True
+        # 如果所有的元素均已访问
         return False

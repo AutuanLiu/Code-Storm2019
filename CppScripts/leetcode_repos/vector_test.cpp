@@ -1,5 +1,8 @@
 #include "leetcode_repos.h"
 
+const long long xx = -(1 << 63);
+const long long y = (1 << 63) - 1;
+
 int main(int argc, char** argv)
 {
 	vector<int> nums = { 1, 2, -3, 4, 5 };
@@ -25,5 +28,8 @@ int main(int argc, char** argv)
 	cout << s.find("dea") << endl;
 	vector<string> s1 = {"acd", "def", "ert"};
 	print_vector(s1);
+	
+	cout << xx << " " << INT64_MIN << endl;
+	cout << y << " " << INT64_MAX << endl;
 	return 0;
 }

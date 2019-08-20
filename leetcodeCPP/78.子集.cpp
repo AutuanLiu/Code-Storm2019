@@ -33,9 +33,43 @@
  * ]
  * 
  */
+// class Solution {
+// public:
+//     inline void getSubset(vector<int>& nums, vector<int>& path, vector<vector<int>>& ret, int level = 0)
+//     {
+//         int m = path.size(), n = nums.size();
+//         if (m <= n)
+//             ret.push_back(path);
+//         for (int i = level; i < n; i++) {
+//             path.push_back(nums[i]);
+//             getSubset(nums, path, ret, i + 1);
+//             path.pop_back();
+//         }
+//     }
+
+//     vector<vector<int>> subsets(vector<int>& nums)
+//     {
+//         int n = nums.size();
+//         vector<vector<int>> ret;
+//         vector<int> path;
+//         getSubset(nums, path, ret);
+//         return ret;
+//     }
+// };
+
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums)
     {
+        vector<vector<int>> ret(1); // 包含空
+        for (int& item : nums) {
+            int m = ret.size();  // 这里必须计算遍历次数
+            for (int i = 0; i < m; i++) {
+                vector<int> tmp(ret[i]);
+                tmp.push_back(item);
+                ret.push_back(tmp);
+            }
+        }
+        return ret;
     }
 };

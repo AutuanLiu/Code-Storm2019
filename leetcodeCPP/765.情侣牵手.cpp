@@ -45,10 +45,107 @@
  * 
  * 
  */
+// class Solution {
+// public:
+//     inline int get_couple(int x)
+//     {
+//         return (x & 1) ? x - 1 : x + 1;
+//     }
+
+//     inline int findidx(vector<int>& row, int start, int n, int target)
+//     {
+//         int idx = start;
+//         for (; idx < n && row[idx] != target; idx++) {
+//         }
+//         return idx;
+//     }
+
+//     int minSwapsCouples(vector<int>& row)
+//     {
+//         int ret = 0, n = row.size();
+
+//         // 固定偶数位置 贪心
+//         for (int i = 0; i < n; i += 2) {
+//             int couple = get_couple(row[i]); // 找到其配偶
+//             // 找到配偶并交换
+//             if (couple != row[i + 1]) {
+//                 int idx = findidx(row, i + 1, n, couple);
+//                 swap(row[i + 1], row[idx]);
+//                 ret++;
+//             }
+//         }
+//         return ret;
+//     }
+// };
+
+// class Solution {
+// public:
+//     int minSwapsCouples(vector<int>& row)
+//     {
+//         int ret = 0, N = row.size();
+
+//         vector<int> ptn(N, 0);
+//         vector<int> pos(N, 0);
+
+//         for (int i = 0; i < N; i++) {
+//             ptn[i] = (i % 2 == 0 ? i + 1 : i - 1);
+//             pos[row[i]] = i;
+//         }
+
+//         for (int i = 0; i < N; i++) {
+//             for (int j = ptn[pos[ptn[row[i]]]]; i != j; j = ptn[pos[ptn[row[i]]]]) {
+//                 swap(row[i], row[j]);
+//                 swap(pos[row[i]], pos[row[j]]);
+//                 ret++;
+//             }
+//         }
+
+//         return ret;
+//     }
+// };
+
+// 并査集
 class Solution {
 public:
-    int minSwapsCouples(vector<int>& row) {
-        int ret, n = row.size(); 
+    vector<int> parent, size;
+
+    int find(int x)
+    {
+        return x == parent[x] ? x : (parent[x] = find(parent[x]));
+    }
+
+    void uni(int x, int y)
+    {
+        int fx = find(x), fy = find(y);
+        if (fx != fy) {
+            if (size[fx] < size[fy]) {
+                parent[fx] = fy;
+                size[fy] += size[fx];
+            } else {
+                parent[fy] = fx;
+                size[fx] += size[fy];
+            }
+        }
+    }
+
+    int minSwapsCouples(vector<int>& row)
+    {
+        int n = row.size(), m = n / 2, ret = 0;
+        parent = vector<int>(m, 0), size = vector<int>(m, 1);
+        // 构造初始并査集
+        for (int i = 0; i < m; i++)
+            parent[i] = i;
+
+        // 合并
+        for (int i = 0; i < n; i += 2) {
+            int x = row[i] >> 1, y = row[i + 1] >> 1;
+            // 情侣的特征 除以2相等
+            // 如果相邻的元素不是情侣，那么就合并
+            if (find(x) != find(y)) {
+                uni(x, y);
+                ret++;
+            }
+        }
+        return ret;
     }
 };
-
