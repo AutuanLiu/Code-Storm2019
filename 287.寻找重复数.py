@@ -41,14 +41,33 @@
 
 # 首先进行排序
 # 遍历数组 如果下一个位置的数值和当前值相等 则重复
-class Solution:
-    def findDuplicate(self, nums: List[int]) -> int:
-        nums = sorted(nums) # 这里开辟了新的空间 存储副本
-        n = len(nums)
-        for i in range(n-1):
-            if nums[i] == nums[i + 1]:
-                return nums[i]
-        return -1
+# class Solution:
+#     def findDuplicate(self, nums: List[int]) -> int:
+#         nums = sorted(nums) # 这里开辟了新的空间 存储副本
+#         n = len(nums)
+#         for i in range(n-1):
+#             if nums[i] == nums[i + 1]:
+#                 return nums[i]
+#         return -1
 
-# 不排序 而是交换到合适的位置
+class Solution(object):
+    def findDuplicate(self, nums):
+        slow = 0
+        fast = 0
+    
+        while True:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+    
+            if slow == fast:
+                break
+    
+        finder = 0
+        while True:
+            slow   = nums[slow]
+            finder = nums[finder]
+    
+            if slow == finder:
+                return slow
+
 

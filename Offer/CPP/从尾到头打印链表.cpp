@@ -52,3 +52,19 @@ class Solution
         return array;
     }
 };
+
+// 反转
+class Solution {
+public:
+    vector<int> printListFromTailToHead(ListNode* head)
+    {
+        vector<int> array;
+        while (head != nullptr) {
+            // 在 array 开始处插入元素
+            array.push_back(head->val);
+            head = head -> next;
+        }
+        reverse(array.begin(), array.end());
+        return array;
+    }
+};

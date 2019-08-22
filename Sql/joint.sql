@@ -6,7 +6,8 @@
 -- 内连接又称等值连接，使用 INNER JOIN 关键字。
 
 SELECT A.value, B.value
-FROM tablea AS A INNER JOIN tableb AS B
+FROM tablea AS A
+INNER JOIN tableb AS B
 ON A.key = B.key;
 
 -- 可以不明确使用 INNER JOIN，而使用普通查询并在 WHERE 中将两个表中要连接的列用等值方法连接起来。
@@ -30,7 +31,8 @@ WHERE department = (
 -- 自连接版本
 
 SELECT e1.name
-FROM employee AS e1 INNER JOIN employee AS e2
+FROM employee AS e1
+INNER JOIN employee AS e2
 ON e1.department = e2.department
       AND e2.name = "Jim";
     
@@ -40,12 +42,14 @@ ON e1.department = e2.department
 
 
 SELECT A.value, B.value
-FROM tablea AS A NATURAL JOIN tableb AS B;
+FROM tablea AS A
+NATURAL JOIN tableb AS B;
 
 -- 外连接
 -- 外连接保留了没有关联的那些行。分为左外连接，右外连接以及全外连接，左外连接就是保留左表没有关联的行。
 -- 检索所有顾客的订单信息，包括还没有订单信息的顾客。
 
 SELECT Customers.cust_id, Orders.order_num
-FROM Customers LEFT OUTER JOIN Orders
+FROM Customers 
+LEFT OUTER JOIN Orders
 ON Customers.cust_id = Orders.cust_id;
