@@ -1,5 +1,8 @@
 ﻿// sorting.h: 标准系统包含文件的包含文件或项目特定的包含文件。
 
+// leetcode_repos.h: 标准系统包含文件的包含文件
+// 或项目特定的包含文件。
+
 #pragma once
 
 #include <algorithm>
@@ -44,18 +47,18 @@ struct ListNode {
 };
 
 template <typename T>
-void print_vector(vector<T>& nums)
+void print_vector(std::vector<T>& nums)
 {
     for (T& item : nums) {
-        cout << item << ' ';
+        std::cout << item << ' ';
     }
-    cout << endl;
+    std::cout << endl;
 }
 
 template <typename T>
-void print_matrix(vector<vector<T>>& matrix)
+void print_matrix(std::vector<std::vector<T>>& matrix)
 {
-    for (vector<T>& item : matrix) {
+    for (std::vector<T>& item : matrix) {
         print_vector(item);
     }
 }
@@ -63,25 +66,25 @@ void print_matrix(vector<vector<T>>& matrix)
 void print_list(ListNode* head)
 {
     while (head) {
-        cout << head->val << ' ';
+        std::cout << head->val << ' ';
         head = head->next;
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 template <typename T>
 void print_queue(T& q)
 {
     while (!q.empty()) {
-        cout << q.top() << " ";
+        std::cout << q.top() << " ";
         q.pop();
     }
-    cout << '\n';
+    std::cout << '\n';
 }
 
 void set_digits(int digit)
 {
-    cout << fixed << setprecision(digit);
+    std::cout << std::fixed << std::setprecision(digit);
 }
 
 template <typename T>
