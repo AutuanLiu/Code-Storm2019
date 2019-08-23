@@ -39,5 +39,5 @@ fi
 
 # cmake
 cd build
-cmake -D CMAKE_PREFIX_PATH=/home/lyc/Softwares/libtorch -G Ninja ..
-ninja all
+cmake -D CMAKE_PREFIX_PATH=/home/lyc/Softwares/libtorch ..
+make
