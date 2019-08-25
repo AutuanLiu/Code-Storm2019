@@ -5,7 +5,7 @@
 
 void merge_sorted(vector<int>& nums, int left, int mid, int right)
 {
-	// 注意这里要 + 1 
+	// 注意这里要 + 1
 	vector<int> lArray(nums.begin() + left, nums.begin() + mid + 1);
 	vector<int> rArray(nums.begin() + mid + 1, nums.begin() + right + 1);
 	lArray.push_back(INT_MAX);
@@ -25,11 +25,11 @@ void merge_sort(vector<int>& nums, int left, int right)
 {
 	int n = nums.size();
 	// 先对数据按长度进行分段 长度为 1, 2, 4, 8...
-	for (int seg = 1; seg < n; seg << 1) {
+	for (int seg = 1; seg < n; seg *= 2) {
 		// 对每组数据进行排序
-		for (int start = 0; start < n; start += seg << 1) {
+		for (int start = 0; start < n; start += (seg * 2)) {
 			// 确定分割点的索引 分割点不能超过数组的长度
-			int left = start, mid = min(start + seg, n - 1), right = min(start + seg * 2, n - 1);
+			int left = start, mid = min(start + seg - 1, n - 1), right = min(start + seg * 2 - 1, n - 1);
 			merge_sorted(nums, left, mid, right);
 		}
 	}
