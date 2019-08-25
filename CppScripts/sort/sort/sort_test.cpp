@@ -1,22 +1,22 @@
-#include "sort.h"
 #include "print.h"
+#include "sort.h"
 
 using namespace std;
 
 int main()
 {
-	vector<int> nums = { 123, 54, 38, 96, -23, 15, 72, -60, 45, 83, -1, -23 };
-	int n = nums.size();
-	sort::print_vector(nums);
-	sort::Sorter sorter;
-	//sorter.merge_sort(nums, 0, n - 1); // ¹é²¢ÅÅĞò
-	sorter.merge_sort_iteration(nums, 0, n - 1); // ¹é²¢ÅÅĞòµü´ú°æ
-	//sorter.quick_sort(nums, 0, n - 1); // ¿ìËÙÅÅĞò
-	//sorter.quick_sort_swap(nums, 0, n - 1); // ¿ìËÙÅÅĞò
-	//sorter.heap_sort(nums); // ¶ÑÅÅĞò
-	//sorter.shell_sort(nums); // Ï£¶ûÅÅĞò
-	//sorter.select_sort(nums); // Ñ¡ÔñÅÅĞò
-	//sorter.insert_sort(nums); // ²åÈëÅÅĞò
-	sort::print_vector(nums);
-	return 0;
+    vector<int> nums = { 123, 54, 38, 96, -23, 15, 72, -60, 45, 83, -1, -23 };
+    int n = nums.size();
+    sort::print_vector(nums);
+    sort::Sorter sorter;
+    //sorter.merge_sort(nums, 0, n - 1); // å½’å¹¶æ’åº
+    sorter.merge_sort_iteration(nums, 0, n - 1); // å½’å¹¶æ’åºè¿­ä»£ç‰ˆ
+    //sorter.quick_sort(nums, 0, n - 1); // å¿«é€Ÿæ’åº
+    //sorter.quick_sort_swap(nums, 0, n - 1); // å¿«é€Ÿæ’åº
+    //sorter.heap_sort(nums); // å †æ’åº
+    //sorter.shell_sort(nums); // å¸Œå°”æ’åº
+    //sorter.select_sort(nums); // é€‰æ‹©æ’åº
+    //sorter.insert_sort(nums); // æ’å…¥æ’åº
+    sort::print_vector(nums);
+    return 0;
 }
