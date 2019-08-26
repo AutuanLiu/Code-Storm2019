@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main()
+int main(void)
 {
     vector<int> nums = { 123, 54, 38, 96, -23, 15, 72, -60, 45, 83, -1, -23 };
     int n = nums.size();

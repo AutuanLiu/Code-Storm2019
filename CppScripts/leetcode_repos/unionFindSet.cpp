@@ -1,137 +1,135 @@
-// ²¢–Ë¼¯µÄÊµÏÖ
+// å¹¶æŸ»é›†çš„å®ç°
 // https://www.jianshu.com/p/fc17847b0a31
 
 #include "leetcode_repos.h"
 
 class UnionFindSet {
 private:
-	vector<int> parent;
+    vector<int> parent;
 
 public:
-	// ¹¹Ôìº¯Êı
-	UnionFindSet(int max_size)
-		: parent(vector<int>(max_size))
-	{
-		// ³õÊ¼»¯Ã¿Ò»¸öÔªËØµÄ¸ù½Úµã¶¼Îª×ÔÉí
-		for (int i = 0; i < max_size; ++i)
-			parent[i] = i;
-	}
+    // æ„é€ å‡½æ•°
+    UnionFindSet(int max_size)
+        : parent(vector<int>(max_size))
+    {
+        // åˆå§‹åŒ–æ¯ä¸€ä¸ªå…ƒç´ çš„æ ¹èŠ‚ç‚¹éƒ½ä¸ºè‡ªèº«
+        for (int i = 0; i < max_size; ++i)
+            parent[i] = i;
+    }
 
-	// ²éÕÒ
-	int find(int x)
-	{
-		return parent[x] == x ? x : find(parent[x]);
-	}
+    // æŸ¥æ‰¾
+    int find(int x)
+    {
+        return parent[x] == x ? x : find(parent[x]);
+    }
 
-	// ºÏ²¢
-	void to_union(int x1, int x2)
-	{
-		parent[find(x1)] = find(x2);
-	}
+    // åˆå¹¶
+    void to_union(int x1, int x2)
+    {
+        parent[find(x1)] = find(x2);
+    }
 
-	// ÅĞ¶ÏÁ½¸öÔªËØÊÇ·ñÊôÓÚÍ¬Ò»¸ö¼¯ºÏ
-	bool is_same(int e1, int e2)
-	{
-		return find(e1) == find(e2);
-	}
+    // åˆ¤æ–­ä¸¤ä¸ªå…ƒç´ æ˜¯å¦å±äºåŒä¸€ä¸ªé›†åˆ
+    bool is_same(int e1, int e2)
+    {
+        return find(e1) == find(e2);
+    }
 };
 
-// ÓÅ»¯°æ±¾µÄ²¢–Ë¼¯
-// °´ÖÈºÏ²¢ Â·¾¶Ñ¹Ëõ
-// ÖÈ±íÊ¾ÎªÊ÷µÄ¸ß¶È Ò»¿ªÊ¼¶¼ÊÇ 0£¬×î¿ªÊ¼Ã¿¸öÔªËØµÄ¸¸Ç×¶¼ÊÇ×Ô¼º(Ë÷Òı±íÊ¾)
+// ä¼˜åŒ–ç‰ˆæœ¬çš„å¹¶æŸ»é›†
+// æŒ‰ç§©åˆå¹¶ è·¯å¾„å‹ç¼©
+// ç§©è¡¨ç¤ºä¸ºæ ‘çš„é«˜åº¦ ä¸€å¼€å§‹éƒ½æ˜¯ 0ï¼Œæœ€å¼€å§‹æ¯ä¸ªå…ƒç´ çš„çˆ¶äº²éƒ½æ˜¯è‡ªå·±(ç´¢å¼•è¡¨ç¤º)
 class UnionFindSetopt {
 private:
-	vector<int> parent;
-	vector<int> rank; // ÖÈ
+    vector<int> parent;
+    vector<int> rank; // ç§©
 
 public:
-	UnionFindSetopt(int max_size)
-		: parent(vector<int>(max_size))
-		, rank(vector<int>(max_size, 0))
-	{
-		for (int i = 0; i < max_size; ++i)
-			parent[i] = i;
-	}
+    UnionFindSetopt(int max_size)
+        : parent(vector<int>(max_size))
+        , rank(vector<int>(max_size, 0))
+    {
+        for (int i = 0; i < max_size; ++i)
+            parent[i] = i;
+    }
 
-	int find(int x)
-	{
-		// return x == parent[x] ? x : (parent[x] = find(parent[x]));
-		if (x == parent[x])
-			return x;
-		else
-			parent[x] = find(parent[x]);
-	}
+    int find(int x)
+    {
+        // return x == parent[x] ? x : (parent[x] = find(parent[x]));
+        if (x == parent[x])
+            return x;
+        else
+            parent[x] = find(parent[x]);
+    }
 
-	void to_union(int x1, int x2)
-	{
-		int f1 = find(x1);
-		int f2 = find(x2);
-		if (rank[f1] > rank[f2])
-			parent[f2] = f1;
-		else {
-			parent[f1] = f2;
-			// ÖØÒªµÄÊÇ×æÏÈµÄ rank£¬ËùÒÔÖ»ÓÃĞŞ¸Ä×æÏÈµÄrank¾Í¿ÉÒÔÁË£¬×Ó½ÚµãµÄrank²»ÓÃ¹Ü
-			if (rank[f1] == rank[f2])
-				++rank[f2];
-		}
-	}
+    void to_union(int x1, int x2)
+    {
+        int f1 = find(x1);
+        int f2 = find(x2);
+        if (rank[f1] > rank[f2])
+            parent[f2] = f1;
+        else {
+            parent[f1] = f2;
+            // é‡è¦çš„æ˜¯ç¥–å…ˆçš„ rankï¼Œæ‰€ä»¥åªç”¨ä¿®æ”¹ç¥–å…ˆçš„rankå°±å¯ä»¥äº†ï¼Œå­èŠ‚ç‚¹çš„rankä¸ç”¨ç®¡
+            if (rank[f1] == rank[f2])
+                ++rank[f2];
+        }
+    }
 
-	bool is_same(int e1, int e2)
-	{
-		return find(e1) == find(e2);
-	}
+    bool is_same(int e1, int e2)
+    {
+        return find(e1) == find(e2);
+    }
 };
 
-
-// ÓÅ»¯°æ±¾µÄ²¢–Ë¼¯
-// °´ÖÈºÏ²¢ Â·¾¶Ñ¹Ëõ
-// size±íÊ¾ÎªÊ÷ÖĞÔªËØµÄ¸öÊı Ò»¿ªÊ¼¶¼ÊÇ 1£¬¼´Ã¿¸öÔªËØ¸÷×Ô´ú±íÒ»¸ö¼¯ºÏ£¬×î¿ªÊ¼Ã¿¸öÔªËØµÄ¸¸Ç×¶¼ÊÇ×Ô¼º(Ë÷Òı±íÊ¾)
+// ä¼˜åŒ–ç‰ˆæœ¬çš„å¹¶æŸ»é›†
+// æŒ‰ç§©åˆå¹¶ è·¯å¾„å‹ç¼©
+// sizeè¡¨ç¤ºä¸ºæ ‘ä¸­å…ƒç´ çš„ä¸ªæ•° ä¸€å¼€å§‹éƒ½æ˜¯ 1ï¼Œå³æ¯ä¸ªå…ƒç´ å„è‡ªä»£è¡¨ä¸€ä¸ªé›†åˆï¼Œæœ€å¼€å§‹æ¯ä¸ªå…ƒç´ çš„çˆ¶äº²éƒ½æ˜¯è‡ªå·±(ç´¢å¼•è¡¨ç¤º)
 class UnionFindSetopt1 {
 private:
-	vector<int> parent;
-	vector<int> size; // ×Ó¼¯ºÏ´óĞ¡
+    vector<int> parent;
+    vector<int> size; // å­é›†åˆå¤§å°
 
 public:
-	UnionFindSetopt1(int max_size)
-		: parent(vector<int>(max_size))
-		, size(vector<int>(max_size, 1))
-	{
-		for (int i = 0; i < max_size; ++i)
-			parent[i] = i;
-	}
+    UnionFindSetopt1(int max_size)
+        : parent(vector<int>(max_size))
+        , size(vector<int>(max_size, 1))
+    {
+        for (int i = 0; i < max_size; ++i)
+            parent[i] = i;
+    }
 
-	int find(int x)
-	{
-		// return x == parent[x] ? x : (parent[x] = find(parent[x]));
-		if (x == parent[x])
-			return x;
-		else
-			parent[x] = find(parent[x]);
-	}
+    int find(int x)
+    {
+        // return x == parent[x] ? x : (parent[x] = find(parent[x]));
+        if (x == parent[x])
+            return x;
+        else
+            parent[x] = find(parent[x]);
+    }
 
-	void to_union(int x1, int x2)
-	{
-		int f1 = find(x1);
-		int f2 = find(x2);
+    void to_union(int x1, int x2)
+    {
+        int f1 = find(x1);
+        int f2 = find(x2);
 
-		// Èç¹û f1==f2 ÔòËµÃ÷ËûÃÇÒÑ¾­ÔÚÒ»¸ö¼¯ºÏÀï£¬²»ĞèÒªºÏ²¢
-		// ºÏ²¢µ½¸ü¸ßµÄ¼¯ºÏ
-		if (f1 != f2) {
-			if (size[f1] > size[f2]) {
-				parent[f2] = f1;
-				size[f1] += size[f2];
-			} else {
-				parent[f1] = f2;
-				size[f2] += size[f1];
-			}
-		}
-	}
+        // å¦‚æœ f1==f2 åˆ™è¯´æ˜ä»–ä»¬å·²ç»åœ¨ä¸€ä¸ªé›†åˆé‡Œï¼Œä¸éœ€è¦åˆå¹¶
+        // åˆå¹¶åˆ°æ›´é«˜çš„é›†åˆ
+        if (f1 != f2) {
+            if (size[f1] > size[f2]) {
+                parent[f2] = f1;
+                size[f1] += size[f2];
+            } else {
+                parent[f1] = f2;
+                size[f2] += size[f1];
+            }
+        }
+    }
 
-	bool is_same(int e1, int e2)
-	{
-		return find(e1) == find(e2);
-	}
+    bool is_same(int e1, int e2)
+    {
+        return find(e1) == find(e2);
+    }
 };
-
 
 // leetcode 765

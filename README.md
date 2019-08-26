@@ -1,10 +1,39 @@
 # LeetCode2019
 
-Python Version
-
 1. leetcode 代码练习
 2. 剑指offer 练习题
 3. 算法与数据结构
+4. SQL
+
+## 语言
+
+1. C++
+2. Python
+
+## 信息
+
+```bash
+(torch36) λ cloc .
+     382 text files.
+     382 unique files.
+      35 files ignored.
+
+http://cloc.sourceforge.net v 1.64  T=0.84 s (440.9 files/s, 24341.1 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+C++                            173            641           6167           5497
+Python                         160            688           2981           3620
+C/C++ Header                     4             30             11            186
+Java                             5             11              1            156
+SQL                             19             47            129            111
+Bourne Shell                     3             17              9             63
+CMake                            5             15             20             22
+JSON                             1              0              0              5
+-------------------------------------------------------------------------------
+SUM:                           370           1449           9318           9660
+-------------------------------------------------------------------------------
+```
 
 ## Reference
 1. [MisterBooo/LeetCodeAnimation: Demonstrate all the questions on LeetCode in the form of animation.（用动画的形式呈现解LeetCode题目的思路）](https://github.com/MisterBooo/LeetCodeAnimation)
