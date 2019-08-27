@@ -7,7 +7,7 @@
 
 ## 算法
 
-### 排序算法
+### [排序算法](./CppScripts/sort)
 
 ```cpp
 void max_heapifty(vector<int>& nums, int start, int end); // 调整堆
@@ -36,11 +36,17 @@ template <typename T>
 void print_matrix(vector<vector<T>>& matrix);
 ```
 
+### [libtorch](./CppScripts/torch-x) 使用案例
+
+1. Mnist [libtorch](https://pytorch.org/cppdocs/) C++ 版本
+
 
 ## 语言
 
 1. C++
 2. Python
+3. bash
+4. SQL
 
 ## 信息
 
