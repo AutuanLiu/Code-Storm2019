@@ -40,6 +40,14 @@ void print_matrix(vector<vector<T>>& matrix);
 
 1. Mnist [libtorch](https://pytorch.org/cppdocs/) C++ 版本
 
+### Deeplearning
+
+1. dropout
+2. batchnorm
+3. layernorm
+4. conv2d
+5. pool2d
+6. numpy 实现2层的全连接网络
 
 ## 语言
 

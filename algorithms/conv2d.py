@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def cov2d(X, K):
+def conv2d(X, K):
     """二维卷积
     X 为输入，K为卷积核
     """
@@ -17,5 +17,5 @@ def cov2d(X, K):
 if __name__ == "__main__":
     X = np.random.randn(8, 8)
     K = np.random.randn(3, 3)
-    Z = cov2d(X, K)
+    Z = conv2d(X, K)
     print(Z)
