@@ -40,7 +40,7 @@ void print_matrix(vector<vector<T>>& matrix);
 
 1. Mnist [libtorch](https://pytorch.org/cppdocs/) C++ 版本
 
-### Deeplearning
+### Deep Learning
 
 1. dropout
 2. batchnorm
