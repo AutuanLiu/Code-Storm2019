@@ -3,7 +3,7 @@
  *
  * [106] 从中序与后序遍历序列构造二叉树
  *
- * https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/
+ * https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-root_postorder-traversal/description/
  *
  * algorithms
  * Medium (61.48%)
@@ -21,7 +21,7 @@
  * 例如，给出
  * 
  * 中序遍历 inorder = [9,3,15,20,7]
- * 后序遍历 postorder = [9,15,7,20,3]
+ * 后序遍历 root_postorder = [9,15,7,20,3]
  * 
  * 返回如下的二叉树：
  * 
@@ -44,15 +44,15 @@
  */
 class Solution {
 public:
-    vector<int> postorders, inorders;
-    // 注意这里的 pos 的位置是可以更改的
+    vector<int> root_postorders, inorders;
+    // 注意这里的 root_pos 的位置是可以更改的
     // 因为 其在函数的内部发生了变化，递归过程中发生了变化
-    TreeNode* build(int& pos, int lb, int rb)
+    TreeNode* build(int& root_pos, int lb, int rb)
     {
-        // 递归出口, inorder全部访问完或者postorder全部访问完
-        if (lb >= rb || pos >= postorders.size())
+        // 递归出口, inorder全部访问完或者root_postorder全部访问完
+        if (lb >= rb || root_pos >= root_postorders.size())
             return nullptr;
-        TreeNode* root = new TreeNode(postorders[pos--]);
+        TreeNode* root = new TreeNode(root_postorders[root_pos--]);
         // 找到当前 根节点 在 inorder 的位置
         int cur = lb;
         for (; cur < rb && inorders[cur] != root->val; cur++)
@@ -60,18 +60,20 @@ public:
 
         // 递归左子树与右子树
         // 根右  右根  按照后序遍历的顺序访问 从右到左  分别是  根右左
-        root->right = build(pos, cur + 1, rb);
-        root->left = build(pos, lb, cur);
+        // 后序遍历的访问顺序是 左右根 但是，我们是按照后序遍历数组从右到左的顺序进行构建
+        // 所有，递归构建的顺序应该是 根右左
+        root->right = build(root_pos, cur + 1, rb);
+        root->left = build(root_pos, lb, cur);
         return root;
     }
 
-    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder)
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& root_postorder)
     {
         // 赋值全局变量
-        postorders = postorder;
+        root_postorders = root_postorder;
         inorders = inorder;
-        int pos = postorder.size() - 1;
-        TreeNode* root = build(pos, 0, inorder.size());
+        int root_pos = root_postorder.size() - 1;
+        TreeNode* root = build(root_pos, 0, inorder.size());
         return root;
     }
 };
