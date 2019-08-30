@@ -40,14 +40,14 @@ void print_matrix(vector<vector<T>>& matrix);
 
 1. Mnist [libtorch](https://pytorch.org/cppdocs/) C++ 版本
 
-### Deep Learning
+### Deep Learning 实现
 
-1. dropout
-2. batchnorm
-3. layernorm
-4. conv2d
-5. pool2d
-6. numpy 实现2层的全连接网络
+1. [dropout](./algorithms/dropout.py)
+2. [batchnorm](./algorithms/batchnorm.py)
+3. [layernorm](./algorithms/layernorm.py)
+4. [conv2d](./algorithms/conv2d.py)
+5. [pool2d](./algorithms/pool2d.py)
+6. [numpy 实现2层的全连接网络](./algorithms/fully2.py)
 
 ## 语言
 
@@ -60,24 +60,24 @@ void print_matrix(vector<vector<T>>& matrix);
 
 ```bash
 (torch36) λ cloc .
-     382 text files.
-     382 unique files.
-      35 files ignored.
+     408 text files.
+     408 unique files.
+      40 files ignored.
 
-http://cloc.sourceforge.net v 1.64  T=0.84 s (440.9 files/s, 24341.1 lines/s)
+http://cloc.sourceforge.net v 1.64  T=0.95 s (413.7 files/s, 22707.3 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
-C++                            173            641           6167           5497
-Python                         160            688           2981           3620
-C/C++ Header                     4             30             11            186
+C++                            187            712           6643           5978
+Python                         168            719           3015           3743
+C/C++ Header                     5             33             13            192
 Java                             5             11              1            156
 SQL                             19             47            129            111
 Bourne Shell                     3             17              9             63
-CMake                            5             15             20             22
-JSON                             1              0              0              5
+CMake                            6             18             25             27
+JSON                             2              0              0             20
 -------------------------------------------------------------------------------
-SUM:                           370           1449           9318           9660
+SUM:                           395           1557           9835          10290
 -------------------------------------------------------------------------------
 ```
 
