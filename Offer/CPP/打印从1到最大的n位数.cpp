@@ -1,8 +1,10 @@
 // 打印从1到最大的n位数
 #include <iostream>
 #include <string>
+
 using namespace std;
 
+// 不输出前面多余的 '0'
 void print(string number)
 {
     int n = number.size();
@@ -17,43 +19,28 @@ void print(string number)
         }
     }
     if (doing)
-        cout << "\t";
+        cout << endl;
 }
 
-void print_digits(string number, int length, int index)
+// 递归调用或者理解为回溯（循环结束）
+void print_digits(string number, int n, int index)
 {
-    if (index == length - 1) {
+    if (index == n) {
         print(number);
         return;
     }
 
     //  当前位循环0~9
     for (int i = 0; i < 10; i++) {
-        number[index + 1] = i + '0';
-        print_digits(number, length, index + 1);
-    }
-}
-
-void get_digits(int n)
-{
-    if (n <= 0)
-        return;
-
-    string number(n, '0');
-
-    //  最地位循环0~9
-    for (int i = 0; i < 10; i++) {
-        number[0] = i + '0';
-        print_digits(number, n, 0);
+        number[index] = i + '0';
+        print_digits(number, n, index + 1);
     }
 }
 
 int main(void)
 {
-    int n;
-
-    while (cin >> n) {
-        get_digits(n);
-    }
+    int n; // n 大于 0
+    string number(n, '0');
+    print_digits(number, n, 0);
     return 0;
 }
