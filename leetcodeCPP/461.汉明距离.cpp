@@ -36,6 +36,8 @@
  * 
  * 
  */
+
+// 另一个题目是，有两个数 m, n 那么最少要改变多少位 才能使得两个数相同
 class Solution {
 public:
     int hammingDistance(int x, int y)
