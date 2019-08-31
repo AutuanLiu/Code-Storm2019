@@ -7,6 +7,9 @@ void shell_sort(vector<int>& nums); // 希尔排序
 void select_sort(vector<int>& nums); // 选择排序
 void quick_sort_swap(vector<int>& nums, int low, int high); // 快速排序-交换元素
 void quick_sort(vector<int>& nums, int low, int high); // 快速排序
+int get_partition(vector<int>& nums, int low, int high); // 快速排序获得分割点
+int get_partition_swap(vector<int>& nums, int low, int high); // 快速排序获得分割点-交换元素
+void quick_sort_iteration(vector<int>& nums, int low, int high); // 快速排序迭代版
 void merge_sorted(vector<int>& nums, int left, int mid, int right); // 合并两个有序数组
 void merge_sorted_easy(vector<int>& nums, int left, int mid, int right); // 化简版合并两个有序数组
 void merge_sort(vector<int>& nums, int left, int right); // 归并排序

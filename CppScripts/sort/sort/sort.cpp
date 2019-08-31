@@ -44,7 +44,7 @@ void Sorter::heap_sort(vector<int>& nums)
 void Sorter::shell_sort(vector<int>& nums)
 {
     int n = nums.size(), i, j, inc, cur;
-    // 设置初始增量为 数组长度的一般，每次都折半，直到为1
+    // 设置初始增量为 数组长度的一半，每次都折半，直到为1
     // 分两组 分 4 组 分 8 组 等 每组数据之间进行比较与移动
     // 所以应该包含的是 三层循环
     for (inc = n / 2; inc > 0; inc /= 2) {
@@ -79,7 +79,7 @@ void Sorter::quick_sort_swap(vector<int>& nums, int low, int high)
 {
     // 递归出口 只剩一个元素
     int lb = low, rb = high;
-    if (lb >= rb)
+    if (nums.empty() || lb < 0 || rb <= 0 || lb >= rb)
         return;
     while (lb < rb) {
         // pivot选择 nums[lb] 从右向左 选择小于 pivot 的数值和pivot交换
@@ -102,7 +102,7 @@ void Sorter::quick_sort_swap(vector<int>& nums, int low, int high)
 void Sorter::quick_sort(vector<int>& nums, int low, int high)
 {
     int lb = low, rb = high;
-    if (lb >= rb)
+    if (nums.empty() || lb < 0 || rb <= 0 || lb >= rb)
         return;
     while (lb < rb) {
         int pivot = nums[lb];
@@ -117,6 +117,85 @@ void Sorter::quick_sort(vector<int>& nums, int low, int high)
         nums[lb] = pivot;
         quick_sort(nums, low, lb - 1);
         quick_sort(nums, lb + 1, high);
+    }
+}
+
+// 快速排序获得分割点 交换元素
+int Sorter::get_partition_swap(std::vector<int>& nums, int low, int high)
+{
+    int lb = low, rb = high;
+    if (nums.empty() || lb < 0 || rb <= 0 || lb >= rb)
+        return -1;
+    while (lb < rb) {
+        // pivot选择 nums[lb] 从右向左 选择小于 pivot 的数值和pivot交换
+        for (; lb < rb && nums[rb] >= nums[lb]; rb--)
+            ;
+        // 只有当 lb < rb 的时候，才交换，因为上面那句对rb-1，每次都要判断lb < rb 是否成立
+        if (lb < rb)
+            swap(nums[lb++], nums[rb]);
+        for (; lb < rb && nums[rb] >= nums[lb]; lb++)
+            ;
+        // 交换操作前必须判断交换的条件是否成立
+        if (lb < rb)
+            swap(nums[rb--], nums[lb]);
+    }
+    return lb; // 分割点 元素位置已经固定
+}
+
+// 快速排序获得分割点
+int Sorter::get_partition(std::vector<int>& nums, int low, int high)
+{
+    int lb = low, rb = high;
+    if (nums.empty() || lb < 0 || rb <= 0 || lb >= rb)
+        return -1;
+    while (lb < rb) {
+        // pivot选择 nums[lb] 从右向左 选择小于 pivot 的数值和pivot交换
+        int pivot = nums[lb];
+        for (; lb < rb && nums[rb] >= pivot; rb--)
+            ;
+        if (lb < rb)
+            nums[lb++] = nums[rb];
+        for (; lb < rb && nums[lb] <= pivot; lb++)
+            ;
+        if (lb < rb)
+            nums[rb--] = nums[lb];
+        nums[lb] = pivot;
+    }
+    return lb; // 分割点 元素位置已经固定
+}
+
+// 快速排序迭代版
+void Sorter::quick_sort_iteration(std::vector<int>& nums, int low, int high)
+{
+    if (nums.empty() || low < 0 || high <= 0 || low >= high)
+        return;
+    int lb = low, rb = high;
+    stack<int> boundary;
+    // 存储初始状态
+    boundary.push(rb); // 先入后出 先存储右边界再存储左边界
+    boundary.push(lb); // 出栈时是按照 左边界右边界的顺序弹出
+    while (!boundary.empty()) {
+        // 获取左右边界
+        lb = boundary.top();
+        boundary.pop();
+        rb = boundary.top();
+        boundary.pop();
+        if (lb < rb) {
+            int k = get_partition(nums, lb, rb);
+            //int k = get_partition_swap(nums, lb, rb);
+            // 判断 k 与左右边界的关系
+            // 新的划分关系为 [lb, k - 1], [k + 1, rb]
+            if (k - 1 > lb) {
+                // 存在左边区间
+                boundary.push(k - 1);
+                boundary.push(lb);
+            }
+            if (k + 1 < rb) {
+                // 存在右边区间
+                boundary.push(rb);
+                boundary.push(k + 1);
+            }
+        }
     }
 }
 

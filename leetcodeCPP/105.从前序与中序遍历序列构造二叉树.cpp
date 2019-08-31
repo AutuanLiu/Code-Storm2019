@@ -48,14 +48,16 @@
 class Solution {
 public:
     vector<int> preorders, inorders;
-    // 注意这里的 pos 的位置是可以更改的
+    // 注意这里的 root_pos 的位置是可以更改的
     // 因为 其在函数的内部发生了变化，递归过程中发生了变化
-    TreeNode* build(int& pos, int lb, int rb)
+    TreeNode* build(int& root_pos, int lb, int rb)
     {
+        // root_pos 代表先序遍历数组的位置，也即根节点的位置
+        // lb, rb 代表中序遍历的范围
         // 递归出口, inorder全部访问完或者preorder全部访问完
-        if (lb >= rb || pos >= preorders.size())
+        if (lb >= rb || root_pos >= (int)preorders.size())
             return nullptr;
-        TreeNode* root = new TreeNode(preorders[pos++]);
+        TreeNode* root = new TreeNode(preorders[root_pos++]);
         // 找到当前 根节点 在 inorder 的位置
         int cur = lb;
         for (; cur < rb && inorders[cur] != root->val; cur++)
@@ -63,8 +65,8 @@ public:
 
         // 递归左子树与右子树
         // 根左  左根  按照先序遍历的顺序进行访问 顺序为 根左右
-        root->left = build(pos, lb, cur);
-        root->right = build(pos, cur + 1, rb);
+        root->left = build(root_pos, lb, cur);
+        root->right = build(root_pos, cur + 1, rb);
         return root;
     }
 
@@ -73,8 +75,8 @@ public:
         // 赋值全局变量
         preorders = preorder;
         inorders = inorder;
-        int pos = 0;
-        TreeNode* root = build(pos, 0, inorder.size());
+        int root_pos = 0;
+        TreeNode* root = build(root_pos, 0, inorder.size());
         return root;
     }
 };
