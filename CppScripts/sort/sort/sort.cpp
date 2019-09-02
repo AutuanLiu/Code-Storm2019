@@ -5,6 +5,7 @@ using namespace std;
 
 // 堆排序
 // start, end 分别表示当前无序数组的开始和结束位置
+// 从上往下调整
 void Sorter::max_heapifty(vector<int>& nums, int start, int end)
 {
     // 父节点为 start, 子节点可以包括左右两个节点son, son+1
