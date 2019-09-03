@@ -13,6 +13,7 @@ class Solution
 };
 
 // 数学归纳法
+// 2^(n - 1)
 class Solution
 {
   public:

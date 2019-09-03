@@ -39,10 +39,33 @@
  * 
  * 
  */
+// 相当于 hash 表解决冲突的问题
+// 先统计每个数字出现的次数 数字的范围是在 0 到 80000
+// 对于每个数字 如果他是重复的就减去那个数字，如果是没有出现 那么就加上那个数字
+
+// 由于我们的目标是使数组中所有数字都变成唯一，那么当某个数字是i的时候，它的下一个数字至少应该是i+1。
+// 如果下一个数字小于i+1，我们就需要增加它，增加的次数即为数字与i+1之间的差值。
+// 而且从前往后扫描 存在一定的贪心思想
+
+// 或者找到未出现的数值 和 重复数值 逐一相减并求和
+
 class Solution {
 public:
-    int minIncrementForUnique(vector<int>& A) {
-        
+    int minIncrementForUnique(vector<int>& A)
+    {
+        int n = A.size();
+        if (n == 0)
+            return 0;
+        sort(A.begin(), A.end()); // 从小到大进行排序
+        int prev = A[0], ret = 0;
+
+        for (int i = 1; i < n; i++) {
+            if (A[i] <= prev) {
+                ret += prev + 1 - A[i]; // prev + 1 还没有被使用
+                A[i] = prev + 1;
+            }
+            prev = A[i]; // 更新 prev 数值
+        }
+        return ret;
     }
 };
-
