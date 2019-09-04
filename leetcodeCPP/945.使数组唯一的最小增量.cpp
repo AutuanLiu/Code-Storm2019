@@ -49,9 +49,38 @@
 
 // 或者找到未出现的数值 和 重复数值 逐一相减并求和
 
+// class Solution {
+// public:
+//     int minIncrementForUnique(vector<int>& A)
+//     {
+//         int n = A.size();
+//         if (n == 0)
+//             return 0;
+//         sort(A.begin(), A.end()); // 从小到大进行排序
+//         int prev = A[0], ret = 0;
+
+//         for (int i = 1; i < n; i++) {
+//             if (A[i] <= prev) {
+//                 ret += prev + 1 - A[i]; // prev + 1 还没有被使用
+//                 A[i] = prev + 1;
+//             }
+//             prev = A[i]; // 更新 prev 数值
+//         }
+//         return ret;
+//     }
+// };
+
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+typedef vector<int> vi;
+
 class Solution {
 public:
-    int minIncrementForUnique(vector<int>& A)
+    int minIncrementForUnique(vi& A)
     {
         int n = A.size();
         if (n == 0)
@@ -69,3 +98,10 @@ public:
         return ret;
     }
 };
+
+int main(void)
+{
+    vi A{ 3, 2, 1, 2, 1, 7 };
+    cout << Solution().minIncrementForUnique(A) << endl;
+    return 0;
+}
