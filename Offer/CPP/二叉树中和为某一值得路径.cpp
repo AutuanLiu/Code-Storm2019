@@ -12,19 +12,21 @@ struct TreeNode {
 };
 
 class Solution {
-public:
+private:
     vector<int> tmp;
     vector<vector<int>> buffer;
-    vector<vector<int>> FindPath(TreeNode* root, int expectNumber)
+
+public:
+    vector<vector<int>> FindPath(TreeNode* root, int target)
     {
         if (root == NULL)
             return buffer;
         tmp.push_back(root->val);
-        if (expectNumber - root->val == 0 && root->left == NULL && root->right == NULL) {
+        if (target - root->val == 0 && root->left == NULL && root->right == NULL) {
             buffer.push_back(tmp);
         }
-        FindPath(root->left, expectNumber - root->val);
-        FindPath(root->right, expectNumber - root->val);
+        FindPath(root->left, target - root->val);
+        FindPath(root->right, target - root->val);
         if (tmp.size() != 0)
             tmp.pop_back();
         return buffer;
@@ -33,16 +35,16 @@ public:
 
 class Solution {
 public:
-    vector<vector<int>> FindPath(TreeNode* root, int expectNumber)
+    vector<vector<int>> FindPath(TreeNode* root, int target)
     {
         // 使用 vector 来模拟栈，末尾为栈顶，首端为栈底
-        if (root != nullptr || root->val > expectNumber) {
+        if (root != nullptr || root->val > target) {
             // 先在 path 中存入根节点，首先访问的是根节点
             path.push_back(root->val);
-            if (expectNumber - root->val == 0 && root->left == nullptr && root->right == nullptr)
+            if (target - root->val == 0 && root->left == nullptr && root->right == nullptr)
                 res.push_back(path);
-            FindPath(root->left, expectNumber - root->val);
-            FindPath(root->right, expectNumber - root->val);
+            FindPath(root->left, target - root->val);
+            FindPath(root->right, target - root->val);
             if (path.size() > 0)
                 path.pop_back();
         }
