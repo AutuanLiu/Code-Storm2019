@@ -1,6 +1,6 @@
-class Solution
-{
-  public:
+// 二叉搜索树的后序遍历序列.cpp
+class Solution {
+public:
     bool VerifySquenceOfBST(vector<int> sequence)
     {
         return bst(sequence, 0, sequence.size() - 1);
@@ -28,9 +28,8 @@ class Solution
     }
 };
 
-class Solution
-{
-  public:
+class Solution {
+public:
     bool VerifySquenceOfBST(vector<int> sequence)
     {
         if (sequence.size() == 0)
@@ -40,15 +39,13 @@ class Solution
         vector<int> left_seq, right_seq;
         // 寻找左右子树的分割点
         int root = sequence.back();
-        for (; pivot < sequence.size() - 1; pivot++)
-        {
+        for (; pivot < sequence.size() - 1; pivot++) {
             if (sequence[pivot] > root)
                 break;
             left_seq.push_back(sequence[pivot]);
         }
         // 右子树判断，如果右子树中存在小于root的数值，则返回false
-        for (int j = pivot; j < sequence.size() - 1; j++)
-        {
+        for (int j = pivot; j < sequence.size() - 1; j++) {
             if (sequence[j] < root)
                 return false;
             right_seq.push_back(sequence[j]);

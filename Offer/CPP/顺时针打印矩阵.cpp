@@ -3,12 +3,11 @@ class Solution {
 public:
     vector<int> printMatrix(vector<vector<int>> matrix)
     {
-        int row = matrix.size();
-        int col = matrix[0].size();
+        int m = matrix.size(), n = matrix[0].size();
         vector<int> ret;
-        if (row == 0 || col == 0)
+        if (m == 0)
             return ret;
-        int left = 0, right = col - 1, top = 0, btm = row - 1;
+        int left = 0, right = n - 1, top = 0, btm = m - 1;
         while (left <= right && top <= btm) {
             for (int i = left; i <= right; i++)
                 ret.push_back(matrix[top][i]);
