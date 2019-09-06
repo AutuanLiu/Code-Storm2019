@@ -14,25 +14,24 @@ struct TreeNode {
 // 递归思路
 class Solution {
 public:
-    // 查找与根节点一样的节点
-    bool HasSubtree(TreeNode* pRootA, TreeNode* pRootB)
+    bool HasSubtree(TreeNode* A, TreeNode* B)
     {
-        if (pRootA == nullptr || pRootB == nullptr)
+        if (A == nullptr || B == nullptr)
             return false;
         // 左子树右子树根是否有B子树
-        return isSubtree(pRootA, pRootB) || HasSubtree(pRootA->left, pRootB) || HasSubtree(pRootA->right, pRootB);
+        return isSubtree(A, B) || HasSubtree(A->left, B) || HasSubtree(A->right, B);
     }
 
     // 判断以R为根节点的子树是不是和B有相同的结构
-    bool isSubtree(TreeNode* pRootA, TreeNode* pRootB)
+    bool isSubtree(TreeNode* A, TreeNode* B)
     {
-        if (pRootB == nullptr)
+        if (B == nullptr) // 空树是任何树的子树
             return true;
-        if (pRootA == nullptr)
+        if (A == nullptr) // 空树没有任何形式的子树
             return false;
-        if (pRootB->val == pRootA->val)
-            // 判断左右子树是否相同
-            return isSubtree(pRootA->left, pRootB->left) && isSubtree(pRootA->right, pRootB->right);
-        return false;
+        // 根节点相同判断是否左右子树也相同
+        if (B->val == A->val)
+            return isSubtree(A->left, B->left) && isSubtree(A->right, B->right);
+        return false; // 其他情况 都是 false
     }
 };
