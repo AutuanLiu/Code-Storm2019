@@ -1,4 +1,4 @@
-// 二叉树中和为某一值得路径.cpp
+// 二叉树中和为某一值的路径.cpp
 struct TreeNode {
     int val;
     struct TreeNode* left;
