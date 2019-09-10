@@ -5,7 +5,6 @@ using namespace std;
 
 // 堆排序
 // start, end 分别表示当前无序数组的开始和结束位置
-// 从上往下调整
 void Sorter::max_heapifty(vector<int>& nums, int start, int end)
 {
     // 父节点为 start, 子节点可以包括左右两个节点son, son+1
@@ -28,7 +27,7 @@ void Sorter::heap_sort(vector<int>& nums)
 {
     int n = nums.size();
     // 先对原始数据做大根堆 从第一个非叶节点 从右到左 从下到上
-    // 认为当前根节点以后的都是无序数组
+    // 认为当前根节点以后的都是无序数组 逐步调整初始堆
     for (int i = n / 2 - 1; i >= 0; i--) {
         max_heapifty(nums, i, n - 1);
     }
@@ -64,13 +63,13 @@ void Sorter::select_sort(vector<int>& nums)
 {
     int n = nums.size();
     for (int i = 0; i < n; i++) {
-        int tmp = nums[i], ix = i;
+        int ix = i; // 当前的最小值
         for (int j = i; j < n; j++) {
-            if (nums[j] < tmp) {
-                tmp = nums[j];
-                ix = j; // 最小值的位置
+            if (nums[j] < nums[ix]) {
+                ix = j; // 更新最小值的位置
             }
         }
+        // 把最小值的位置放在开头
         swap(nums[i], nums[ix]);
     }
 }
@@ -286,6 +285,51 @@ void Sorter::insert_sort(vector<int>& nums)
             nums[j + 1] = nums[j];
         }
         nums[j + 1] = cur;
+    }
+}
+
+// 冒泡排序从后往前
+void Sorter::bubble_sort_backward(vector<int>& nums)
+{
+    int n = nums.size();
+    // 总共要比较 n - 1 趟 每趟遍历确定一个最小值
+    for (int i = 0; i < n - 1; i++) {
+        bool hasChanged = false;
+
+        // 从后往前遍历
+        for (int j = n - 1; j > i; j--) {
+            if (nums[j] < nums[j - 1]) {
+                swap(nums[j], nums[j - 1]);
+                hasChanged = true;
+            }
+        }
+
+        // 如果本趟遍历没有发生任何的交换，则说明数组已经有序
+        // 直接结束
+        if (!hasChanged)
+            return;
+    }
+}
+
+//冒泡排序从前往后
+void Sorter::bubble_sort_forward(vector<int>& nums)
+{
+    int n = nums.size();
+    // 总共要比较 n - 1 趟 每趟遍历确定一个最大值
+    for (int i = n - 1; i > 0; i--) {
+        bool hasChanged = false;
+        // 从前往后遍历
+        for (int j = 0; j < i; j++) {
+            if (nums[j] > nums[j + 1]) {
+                swap(nums[j], nums[j + 1]);
+                hasChanged = true;
+            }
+        }
+
+        // 如果本趟遍历没有发生任何的交换，则说明数组已经有序
+        // 直接结束
+        if (!hasChanged)
+            return;
     }
 }
 } // namespace sort
