@@ -1,20 +1,31 @@
-class Solution
-{
-  public:
-    int TreeDepth(TreeNode *pRoot)
+// 二叉树的深度.cpp
+struct TreeNode {
+    int val;
+    struct TreeNode* left;
+    struct TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(nullptr)
+        , right(nullptr)
     {
-        if (pRoot == NULL)
+    }
+};
+
+class Solution {
+public:
+    int TreeDepth(TreeNode* pRoot)
+    {
+        if (pRoot == nullptr)
             return 0;
         return max(TreeDepth(pRoot->left), TreeDepth(pRoot->right)) + 1;
     }
 };
 
-class Solution
-{
-  public:
-    int TreeDepth(TreeNode *pRoot)
+class Solution {
+public:
+    int TreeDepth(TreeNode* pRoot)
     {
-        if (pRoot == NULL)
+        if (pRoot == nullptr)
             return 0;
 
         int nleft = TreeDepth(pRoot->left);
@@ -27,10 +38,9 @@ class Solution
     }
 };
 
-class Solution
-{
-  public:
-    int TreeDepth(TreeNode *pRoot)
+class Solution {
+public:
+    int TreeDepth(TreeNode* pRoot)
     {
         if (!pRoot)
             return 0;
