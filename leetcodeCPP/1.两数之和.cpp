@@ -38,13 +38,15 @@ public:
     {
         unordered_map<int, int> m;
         vector<int> v;
-        for (int it = 0; it < nums.size(); it++) {
+        for (int it = 0; it < (int)nums.size(); it++) {
             int rest = target - nums[it];
+            // 查找
             if (m.find(rest) != m.end()) {
                 v.push_back(m[rest]);
                 v.push_back(it);
                 break;
             }
+            // 把当前的数值加入字典中
             m[nums[it]] = it;
         }
         return v;

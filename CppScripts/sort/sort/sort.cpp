@@ -40,7 +40,8 @@ void Sorter::heap_sort(vector<int>& nums)
     }
 }
 
-// 希尔排序
+// 希尔排序 分组插入排序
+// 先进行分组 之后进行插入排序
 void Sorter::shell_sort(vector<int>& nums)
 {
     int n = nums.size(), i, j, inc, cur;
@@ -164,7 +165,7 @@ int Sorter::get_partition(std::vector<int>& nums, int low, int high)
     return lb; // 分割点 元素位置已经固定
 }
 
-// 快速排序迭代版
+// 快速排序迭代版  快速排序就是不断的partition的过程
 void Sorter::quick_sort_iteration(std::vector<int>& nums, int low, int high)
 {
     if (nums.empty() || low < 0 || high <= 0 || low >= high)
@@ -275,7 +276,7 @@ void Sorter::merge_sort_iteration(vector<int>& nums, int left, int right)
 
 void Sorter::insert_sort(vector<int>& nums)
 {
-    // 将无序区的数值依次插入有序区，是的插入后的数值保持有序
+    // 将无序区的数值依次插入有序区，使得插入后的数值保持有序
     // 有序区从右向左进行遍历，如果数值大于当前数值，那么就把数值向后移动一位
     // 否则，找到插入位置，放下当前的数值，继续进行下一次的插入排序
     int n = nums.size(), i, j;

@@ -24,7 +24,7 @@ public:
         // 先序遍历
         path.push_back(root->val);
         // 到达叶节点
-        if (target - root->val == 0 && root->left == nullptr && root->right == nullptr) {
+        if (root->val == target && root->left == nullptr && root->right == nullptr) {
             ret.push_back(path);
         }
         FindPath(root->left, target - root->val);

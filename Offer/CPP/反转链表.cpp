@@ -4,7 +4,7 @@ struct ListNode {
     struct ListNode* next;
     ListNode(int x)
         : val(x)
-        , next(NULL)
+        , next(nullptr)
     {
     }
 };

@@ -2,6 +2,7 @@
 // 双指针 冒泡排序
 // 位运算一定要加足够多的括号  否则很容易就出错的
 
+// 双指针或者partion就条件判断
 class Solution {
 public:
     void reOrderArray(vector<int>& array)
