@@ -13,11 +13,13 @@ int main(void)
     //sorter.merge_sort_iteration(nums, 0, n - 1); // 归并排序迭代版
     //sorter.quick_sort(nums, 0, n - 1); // 快速排序
     //sorter.quick_sort_swap(nums, 0, n - 1); // 快速排序
-    sorter.quick_sort_iteration(nums, 0, n - 1); // 快速排序迭代版
+    //sorter.quick_sort_iteration(nums, 0, n - 1); // 快速排序迭代版
     //sorter.heap_sort(nums); // 堆排序
     //sorter.shell_sort(nums); // 希尔排序
     //sorter.select_sort(nums); // 选择排序
     //sorter.insert_sort(nums); // 插入排序
+    //sorter.bubble_sort_backward(nums); // 选择排序
+    sorter.bubble_sort_forward(nums); // 选择排序
     sort::print_vector(nums);
     return 0;
 }

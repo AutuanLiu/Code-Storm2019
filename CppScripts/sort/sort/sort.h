@@ -30,5 +30,7 @@ public:
     void merge_sort(std::vector<int>& nums, int left, int right); // 归并排序
     void merge_sort_iteration(std::vector<int>& nums, int left, int right); // 归并排序迭代版
     void insert_sort(std::vector<int>& nums); // 插入排序
+    void bubble_sort_backward(std::vector<int>& nums); // 冒泡排序从后往前
+    void bubble_sort_forward(std::vector<int>& nums); // 冒泡排序从前往后
 };
 } // namespace sort

@@ -15,6 +15,8 @@ void merge_sorted_easy(vector<int>& nums, int left, int mid, int right); // 化�
 void merge_sort(vector<int>& nums, int left, int right); // 归并排序
 void merge_sort_iteration(vector<int>& nums, int left, int right); // 归并排序迭代版
 void insert_sort(vector<int>& nums); // 插入排序
+void bubble_sort_backward(std::vector<int>& nums); // 冒泡排序从后往前
+void bubble_sort_forward(std::vector<int>& nums); // 冒泡排序从前往后
 ```
 
 ## 数组输出
