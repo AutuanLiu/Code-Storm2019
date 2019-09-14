@@ -35,6 +35,8 @@ public:
 };
 
 // 二分加快排
+// 思路是对的，但是我们无法保证中位数之前的都是同一个数字 可以是小于中位数位置处的任意数字
+// 所以需要再次进行检查
 class Solution {
 public:
     int partition(vector<int>& nums, int start, int end)
@@ -67,12 +69,17 @@ public:
             if (pivot > mid) {
                 end = pivot - 1;
                 pivot = partition(nums, start, end);
-            } else {
+            } else if (pivot < mid) {
                 start = pivot + 1;
                 pivot = partition(nums, start, end);
             }
         }
-        int ret = nums[mid];
-        return ret;
+        // [1,2,3,2,4,2,5,2,3] 必须检查一次
+        int ret = nums[mid], cnt = 0;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == ret)
+                cnt++;
+        }
+        return cnt <= mid ? 0 : ret;
     }
 };

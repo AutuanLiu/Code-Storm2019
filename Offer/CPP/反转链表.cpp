@@ -32,3 +32,45 @@ public:
         return ret;
     }
 };
+
+// 递归写法
+class Solution {
+public:
+    ListNode* ReverseList(ListNode* head)
+    {
+        if (head == nullptr || head->next == nullptr)
+            return head;
+
+        ListNode* ret = ReverseList(head->next); // 先翻转后面的链表
+        head->next->next = head;
+        head->next = nullptr;
+        return ret;
+    }
+};
+
+// 这题目也可以借助一个栈
+// 遍历链表把每个节点都入栈之后按照出栈的顺序构造新的链表即可
+class Solution {
+public:
+    ListNode* ReverseList(ListNode* head)
+    {
+        if (head == nullptr || head->next == nullptr)
+            return head;
+
+        ListNode* ret; // 新链表的头结点
+        stack<ListNode*> sk;
+
+        while (head->next != nullptr) {
+            sk.push(head);
+            head = head->next;
+        }
+        ret = head;
+        while (!sk.empty()) {
+            head->next = sk.top(); // 连接栈顶元素
+            sk.pop(); // 出栈
+            head = head->next;
+        }
+        head->next = nullptr;
+        return ret;
+    }
+};
