@@ -1,15 +1,16 @@
-class Solution
-{
-  public:
-    TreeNode *Convert(TreeNode *pRootOfTree)
+// 二叉搜索树与排序链表.cpp
+// 二叉搜索树的中序遍历是有序的
+class Solution {
+public:
+    TreeNode* Convert(TreeNode* pRootOfTree)
     {
-        TreeNode *pList = nullptr; //链表的头节点
+        TreeNode* pList = nullptr; //链表的头节点
         preoder(pRootOfTree, &pList);
         return pList;
     }
 
     //先序遍历的反向遍历 --右->中->左
-    void preoder(TreeNode *pRootOfTree, TreeNode **pList)
+    void preoder(TreeNode* pRootOfTree, TreeNode** pList)
     {
         if (pRootOfTree == nullptr)
             return;
@@ -26,21 +27,20 @@ class Solution
     }
 };
 
-class Solution
-{
-  public:
-    TreeNode *Convert(TreeNode *pRootOfTree)
+class Solution {
+public:
+    TreeNode* Convert(TreeNode* pRootOfTree)
     {
         if (pRootOfTree == nullptr)
             return nullptr;
-        TreeNode *pointer = nullptr;
+        TreeNode* pointer = nullptr;
         convert2List(pRootOfTree, pointer);
         while (pointer->left != nullptr)
             pointer = pointer->left;
         return pointer;
     }
 
-    void convert2List(TreeNode *pRoot, TreeNode *&pointer)
+    void convert2List(TreeNode* pRoot, TreeNode*& pointer)
     {
         if (pRoot == nullptr)
             return;
