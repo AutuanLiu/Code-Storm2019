@@ -43,3 +43,27 @@ public:
         return head;
     }
 };
+
+// leetcode26
+// 快慢指针
+// 链表1->2->3->3->4->4->5 处理后为 1->2->3->4->5
+class Solution {
+public:
+    ListNode* deleteDuplication(ListNode* head)
+    {
+        if (head == nullptr)
+            return head;
+        ListNode *slow = head, *fast = head->next;
+
+        while (fast != nullptr) {
+            if (fast->val != slow->val) {
+                slow->next = fast;
+                slow = slow->next;
+            }
+            fast = fast->next;
+        }
+        // 一定要断开后续连接  表示结束
+        slow->next = nullptr;
+        return head;
+    }
+};

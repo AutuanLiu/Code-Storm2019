@@ -85,17 +85,38 @@
 //     }
 // };
 
+// class Solution {
+// public:
+//     int removeDuplicates(vector<int>& nums)
+//     {
+//         int n = nums.size(), ln = 0, last = INT_MIN;
+//         for (int& it : nums) {
+//             if (it > last) {
+//                 nums[ln++] = it;
+//                 last = it;
+//             }
+//         }
+//         return ln;
+//     }
+// };
+
+
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums)
     {
-        int n = nums.size(), ln = 0, last = INT_MIN;
-        for (int& it : nums) {
-            if (it > last) {
-                nums[ln++] = it;
-                last = it;
+        int n = nums.size();
+        if (n == 0)
+            return 0;
+        int slow = 0, fast = 1;
+
+        while (fast < n) {
+            if (nums[fast] != nums[slow]) {
+                slow++;
+                nums[slow] = nums[fast];
             }
+            fast++;
         }
-        return ln;
+        return slow + 1;
     }
 };
