@@ -21,6 +21,7 @@ function Goods(w,v,r) {
     this.v = v;
     this.r = r;
 }
+
 var completelyBag2 = function(W,V,N){
     let GoodsArr = []
     for(let i = 0; i < W.length; i++){

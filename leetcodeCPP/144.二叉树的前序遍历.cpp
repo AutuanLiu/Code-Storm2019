@@ -14,21 +14,21 @@
  * Testcase Example:  '[1,null,2,3]'
  *
  * 给定一个二叉树，返回它的 前序 遍历。
- * 
+ *
  * 示例:
- * 
- * 输入: [1,null,2,3]  
+ *
+ * 输入: [1,null,2,3]
  * ⁠  1
  * ⁠   \
  * ⁠    2
  * ⁠   /
- * ⁠  3 
- * 
+ * ⁠  3
+ *
  * 输出: [1,2,3]
- * 
- * 
+ *
+ *
  * 进阶: 递归算法很简单，你可以通过迭代算法完成吗？
- * 
+ *
  */
 /**
  * Definition for a binary tree node.
@@ -111,14 +111,16 @@ public:
             if (root) {
                 // 先访问根节点并入栈
                 ret.push_back(root->val);
-                sk.push(root);
-                // 访问左子树
-                root = root->left;
+
+                sk.push(root); // 进栈
+                root = root->left; // 一直访问到最左端的节点
             } else {
                 // 当左子树为空的时候，说明到达最左端，访问顺序就是 根左
                 // 此时访问右子树
                 TreeNode* top = sk.top();
                 sk.pop(); // 访问完要删除
+
+                // 如果根节点存在右子树，继续访问右子树，重复上述过程
                 root = top->right;
             }
         }
