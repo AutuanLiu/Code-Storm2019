@@ -19,6 +19,7 @@ class StringIterator(s: String) extends AbsIterator {
 
 
 trait RichIterator extends AbsIterator {
+    // 传入一个参数是 T 返回类型是 Unit 的函数
     def foreach(func: T => Unit): Unit = while (hasNext) func(next())
 }
 
@@ -26,5 +27,6 @@ trait RichIterator extends AbsIterator {
 object StringIteratorTest extends App {
     class RichStringIter extends StringIterator("Scala") with RichIterator
     val richStringIter = new RichStringIter
+    // richStringIter.foreach(println)
     richStringIter foreach println
 }
