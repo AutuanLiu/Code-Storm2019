@@ -14,11 +14,13 @@ public:
         TreeNode* target = nullptr;
         if (root->left != nullptr)
             target = kthNode(root->left, k);
+
         if (target == nullptr) {
             if (k == 1)
                 target = root;
             k--;
         }
+
         if (target == nullptr && root->right != nullptr)
             target = kthNode(root->right, k);
         return target;

@@ -16,6 +16,7 @@ var completelyBag = function(W,V,N){
  * @param {*} v 物品价值
  * @param {*} r 物品价重比
  */
+ 
 function Goods(w,v,r) {
     this.w = w;
     this.v = v;
